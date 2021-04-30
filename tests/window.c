@@ -22,9 +22,6 @@
 
 #include <LCGE/lcge.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-
 int main(int argc, char const *argv[])
 {
     // Initialize LCGE
