@@ -35,23 +35,23 @@ int main(int argc, char const *argv[])
     }
 
     // Create a window
-    LCGE_window *window = lcge_create_window(500, 500, "LCGE Window Example", 
-                                             LCGE_NON_RESIZEABLE);
+    int success = lcge_create_context(500, 500, "LCGE Window Example", 
+                                      LCGE_NON_RESIZEABLE);
 
     // Check if there was an error creating the window
-    if (window == NULL)
+    if (success == LCGE_CONTEXT_ERR)
     {
         lcge_exit();
         return -1;
     }
 
-    while (lcge_window_is_open(window))
+    while (lcge_window_is_open())
     {
-        lcge_clear_window(window);
+        lcge_clear_window();
         // Do any drawing here
 
         // Get ready for next iteration
-        lcge_update_window(window);
+        lcge_update_window();
     }
     
     lcge_exit();

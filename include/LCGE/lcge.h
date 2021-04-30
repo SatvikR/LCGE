@@ -34,10 +34,13 @@ typedef struct LCGE_window LCGE_window;
 #define LCGE_WINDOW_CLOSED 0
 
 #define LCGE_INIT_ERR -1
-#define LCGE_INIT_OK  0
+#define LCGE_INIT_OK   0
 
 #define LCGE_RESIZEABLE     1
 #define LCGE_NON_RESIZEABLE 0
+
+#define LCGE_CONTEXT_ERR -1
+#define LCGE_CONTEXT_OK   1
 
 /**
  * Initializes LCGE
@@ -53,23 +56,23 @@ extern int lcge_init();
  * width and height are in pixels
  * resizeable is either LCGE_RESIZEABLE or LCGE_NON_RESIZEABLE
  */
-extern LCGE_window* lcge_create_window(unsigned int width, unsigned int height, 
-                                       const char *title, int resizable);
+extern int lcge_create_context(unsigned int width, unsigned int height, 
+                               const char *title, int resizable);
 
 /**
  * Returns LCGE_WINDOW_CLOSED if the window should be closed
  * if not, returns LCGE_WINDOW_OPEN
  */
-extern int lcge_window_is_open(LCGE_window *window);
+extern int lcge_window_is_open();
 
 /* Terminates LCGE */
 extern void lcge_exit();
 
 /* Clears the color buffer on the window */
-extern void lcge_clear_window(LCGE_window *window);
+extern void lcge_clear_window();
 
 /* Swaps front and back buffers and polls for process events */
-extern void lcge_update_window(LCGE_window *window);
+extern void lcge_update_window();
 
 #ifdef __cplusplus
 }

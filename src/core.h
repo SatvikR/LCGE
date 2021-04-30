@@ -28,6 +28,7 @@ extern "C"
 {
 #endif
 
+#include <LCGE/lcge.h>
 #include "window.h"
 
 typedef struct LCGE_state

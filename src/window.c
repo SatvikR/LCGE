@@ -30,11 +30,11 @@
 #include "core.h"
 #include "glerror.h"
 
-LCGE_window* lcge_create_window(unsigned int width, unsigned int height, 
-                                const char *title, int resizable)
+int lcge_create_context(unsigned int width, unsigned int height, 
+                         const char *title, int resizable)
 {
     if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
-        return NULL;
+        return LCGE_CONTEXT_ERR;
 
     LCGE_window *window = malloc(sizeof(LCGE_window));
 
@@ -58,23 +58,24 @@ LCGE_window* lcge_create_window(unsigned int width, unsigned int height,
     {
         glfwDestroyWindow(window->_window);
         glfwTerminate();
-        return NULL;
+        return LCGE_CONTEXT_ERR;
     }
-    return window;
+
+    return LCGE_CONTEXT_OK;
 }
 
-int lcge_window_is_open(LCGE_window *window)
+int lcge_window_is_open()
 {
-    return !glfwWindowShouldClose(window->_window);
+    return !glfwWindowShouldClose(g_state->window->_window);
 }
 
-void lcge_clear_window(LCGE_window *window)
+void lcge_clear_window()
 {
     GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-void lcge_update_window(LCGE_window *window)
+void lcge_update_window()
 {
-    glfwSwapBuffers(window->_window);
+    glfwSwapBuffers(g_state->window->_window);
     glfwPollEvents();
 }
