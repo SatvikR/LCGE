@@ -54,19 +54,16 @@ extern "C"
 
 inline void GL_clear_error()
 {
-    DEBUG;
     while (glGetError() != GL_NO_ERROR)
     {
+        printf("Here\n");
     };
-    DEBUG;
 }
 
 inline bool GL_log_call(const char *file, int line)
 {
 
-    DEBUG;
     GLenum error = glGetError();
-    DEBUG;
     if (error)
     {
         printf("[GL ERROR] (0x%x) file: %s, line: %d\n", error, file, line);

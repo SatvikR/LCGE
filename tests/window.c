@@ -25,8 +25,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define DEBUG printf("window.c line: %d\n", __LINE__)
-
 int main(int argc, char const *argv[])
 {
     // Initialize LCGE

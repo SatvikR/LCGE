@@ -8,7 +8,15 @@ set(SOURCES
     "src/core.c"
 )
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
+set(HEADERS
+    "include/LCGE/lcge.h"
+    "src/core.h"
+    "src/debug.h"
+    "src/glerror.h"
+    "src/window.h"
+)
+
+add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE "./include")
 
 # Tests

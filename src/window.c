@@ -51,6 +51,15 @@ LCGE_window* lcge_create_window(unsigned int width, unsigned int height,
 
     g_state->window = window;
     glfwMakeContextCurrent(window->_window);
+    
+    // Load opengl functions
+    int gladInitRes = gladLoadGL();
+    if (!gladInitRes)
+    {
+        glfwDestroyWindow(window->_window);
+        glfwTerminate();
+        return NULL;
+    }
     return window;
 }
 
@@ -67,4 +76,5 @@ void lcge_clear_window(LCGE_window *window)
 void lcge_update_window(LCGE_window *window)
 {
     glfwSwapBuffers(window->_window);
+    glfwPollEvents();
 }

@@ -34,6 +34,7 @@ int lcge_init()
 {
     g_state = malloc(sizeof(LCGE_state));
 
+    // create glfw window
     if (!glfwInit())
     {
         g_state->initialized = LCGE_INIT_ERR;
@@ -48,11 +49,10 @@ void lcge_exit()
 {
     glfwTerminate();
 
-    /**
-     * Not a memory leak because 
-     * glfwTerminate will delete g_state->window->_window
-     */
     if (g_state->initialized != LCGE_INIT_ERR)
+    {
+        glfwDestroyWindow(g_state->window->_window);
         free(g_state->window);
+    }
     free(g_state);
 }
