@@ -6,6 +6,7 @@ set(TARGET ${PROJECT_NAME} C_STANDARD 99)
 set(SOURCES
     "src/window.c"
     "src/core.c"
+    "src/glerror.c"
 )
 
 set(HEADERS

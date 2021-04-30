@@ -20,41 +20,26 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
+#include <glad/glad.h>
 
-#ifndef _GLERROR_H
-#define _GLERROR_H
+#include "glerror.h"
 
-#ifdef __cplusplus
-extern "C"
+void GL_clear_error()
 {
-#endif
-
-
-#include <stdbool.h>
-#include <stdio.h>
-#include "debug.h"
-
-#ifdef _MSC_VER
-#define ASSERT(x) \
-    if (!(x)) \
-        __debugbreak();
-#else
-#include <signal.h>
-#define ASSERT(x) \
-    if (!(x)) \
-        raise(SIGTRAP);
-#endif
-#define GLCALL(x) \
-    GL_clear_error(); \
-    x; \
-    ASSERT(GL_log_call(__FILE__, __LINE__))
-
-
-void GL_clear_error();
-
-bool GL_log_call(const char *file, int line);
-
-#ifdef __cplusplus
+    while (glGetError() != GL_NO_ERROR)
+    {
+        printf("Here\n");
+    };
 }
-#endif
-#endif
+
+bool GL_log_call(const char *file, int line)
+{
+
+    GLenum error = glGetError();
+    if (error)
+    {
+        printf("[GL ERROR] (0x%x) file: %s, line: %d\n", error, file, line);
+        return false;
+    }
+    return true;
+}
