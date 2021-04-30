@@ -1,0 +1,22 @@
+# Editors
+.vscode/
+.vs/
+.idea/
+
+# CMake
+build/
+
+# Bin
+bin/
+
+# Windows
+*.exe
+*.lib
+*.dll
+*.obj
+
+# Linux/Mac
+*.out
+*.a
+*.so
+*.o

@@ -1,2 +1,2 @@
 # LCGE
-Lightweight C game engine
+Lightweight C gaming library
