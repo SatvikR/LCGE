@@ -39,6 +39,15 @@ typedef struct LCGE_window
     GLFWwindow *_window;
 } LCGE_window;
 
+int lcge_create_context(unsigned int width, unsigned int height, 
+                         const char *title, int resizable);
+
+int lcge_window_is_open();
+
+void lcge_clear_window();
+
+void lcge_update_window();
+
 #ifdef __cplusplus
 }
 #endif

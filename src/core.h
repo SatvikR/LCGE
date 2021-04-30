@@ -39,6 +39,9 @@ typedef struct LCGE_state
 
 extern LCGE_state *g_state;
 
+int lcge_init();
+void lcge_exit();
+
 #ifdef __cplusplus
 }
 #endif

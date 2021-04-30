@@ -49,7 +49,7 @@ void lcge_exit()
 {
     glfwTerminate();
 
-    if (g_state->initialized != LCGE_INIT_ERR)
+    if (g_state->initialized == LCGE_INIT_OK)
     {
         glfwDestroyWindow(g_state->window->_window);
         free(g_state->window);
