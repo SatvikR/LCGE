@@ -24,22 +24,20 @@
 
 #include <stdlib.h>
 
-#include "renderer/vertexbuffer.h"
-#include "renderer/vertexarray.h"
-#include "renderer/indexbuffer.h"
-#include "renderer/shader.h"
-#include "glerror.h"
+#include "../renderer/renderer.h"
+#include "../glerror.h"
+#include "../core.h"
+#include "rect.h"
 
-typedef struct LCGE_rect
-{
-    LCGE_vertex_array *va;
-    LCGE_vertex_buffer *vb;
-    LCGE_index_buffer *ib;
-    LCGE_shader *shader;
-} LCGE_rect;
 
-LCGE_rect* lcge_load_square()
+LCGE_rect* lcge_load_rect(float x, float y, float width, float height)
 {
+
+    float top_lx = (x / (float)g_state->window->width / 2) - 1.0f;
+    float top_ly = -1 * ((y / (float)g_state->window->height) - 1.0f);
+
+    // float nwidth = 
+
     GLfloat positions[8] = {
         -0.5f, -0.5f,  // bottom left
         -0.5f, 0.5f,   // top left
@@ -90,12 +88,10 @@ LCGE_rect* lcge_load_square()
     return rect;
 }
 
-void lcge_draw_square(LCGE_rect *rect)
+void lcge_draw_rect(LCGE_rect *rect)
 {
     lcge_shader_bind(rect->shader);
     lcge_shader_set_uniform_4f(rect->shader, "u_color", 1.0f, 1.0f, 1.0f, 1.0f);
-
-    printf("%d\n", rect->shader->renderer_id);
 
     lcge_vertex_array_bind(rect->va);
     lcge_index_buffer_bind(rect->ib);

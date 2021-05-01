@@ -21,41 +21,21 @@
 //  DEALINGS IN THE SOFTWARE.
 
 
-#include <LCGE/lcge.h>
+#ifndef _RENDERER_H
+#define _RENDERER_H
 
-int main(int argc, char const *argv[])
+#ifdef __cplusplus
+extern "C"
 {
-    // Initialize LCGE
-    if (lcge_init() == LCGE_INIT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+#endif
 
-    // Create a window
-    int success = lcge_create_context(500, 500, "LCGE Square Example", 
-                                      LCGE_NON_RESIZEABLE);
+#include "vertexarray.h"
+#include "vertexbuffer.h"
+#include "shader.h"
+#include "indexbuffer.h"
 
-    // Check if there was an error creating the window
-    if (success == LCGE_CONTEXT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
-
-    LCGE_rect *rect = lcge_load_rect();
-
-    while (lcge_window_is_open())
-    {
-        lcge_clear_window();
-        // Do any drawing here
-        lcge_draw_rect(rect);
-
-        // Get ready for next iteration
-        lcge_update_window();
-    }
-    
-    lcge_exit();
-
-    return 0;
+#ifdef __cplusplus
 }
+#endif
+
+#endif

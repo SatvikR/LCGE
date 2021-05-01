@@ -80,8 +80,8 @@ typedef struct LCGE_rect LCGE_rect;
 //                                        float height, float r, float g, float b);
 
 
-extern LCGE_rect* lcge_load_square();
-extern void lcge_draw_square();
+extern LCGE_rect* lcge_load_rect(float x, float y, float width, float height);
+extern void lcge_draw_rect();
 
 #ifdef __cplusplus
 }

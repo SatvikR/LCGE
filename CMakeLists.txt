@@ -7,11 +7,11 @@ set(SOURCES
     "src/window.c"
     "src/core.c"
     "src/glerror.c"
-    "src/square.c"
     "src/renderer/indexbuffer.c"
     "src/renderer/shader.c"
     "src/renderer/vertexarray.c"
     "src/renderer/vertexbuffer.c"
+    "src/geometry/rect.c"
 )
 
 set(HEADERS
@@ -24,6 +24,8 @@ set(HEADERS
     "src/renderer/shader.h"
     "src/renderer/vertexarray.h"
     "src/renderer/vertexbuffer.h"
+    "src/renderer/renderer.h"
+    "src/geometry/rect.h"
 )
 set(CMAKE_BUILD_TYPE Debug)
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})

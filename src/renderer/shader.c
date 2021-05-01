@@ -149,5 +149,6 @@ GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
         printf("Warning: uniform %s does not exist\n", name);
     }
 
+    GLCALL(glUniform4f(location, a, b, c, d));
     return location;
 }
