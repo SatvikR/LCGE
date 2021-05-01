@@ -84,11 +84,11 @@ static GLuint compile_shader(const char* path, GLenum type)
 
 LCGE_shader* lcge_shader_create(const char *path, const char *name)
 {
-    int path_len = strlen(path);
-    int name_len = strlen(name);
+    size_t path_len = strlen(path);
+    size_t name_len = strlen(name);
 
-    char *vert_full_path = calloc(1, sizeof(char) * (path_len + name_len + 3));
-    char *frag_full_path = calloc(1, sizeof(char) * (path_len + name_len + 3));
+    char *vert_full_path = calloc(1, sizeof(char) * (path_len + name_len + 4));
+    char *frag_full_path = calloc(1, sizeof(char) * (path_len + name_len + 4));
 
     strcat(vert_full_path, path); 
     strcat(vert_full_path, name); 

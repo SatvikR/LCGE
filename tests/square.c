@@ -43,13 +43,15 @@ int main(int argc, char const *argv[])
         return -1;
     }
 
-    LCGE_rect *rect = lcge_load_rect();
+    // Load rectangle data
+    LCGE_rect *rect = lcge_load_rect(200, 200, 150, 150);
 
     while (lcge_window_is_open())
     {
         lcge_clear_window();
-        // Do any drawing here
-        lcge_draw_rect(rect);
+
+        // Draw rectangle with teal
+        lcge_draw_rect(rect, 0, 255, 255, 0.5f);
 
         // Get ready for next iteration
         lcge_update_window();

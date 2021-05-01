@@ -32,19 +32,18 @@
 
 LCGE_rect* lcge_load_rect(float x, float y, float width, float height)
 {
+    float top_lx = (x / g_state->window->width * 2.0f) - 1.0f;
+    float top_ly = -1.0f * ((y / g_state->window->height * 2.0f) - 1.0f);
 
-    float top_lx = (x / (float)g_state->window->width / 2) - 1.0f;
-    float top_ly = -1 * ((y / (float)g_state->window->height) - 1.0f);
-
-    // float nwidth = 
+    float nwidth = width / g_state->window->width;
+    float nheight = height / g_state->window->height;
 
     GLfloat positions[8] = {
-        -0.5f, -0.5f,  // bottom left
-        -0.5f, 0.5f,   // top left
-        0.5f, 0.5f,    // top right
-        0.5f, -0.5f,   // bottom right
+        top_lx, top_ly - nheight,            // bottom left
+        top_lx, top_ly ,                     // top left
+        top_lx + nwidth, top_ly,             // top right
+        top_lx + nwidth, top_ly - nheight,   // bottom right
     };
-    
 
     GLuint indeces[6] = {
         0, 1, 2, // triangle 1
@@ -88,10 +87,10 @@ LCGE_rect* lcge_load_rect(float x, float y, float width, float height)
     return rect;
 }
 
-void lcge_draw_rect(LCGE_rect *rect)
+void lcge_draw_rect(LCGE_rect *rect, float r, float g, float b, float a)
 {
     lcge_shader_bind(rect->shader);
-    lcge_shader_set_uniform_4f(rect->shader, "u_color", 1.0f, 1.0f, 1.0f, 1.0f);
+    lcge_shader_set_uniform_4f(rect->shader, "u_color", r / 255.0f, g / 255.0f, b / 255.0f, a);
 
     lcge_vertex_array_bind(rect->va);
     lcge_index_buffer_bind(rect->ib);
