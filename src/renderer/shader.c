@@ -34,7 +34,7 @@ static GLuint compile_shader(const char* path, GLenum type)
 {
     FILE *f;
     char *text;
-    long len;
+    unsigned long len;
 
     f = fopen(path, "rb");
     if (f == NULL)
@@ -50,12 +50,12 @@ static GLuint compile_shader(const char* path, GLenum type)
     ASSERT(len > 0);
 
     fseek(f, 0, SEEK_SET);
-    text = malloc(sizeof(char) * len);
+    text = calloc(1, sizeof(char) * len);
     fread(text, 1, len , f);
     fclose(f);
 
     GLuint id = glCreateShader(type);
-    glShaderSource(id, 1, (const GLchar**) &text, (const GLint) &len);
+    glShaderSource(id, 1, (const GLchar**) &text, (const GLint*) &len);
     glCompileShader(id);
     
     GLint status;
@@ -136,4 +136,18 @@ void lcge_shader_bind(LCGE_shader *shader)
 void lcge_shader_unbind(LCGE_shader *shader)
 {
     GLCALL(glUseProgram(0));
+}
+
+GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name, 
+                                GLfloat a, GLfloat b, GLfloat c, GLfloat d)
+{
+    GLint location;
+    GLCALL(location = glGetUniformLocation(shader->renderer_id, name));
+
+    if (location == -1)
+    {
+        printf("Warning: uniform %s does not exist\n", name);
+    }
+
+    return location;
 }

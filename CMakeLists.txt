@@ -7,8 +7,8 @@ set(SOURCES
     "src/window.c"
     "src/core.c"
     "src/glerror.c"
+    "src/square.c"
     "src/renderer/indexbuffer.c"
-    "src/renderer/renderer.c"
     "src/renderer/shader.c"
     "src/renderer/vertexarray.c"
     "src/renderer/vertexbuffer.c"
@@ -21,12 +21,11 @@ set(HEADERS
     "src/glerror.h"
     "src/window.h"
     "src/renderer/indexbuffer.h"
-    "src/renderer/renderer.h"
     "src/renderer/shader.h"
     "src/renderer/vertexarray.h"
     "src/renderer/vertexbuffer.h"
 )
-
+set(CMAKE_BUILD_TYPE Debug)
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE "./include")
 

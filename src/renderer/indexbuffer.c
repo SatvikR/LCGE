@@ -36,6 +36,8 @@ LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size,
     GLCALL(glGenBuffers(1, &index_buffer->renderer_id));
     lcge_index_buffer_bind(index_buffer);
     GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+
+    return index_buffer;
 }
 
 void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer)

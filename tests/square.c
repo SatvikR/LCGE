@@ -43,10 +43,13 @@ int main(int argc, char const *argv[])
         return -1;
     }
 
+    LCGE_rect *rect = lcge_load_square();
+
     while (lcge_window_is_open())
     {
         lcge_clear_window();
         // Do any drawing here
+        lcge_draw_square(rect);
 
         // Get ready for next iteration
         lcge_update_window();

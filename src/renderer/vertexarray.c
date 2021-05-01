@@ -31,6 +31,8 @@ LCGE_vertex_array* lcge_vertex_array_create()
 {
     LCGE_vertex_array *vertex_array = malloc(sizeof(LCGE_vertex_array));
     GLCALL(glGenVertexArrays(1, &vertex_array->renderer_id));
+
+    return vertex_array;
 }
 void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array)
 {
@@ -43,6 +45,7 @@ void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
                               GLenum type)
 {
     lcge_vertex_array_bind(vertex_array);
+    
     lcge_vertex_buffer_bind(vertex_buffer);
 
     GLCALL(glEnableVertexAttribArray(0));
