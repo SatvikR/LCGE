@@ -7,22 +7,22 @@ Follow the instructions in [CONTRIBUTING.md](https://github.com/SatvikR/LCGE/blo
 
 ## Basic usage
 
-Look [here](https://github.com/SatvikR/LCGE/tree/main/tests) for specific exaxmples 
+Look [here](https://github.com/SatvikR/LCGE/tree/main/tests) for specific exaxmples
 
 ```c
 #include <LCGE/lcge.h>
 
 int main(int argc, char const *argv[])
 {
-    // Initialize LCGE
-    if (lcge_init() == LCGE_INIT_ERR)
+    // Initialize LCGE with the path to the res directory of LCGE (specific to you)
+    if (lcge_init("vendor/LCGE/res") == LCGE_INIT_ERR)
     {
         lcge_exit();
         return -1;
     }
 
     // Create a window
-    int success = lcge_create_context(500, 500, "LCGE Example", 
+    int success = lcge_create_context(500, 500, "LCGE Example",
                                       LCGE_NON_RESIZEABLE);
 
     // Check if there was an error creating the window
@@ -40,7 +40,7 @@ int main(int argc, char const *argv[])
         // Get ready for next iteration
         lcge_update_window();
     }
-    
+
     lcge_exit();
 
     return 0;
