@@ -21,3 +21,27 @@
 //  DEALINGS IN THE SOFTWARE.
 
 
+#ifndef _RENDERER_SHADER_H
+#define _RENDERER_SHADER_H
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+typedef struct LCGE_shader
+{
+    GLuint renderer_id;
+} LCGE_shader;
+
+LCGE_shader* lcge_shader_create(const char *path, const char *name);
+void lcge_shader_delete(LCGE_shader *shader);
+
+void lcge_shader_bind(LCGE_shader *shader);
+void lcge_shader_unbind(LCGE_shader *shader);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

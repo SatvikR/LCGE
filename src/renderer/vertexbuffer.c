@@ -20,6 +20,8 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
+#include <stdlib.h>
+
 #include "vertexbuffer.h"
 #include "../glerror.h"
 
@@ -28,13 +30,13 @@ LCGE_vertex_buffer* lcge_vertex_buffer_create(void *data, GLuint size)
     LCGE_vertex_buffer *vb = malloc(sizeof(LCGE_vertex_buffer));
 
     GLCALL(glGenBuffers(1, &vb->renderer_id));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, &vb->renderer_id));
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vb->renderer_id));
     GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
 }
 
 void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer)
 {
-    GLCALL(glDeleteBuffers(1, vertex_buffer->renderer_id));
+    GLCALL(glDeleteBuffers(1, &vertex_buffer->renderer_id));
     free(vertex_buffer);
 }
 

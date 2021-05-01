@@ -34,7 +34,7 @@ LCGE_vertex_array* lcge_vertex_array_create()
 }
 void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array)
 {
-    GLCALL(glDeleteVertexArrays(1, vertex_array->renderer_id));
+    GLCALL(glDeleteVertexArrays(1, &vertex_array->renderer_id));
     free(vertex_array);
 }
 
