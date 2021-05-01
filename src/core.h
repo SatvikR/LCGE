@@ -30,11 +30,13 @@ extern "C"
 
 #include <LCGE/lcge.h>
 #include "window.h"
+#include "renderer/shader.h"
 
 typedef struct LCGE_state
 {
     int initialized;
     LCGE_window *window;
+    LCGE_shader *basic_geo;
 } LCGE_state;
 
 extern LCGE_state *g_state;

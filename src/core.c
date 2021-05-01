@@ -46,14 +46,27 @@ int lcge_init()
     return g_state->initialized;
 }
 
-void lcge_exit()
+static void lcge_clean_up()
 {
-    glfwTerminate();
-
     if (g_state->initialized == LCGE_INIT_OK)
     {
+        // delete global shaders
+        lcge_shader_delete(g_state->basic_geo);
+
+        glfwTerminate();
         glfwDestroyWindow(g_state->window->_window);
+
         free(g_state->window);
+        return;
     }
+
+
+    glfwTerminate();
+}
+
+void lcge_exit()
+{
+    lcge_clean_up();
+
     free(g_state);
 }

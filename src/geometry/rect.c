@@ -63,16 +63,13 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
                                                      indeces);
     
 
-    LCGE_shader *shader = lcge_shader_create("res/shaders/", "basic_geo");
-    
-
     LCGE_rect *rect = malloc(sizeof(LCGE_rect));
     
 
     rect->va = va;
     rect->vb = vb;
     rect->ib = ib;
-    rect->shader = shader;
+    rect->shader = g_state->basic_geo;
     
 
     lcge_vertex_array_unbind(va);
@@ -81,7 +78,7 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
     
     lcge_index_buffer_unbind(ib);
     
-    lcge_shader_unbind(shader);
+    lcge_shader_unbind(rect->shader);
     
 
     return rect;
@@ -110,7 +107,6 @@ void lcge_rect_delete(LCGE_rect *rect)
     lcge_vertex_array_delete(rect->va);
     lcge_vertex_buffer_delete(rect->vb);
     lcge_index_buffer_delete(rect->ib);
-    lcge_shader_delete(rect->shader);
 
     // delete rectangle
     free(rect);
