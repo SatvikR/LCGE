@@ -30,13 +30,13 @@
 #include "rect.h"
 
 
-LCGE_rect* lcge_load_rect(float x, float y, float width, float height)
+LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
 {
     float top_lx = (x / g_state->window->width * 2.0f) - 1.0f;
     float top_ly = -1.0f * ((y / g_state->window->height * 2.0f) - 1.0f);
 
-    float nwidth = width / g_state->window->width;
-    float nheight = height / g_state->window->height;
+    float nwidth = width / g_state->window->width * 2.0f;
+    float nheight = height / g_state->window->height * 2.0f;
 
     GLfloat positions[8] = {
         top_lx, top_ly - nheight,            // bottom left
@@ -87,12 +87,31 @@ LCGE_rect* lcge_load_rect(float x, float y, float width, float height)
     return rect;
 }
 
-void lcge_draw_rect(LCGE_rect *rect, float r, float g, float b, float a)
+void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b)
 {
     lcge_shader_bind(rect->shader);
-    lcge_shader_set_uniform_4f(rect->shader, "u_color", r / 255.0f, g / 255.0f, b / 255.0f, a);
+    lcge_shader_set_uniform_4f(rect->shader, "u_color", r / 255.0f, g / 255.0f,
+                               b / 255.0f, 1.0f);
 
     lcge_vertex_array_bind(rect->va);
     lcge_index_buffer_bind(rect->ib);
     GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
+}
+
+void lcge_rect_delete(LCGE_rect *rect)
+{
+    // unbind everything
+    lcge_vertex_array_unbind(rect->va);
+    lcge_vertex_buffer_unbind(rect->vb);
+    lcge_index_buffer_unbind(rect->ib);
+    lcge_shader_unbind(rect->shader);
+
+    // delete everthing
+    lcge_vertex_array_delete(rect->va);
+    lcge_vertex_buffer_delete(rect->vb);
+    lcge_index_buffer_delete(rect->ib);
+    lcge_shader_delete(rect->shader);
+
+    // delete rectangle
+    free(rect);
 }

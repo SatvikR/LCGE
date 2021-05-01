@@ -38,6 +38,11 @@ typedef struct LCGE_rect
     LCGE_shader *shader;
 } LCGE_rect;
 
+LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
+
+void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
+void lcge_rect_delete(LCGE_rect *rect);
+
 #ifdef __cplusplus
 }
 #endif

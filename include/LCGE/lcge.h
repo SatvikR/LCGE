@@ -82,10 +82,11 @@ typedef struct LCGE_rect LCGE_rect;
  * 
  * Width and height are in pixels.
  */
-extern LCGE_rect* lcge_load_rect(float x, float y, float width, float height);
+extern LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
+extern void lcge_rect_delete(LCGE_rect *rect);
 
-/* Draw a rectangle given (r, g, b, a) color values */
-extern void lcge_draw_rect(LCGE_rect *rect, float r, float g, float b, float a);
+/* Draw a rectangle given (r, g, b) color values */
+extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
 
 #ifdef __cplusplus
 }

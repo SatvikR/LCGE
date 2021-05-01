@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
     }
 
     // Create a window
-    int success = lcge_create_context(500, 500, "LCGE Square Example", 
+    int success = lcge_create_context(800, 800, "LCGE Squares Example",
                                       LCGE_NON_RESIZEABLE);
 
     // Check if there was an error creating the window
@@ -44,19 +44,23 @@ int main(int argc, char const *argv[])
     }
 
     // Load rectangle data
-    LCGE_rect *rect = lcge_load_rect(200, 200, 150, 150);
+    LCGE_rect *rect_1 = lcge_rect_load(200, 200, 400, 400);
+    LCGE_rect *rect_2 = lcge_rect_load(300, 300, 200, 200);
 
     while (lcge_window_is_open())
     {
         lcge_clear_window();
 
-        // Draw rectangle with teal
-        lcge_draw_rect(rect, 0, 255, 255, 0.5f);
+        // Draw rectangle with teal and purple
+        lcge_rect_draw(rect_1, 0, 206, 201);
+        lcge_rect_draw(rect_2, 108, 92, 231);
 
         // Get ready for next iteration
         lcge_update_window();
     }
-    
+    lcge_rect_delete(rect_1);    
+    lcge_rect_delete(rect_2);    
+
     lcge_exit();
 
     return 0;

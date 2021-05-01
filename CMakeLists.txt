@@ -3,42 +3,49 @@ project(LCGE)
 
 set(TARGET ${PROJECT_NAME} C_STANDARD 99)
 
+set(SRC_DIR "src")
+set(INCLUDE_DIR "include")
+
 set(SOURCES
-    "src/window.c"
-    "src/core.c"
-    "src/glerror.c"
-    "src/renderer/indexbuffer.c"
-    "src/renderer/shader.c"
-    "src/renderer/vertexarray.c"
-    "src/renderer/vertexbuffer.c"
-    "src/geometry/rect.c"
+    "${SRC_DIR}/window.c"
+    "${SRC_DIR}/core.c"
+    "${SRC_DIR}/glerror.c"
+    "${SRC_DIR}/renderer/indexbuffer.c"
+    "${SRC_DIR}/renderer/shader.c"
+    "${SRC_DIR}/renderer/vertexarray.c"
+    "${SRC_DIR}/renderer/vertexbuffer.c"
+    "${SRC_DIR}/geometry/rect.c"
 )
 
 set(HEADERS
-    "include/LCGE/lcge.h"
-    "src/core.h"
-    "src/debug.h"
-    "src/glerror.h"
-    "src/window.h"
-    "src/renderer/indexbuffer.h"
-    "src/renderer/shader.h"
-    "src/renderer/vertexarray.h"
-    "src/renderer/vertexbuffer.h"
-    "src/renderer/renderer.h"
-    "src/geometry/rect.h"
+    "${INCLUDE_DIR}/LCGE/lcge.h"
+    "${SRC_DIR}/core.h"
+    "${SRC_DIR}/debug.h"
+    "${SRC_DIR}/glerror.h"
+    "${SRC_DIR}/window.h"
+    "${SRC_DIR}/renderer/indexbuffer.h"
+    "${SRC_DIR}/renderer/shader.h"
+    "${SRC_DIR}/renderer/vertexarray.h"
+    "${SRC_DIR}/renderer/vertexbuffer.h"
+    "${SRC_DIR}/renderer/renderer.h"
+    "${SRC_DIR}/geometry/rect.h"
 )
 set(CMAKE_BUILD_TYPE Debug)
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
-target_include_directories(${PROJECT_NAME} PRIVATE "./include")
+target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
+
+set(TEST_DIR "tests")
+set(WINDOW_EXAMPLE window_example)
+set(SQUARES_EXAMPLE squares_example)
 
 # Tests
-add_executable(window_example "tests/window.c")
-target_include_directories(window_example PRIVATE "./include")
-target_link_libraries(window_example PRIVATE ${PROJECT_NAME})
+add_executable(${WINDOW_EXAMPLE} "tests/window.c")
+target_include_directories(${WINDOW_EXAMPLE} PRIVATE ${INCLUDE_DIR})
+target_link_libraries(${WINDOW_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
-add_executable(square_example "tests/square.c")
-target_include_directories(square_example PRIVATE "./include")
-target_link_libraries(square_example PRIVATE ${PROJECT_NAME})
+add_executable(${SQUARES_EXAMPLE} "tests/squares.c")
+target_include_directories(${SQUARES_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${SQUARES_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")
