@@ -35,13 +35,14 @@ extern "C"
 typedef struct LCGE_state
 {
     int initialized;
+    char *res_dir;
     LCGE_window *window;
     LCGE_shader *basic_geo;
 } LCGE_state;
 
 extern LCGE_state *g_state;
 
-int lcge_init();
+int lcge_init(const char *lcge_res_dir);
 void lcge_exit();
 
 #ifdef __cplusplus

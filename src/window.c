@@ -60,8 +60,7 @@ int lcge_create_context(unsigned int width, unsigned int height,
         glfwTerminate();
         return LCGE_CONTEXT_ERR;
     }
-
-    g_state->basic_geo = lcge_shader_create("res/shaders/", "basic_geo");
+    g_state->basic_geo = lcge_shader_create(g_state->res_dir, "basic_geo");
 
     return LCGE_CONTEXT_OK;
 }

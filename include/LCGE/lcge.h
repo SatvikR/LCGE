@@ -44,19 +44,19 @@ typedef struct LCGE_window LCGE_window;
 
 /**
  * Initializes LCGE
- * 
+ *
  * Returns LCGE_INIT_ERR if there was an error
  * if not, returns LCGE_INIT_OK
  */
-extern int lcge_init();
+extern int lcge_init(const char *lcge_res_dir);
 
 /**
- * Create a window and get back a handle 
- * 
+ * Create a window and get back a handle
+ *
  * width and height are in pixels
  * resizeable is either LCGE_RESIZEABLE or LCGE_NON_RESIZEABLE
  */
-extern int lcge_create_context(unsigned int width, unsigned int height, 
+extern int lcge_create_context(unsigned int width, unsigned int height,
                                const char *title, int resizable);
 
 /**
@@ -79,7 +79,7 @@ typedef struct LCGE_rect LCGE_rect;
 /**
  * Takes in x, y coordinates and width and height
  * (0, 0) is considered to be at the top left of the window
- * 
+ *
  * Width and height are in pixels.
  */
 extern LCGE_rect* lcge_rect_load(float x, float y, float width, float height);

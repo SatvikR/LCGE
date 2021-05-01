@@ -25,7 +25,7 @@
 int main(int argc, char const *argv[])
 {
     // Initialize LCGE
-    if (lcge_init() == LCGE_INIT_ERR)
+    if (lcge_init("res/") == LCGE_INIT_ERR)
     {
         lcge_exit();
         return -1;

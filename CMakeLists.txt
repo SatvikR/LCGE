@@ -32,7 +32,7 @@ set(HEADERS
     "${SRC_DIR}/geometry/rect.h"
     "${SRC_DIR}/geometry/math.h"
 )
-set(CMAKE_BUILD_TYPE Debug)
+
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 
@@ -64,3 +64,5 @@ target_link_libraries(${PROJECT_NAME} glad "${CMAKE_DL_LIBS}")
 IF (WIN32)
 	target_link_libraries(${PROJECT_NAME} opengl32)
 ENDIF()
+
+message("Generated with config types: ${CMAKE_CONFIGURATION_TYPES}")
