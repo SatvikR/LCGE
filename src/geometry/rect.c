@@ -28,21 +28,21 @@
 #include "../glerror.h"
 #include "../core.h"
 #include "rect.h"
+#include "math.h"
 
 
 LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
 {
-    float top_lx = (x / g_state->window->width * 2.0f) - 1.0f;
-    float top_ly = -1.0f * ((y / g_state->window->height * 2.0f) - 1.0f);
-
-    float nwidth = width / g_state->window->width * 2.0f;
-    float nheight = height / g_state->window->height * 2.0f;
+    LCGE_coordinate top_l = lcge_coordinate_translate(x, y);
+    LCGE_coordinate top_r = lcge_coordinate_translate(x + width, y);
+    LCGE_coordinate bottom_l = lcge_coordinate_translate(x, y + height);
+    LCGE_coordinate bottom_r = lcge_coordinate_translate(x + width, y + height);
 
     GLfloat positions[8] = {
-        top_lx, top_ly - nheight,            // bottom left
-        top_lx, top_ly ,                     // top left
-        top_lx + nwidth, top_ly,             // top right
-        top_lx + nwidth, top_ly - nheight,   // bottom right
+        bottom_l.x, bottom_r.y, // bottom left
+        top_l.x, top_l.y ,      // top left
+        top_r.x, top_r.y,       // top right
+        bottom_r.x, bottom_r.y, // bottom right
     };
 
     GLuint indeces[6] = {

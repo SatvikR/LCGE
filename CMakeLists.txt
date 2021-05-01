@@ -15,6 +15,7 @@ set(SOURCES
     "${SRC_DIR}/renderer/vertexarray.c"
     "${SRC_DIR}/renderer/vertexbuffer.c"
     "${SRC_DIR}/geometry/rect.c"
+    "${SRC_DIR}/geometry/math.c"
 )
 
 set(HEADERS
@@ -29,6 +30,7 @@ set(HEADERS
     "${SRC_DIR}/renderer/vertexbuffer.h"
     "${SRC_DIR}/renderer/renderer.h"
     "${SRC_DIR}/geometry/rect.h"
+    "${SRC_DIR}/geometry/math.h"
 )
 set(CMAKE_BUILD_TYPE Debug)
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
