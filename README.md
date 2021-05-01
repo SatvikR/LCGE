@@ -1,5 +1,5 @@
 # LCGE
-Lightweight C gaming library built with OpenGL.
+Lightweight C gaming engine built with OpenGL.
 
 ## Build
 

@@ -20,40 +20,4 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#include <LCGE/lcge.h>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "core.h"
-
-LCGE_state *g_state;
-
-int lcge_init()
-{
-    g_state = malloc(sizeof(LCGE_state));
-
-    // create glfw window
-    if (!glfwInit())
-    {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
-    }
-
-    g_state->initialized = LCGE_INIT_OK; 
-    return g_state->initialized;
-}
-
-void lcge_exit()
-{
-    glfwTerminate();
-
-    if (g_state->initialized == LCGE_INIT_OK)
-    {
-        glfwDestroyWindow(g_state->window->_window);
-        free(g_state->window);
-    }
-    free(g_state);
-}

@@ -20,40 +20,39 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
+
 #include <LCGE/lcge.h>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "core.h"
-
-LCGE_state *g_state;
-
-int lcge_init()
+int main(int argc, char const *argv[])
 {
-    g_state = malloc(sizeof(LCGE_state));
-
-    // create glfw window
-    if (!glfwInit())
+    // Initialize LCGE
+    if (lcge_init() == LCGE_INIT_ERR)
     {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
+        lcge_exit();
+        return -1;
     }
 
-    g_state->initialized = LCGE_INIT_OK; 
-    return g_state->initialized;
-}
+    // Create a window
+    int success = lcge_create_context(500, 500, "LCGE Square Example", 
+                                      LCGE_NON_RESIZEABLE);
 
-void lcge_exit()
-{
-    glfwTerminate();
-
-    if (g_state->initialized == LCGE_INIT_OK)
+    // Check if there was an error creating the window
+    if (success == LCGE_CONTEXT_ERR)
     {
-        glfwDestroyWindow(g_state->window->_window);
-        free(g_state->window);
+        lcge_exit();
+        return -1;
     }
-    free(g_state);
+
+    while (lcge_window_is_open())
+    {
+        lcge_clear_window();
+        // Do any drawing here
+
+        // Get ready for next iteration
+        lcge_update_window();
+    }
+    
+    lcge_exit();
+
+    return 0;
 }

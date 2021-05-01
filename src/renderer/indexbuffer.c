@@ -20,40 +20,35 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#include <LCGE/lcge.h>
+
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 #include <stdlib.h>
-#include <stdio.h>
 
-#include "core.h"
+#include "indexbuffer.h"
+#include "../glerror.h"
 
-LCGE_state *g_state;
-
-int lcge_init()
+LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size, 
+                                            const GLvoid *data)
 {
-    g_state = malloc(sizeof(LCGE_state));
+    LCGE_index_buffer *index_buffer = malloc(sizeof(index_buffer));
 
-    // create glfw window
-    if (!glfwInit())
-    {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
-    }
-
-    g_state->initialized = LCGE_INIT_OK; 
-    return g_state->initialized;
+    GLCALL(glGenBuffers(1, &index_buffer->renderer_id));
+    lcge_index_buffer_bind(index_buffer);
+    GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
 }
 
-void lcge_exit()
+void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer)
 {
-    glfwTerminate();
+    GLCALL(glDeleteBuffers(1, &index_buffer->renderer_id));
+}
 
-    if (g_state->initialized == LCGE_INIT_OK)
-    {
-        glfwDestroyWindow(g_state->window->_window);
-        free(g_state->window);
-    }
-    free(g_state);
+void lcge_index_buffer_bind(LCGE_index_buffer *index_buffer)
+{
+    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer->renderer_id));
+}
+
+void lcge_index_buffer_unbind(LCGE_index_buffer *index_buffer)
+{
+    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }

@@ -7,6 +7,11 @@ set(SOURCES
     "src/window.c"
     "src/core.c"
     "src/glerror.c"
+    "src/renderer/indexbuffer.c"
+    "src/renderer/renderer.c"
+    "src/renderer/shader.c"
+    "src/renderer/vertexarray.c"
+    "src/renderer/vertexbuffer.c"
 )
 
 set(HEADERS
@@ -15,6 +20,11 @@ set(HEADERS
     "src/debug.h"
     "src/glerror.h"
     "src/window.h"
+    "src/renderer/indexbuffer.h"
+    "src/renderer/renderer.h"
+    "src/renderer/shader.h"
+    "src/renderer/vertexarray.h"
+    "src/renderer/vertexbuffer.h"
 )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
@@ -24,6 +34,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE "./include")
 add_executable(window_example "tests/window.c")
 target_include_directories(window_example PRIVATE "./include")
 target_link_libraries(window_example PRIVATE ${PROJECT_NAME})
+
+add_executable(square_example "tests/square.c")
+target_include_directories(square_example PRIVATE "./include")
+target_link_libraries(square_example PRIVATE ${PROJECT_NAME})
 
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")

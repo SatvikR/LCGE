@@ -20,40 +20,31 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#include <LCGE/lcge.h>
+
+#ifndef _RENDERER_VERTEX_BUFFER_H
+#define _RENDERER_VERTEX_BUFFER_H
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "core.h"
-
-LCGE_state *g_state;
-
-int lcge_init()
+typedef struct LCGE_vertex_buffer
 {
-    g_state = malloc(sizeof(LCGE_state));
+    GLuint renderer_id;
+} LCGE_vertex_buffer;
 
-    // create glfw window
-    if (!glfwInit())
-    {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
-    }
+LCGE_vertex_buffer* lcge_vertex_buffer_create(void *data, GLuint size);
 
-    g_state->initialized = LCGE_INIT_OK; 
-    return g_state->initialized;
+void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer);
+
+void lcge_vertex_buffer_bind(LCGE_vertex_buffer *vertex_buffer);
+void lcge_vertex_buffer_unbind(LCGE_vertex_buffer *vertex_buffer);
+
+#ifdef __cplusplus
 }
+#endif
 
-void lcge_exit()
-{
-    glfwTerminate();
-
-    if (g_state->initialized == LCGE_INIT_OK)
-    {
-        glfwDestroyWindow(g_state->window->_window);
-        free(g_state->window);
-    }
-    free(g_state);
-}
+#endif

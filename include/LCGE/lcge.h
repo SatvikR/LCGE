@@ -74,6 +74,11 @@ extern void lcge_clear_window();
 /* Swaps front and back buffers and polls for process events */
 extern void lcge_update_window();
 
+typedef struct LCGE_square LCGE_square;
+
+extern LCGE_square* lcge_create_square(float x, float y, float width, 
+                                       float height, float r, float g, float b);
+
 #ifdef __cplusplus
 }
 #endif

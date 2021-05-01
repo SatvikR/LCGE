@@ -20,40 +20,30 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#include <LCGE/lcge.h>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "vertexbuffer.h"
+#include "../glerror.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "core.h"
-
-LCGE_state *g_state;
-
-int lcge_init()
+LCGE_vertex_buffer* lcge_vertex_buffer_create(void *data, GLuint size)
 {
-    g_state = malloc(sizeof(LCGE_state));
+    LCGE_vertex_buffer *vb = malloc(sizeof(LCGE_vertex_buffer));
 
-    // create glfw window
-    if (!glfwInit())
-    {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
-    }
-
-    g_state->initialized = LCGE_INIT_OK; 
-    return g_state->initialized;
+    GLCALL(glGenBuffers(1, &vb->renderer_id));
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, &vb->renderer_id));
+    GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
 }
 
-void lcge_exit()
+void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer)
 {
-    glfwTerminate();
+    GLCALL(glDeleteBuffers(1, vertex_buffer->renderer_id));
+    free(vertex_buffer);
+}
 
-    if (g_state->initialized == LCGE_INIT_OK)
-    {
-        glfwDestroyWindow(g_state->window->_window);
-        free(g_state->window);
-    }
-    free(g_state);
+void lcge_vertex_buffer_bind(LCGE_vertex_buffer *vertex_buffer)
+{
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer->renderer_id));
+}
+
+void lcge_vertex_buffer_unbind(LCGE_vertex_buffer *vertex_buffer)
+{
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }

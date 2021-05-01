@@ -20,40 +20,30 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#include <LCGE/lcge.h>
+#ifndef _RENDERER_INDEX_BUFFER_
+#define _RENDERER_INDEX_BUFFER_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "core.h"
-
-LCGE_state *g_state;
-
-int lcge_init()
+typedef struct LCGE_index_buffer
 {
-    g_state = malloc(sizeof(LCGE_state));
+    GLuint renderer_id;
+} LCGE_index_buffer;
 
-    // create glfw window
-    if (!glfwInit())
-    {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
-    }
+LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size, 
+                                            const GLvoid *data);
+void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer);
 
-    g_state->initialized = LCGE_INIT_OK; 
-    return g_state->initialized;
+void lcge_index_buffer_bind(LCGE_index_buffer *index_buffer);
+void lcge_index_buffer_unbind(LCGE_index_buffer *index_buffer);
+
+#ifdef __cplusplus
 }
+#endif
 
-void lcge_exit()
-{
-    glfwTerminate();
-
-    if (g_state->initialized == LCGE_INIT_OK)
-    {
-        glfwDestroyWindow(g_state->window->_window);
-        free(g_state->window);
-    }
-    free(g_state);
-}
+#endif

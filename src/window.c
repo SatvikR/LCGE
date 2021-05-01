@@ -31,7 +31,7 @@
 #include "glerror.h"
 
 int lcge_create_context(unsigned int width, unsigned int height, 
-                         const char *title, int resizable)
+                        const char *title, int resizable)
 {
     if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
         return LCGE_CONTEXT_ERR;
