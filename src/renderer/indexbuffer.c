@@ -28,7 +28,7 @@
 #include "indexbuffer.h"
 #include "../glerror.h"
 
-LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size, 
+LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size,
                                             const GLvoid *data)
 {
     LCGE_index_buffer *index_buffer = malloc(sizeof(index_buffer));

@@ -58,8 +58,8 @@ int main(int argc, char const *argv[])
         // Get ready for next iteration
         lcge_update_window();
     }
-    lcge_rect_delete(rect_1);    
-    lcge_rect_delete(rect_2);    
+    lcge_rect_delete(rect_1);
+    lcge_rect_delete(rect_2);
 
     lcge_exit();
 

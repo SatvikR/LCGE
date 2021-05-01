@@ -42,7 +42,7 @@ int lcge_init()
         return g_state->initialized;
     }
 
-    g_state->initialized = LCGE_INIT_OK; 
+    g_state->initialized = LCGE_INIT_OK;
     return g_state->initialized;
 }
 

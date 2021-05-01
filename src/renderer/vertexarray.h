@@ -40,8 +40,8 @@ typedef struct LCGE_vertex_array
 LCGE_vertex_array* lcge_vertex_array_create();
 
 /* this is a fat function */
-void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array, 
-                              LCGE_vertex_buffer *vertex_buffer, GLint size, 
+void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
+                              LCGE_vertex_buffer *vertex_buffer, GLint size,
                               GLenum type);
 
 void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array);

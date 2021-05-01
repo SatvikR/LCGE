@@ -35,7 +35,7 @@ typedef struct LCGE_index_buffer
     GLuint renderer_id;
 } LCGE_index_buffer;
 
-LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size, 
+LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size,
                                             const GLvoid *data);
 void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer);
 

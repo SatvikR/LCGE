@@ -30,7 +30,7 @@
 #include "core.h"
 #include "glerror.h"
 
-int lcge_create_context(unsigned int width, unsigned int height, 
+int lcge_create_context(unsigned int width, unsigned int height,
                         const char *title, int resizable)
 {
     if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
@@ -46,12 +46,12 @@ int lcge_create_context(unsigned int width, unsigned int height,
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, resizable);
-    window->_window = glfwCreateWindow(window->width, window->height, title, 
+    window->_window = glfwCreateWindow(window->width, window->height, title,
                                        NULL, NULL);
 
     g_state->window = window;
     glfwMakeContextCurrent(window->_window);
-    
+
     // Load opengl functions
     int gladInitRes = gladLoadGL();
     if (!gladInitRes)

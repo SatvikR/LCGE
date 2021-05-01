@@ -49,37 +49,37 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
         0, 1, 2, // triangle 1
         0, 2, 3  // triangle 2
     };
-    
+
 
     LCGE_vertex_array *va = lcge_vertex_array_create();
-    
-    LCGE_vertex_buffer *vb = lcge_vertex_buffer_create(positions, 
+
+    LCGE_vertex_buffer *vb = lcge_vertex_buffer_create(positions,
                                                        8 * sizeof(GLfloat));
-    
+
 
     lcge_vertex_array_layout(va, vb, 2, GL_FLOAT);
-    
-    LCGE_index_buffer *ib = lcge_index_buffer_create(6 * sizeof(GLuint), 
+
+    LCGE_index_buffer *ib = lcge_index_buffer_create(6 * sizeof(GLuint),
                                                      indeces);
-    
+
 
     LCGE_rect *rect = malloc(sizeof(LCGE_rect));
-    
+
 
     rect->va = va;
     rect->vb = vb;
     rect->ib = ib;
     rect->shader = g_state->basic_geo;
-    
+
 
     lcge_vertex_array_unbind(va);
-    
+
     lcge_vertex_buffer_unbind(vb);
-    
+
     lcge_index_buffer_unbind(ib);
-    
+
     lcge_shader_unbind(rect->shader);
-    
+
 
     return rect;
 }

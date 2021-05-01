@@ -57,7 +57,7 @@ static GLuint compile_shader(const char* path, GLenum type)
     GLuint id = glCreateShader(type);
     glShaderSource(id, 1, (const GLchar**) &text, (const GLint*) &len);
     glCompileShader(id);
-    
+
     GLint status;
     glGetShaderiv(id, GL_COMPILE_STATUS, &status);
 
@@ -90,16 +90,16 @@ LCGE_shader* lcge_shader_create(const char *path, const char *name)
     char *vert_full_path = calloc(1, sizeof(char) * (path_len + name_len + 4));
     char *frag_full_path = calloc(1, sizeof(char) * (path_len + name_len + 4));
 
-    strcat(vert_full_path, path); 
-    strcat(vert_full_path, name); 
-    strcat(vert_full_path, ".vs"); 
+    strcat(vert_full_path, path);
+    strcat(vert_full_path, name);
+    strcat(vert_full_path, ".vs");
 
-    strcat(frag_full_path, path); 
-    strcat(frag_full_path, name); 
-    strcat(frag_full_path, ".fs"); 
+    strcat(frag_full_path, path);
+    strcat(frag_full_path, name);
+    strcat(frag_full_path, ".fs");
 
     LCGE_shader *shader = malloc(sizeof(LCGE_shader));
-    
+
     GLuint program = glCreateProgram();
     GLuint vs = compile_shader(vert_full_path, GL_VERTEX_SHADER);
     GLuint fs = compile_shader(frag_full_path, GL_FRAGMENT_SHADER);
@@ -119,7 +119,7 @@ LCGE_shader* lcge_shader_create(const char *path, const char *name)
     free(frag_full_path);
 
     return shader;
-} 
+}
 
 void lcge_shader_delete(LCGE_shader *shader)
 {
@@ -138,7 +138,7 @@ void lcge_shader_unbind(LCGE_shader *shader)
     GLCALL(glUseProgram(0));
 }
 
-GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name, 
+GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
                                 GLfloat a, GLfloat b, GLfloat c, GLfloat d)
 {
     GLint location;
