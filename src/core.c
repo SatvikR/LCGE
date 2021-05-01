@@ -60,7 +60,6 @@ static void lcge_clean_up()
         return;
     }
 
-
     glfwTerminate();
 }
 
