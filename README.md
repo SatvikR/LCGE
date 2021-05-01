@@ -1,11 +1,13 @@
 # LCGE
-Lightweight C gaming engine built with OpenGL.
+Lightweight C game engine built with OpenGL.
 
 ## Build
 
 Follow the instructions in [CONTRIBUTING.md](https://github.com/SatvikR/LCGE/blob/main/CONTRIBUTING.md#contributing-code)
 
 ## Basic usage
+
+Look [here](https://github.com/SatvikR/LCGE/tree/main/tests) for specific exaxmples 
 
 ```c
 #include <LCGE/lcge.h>
