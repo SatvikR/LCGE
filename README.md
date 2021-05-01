@@ -1,5 +1,5 @@
 # LCGE
-Lightweight C game engine built with OpenGL.
+A Lightweight C game engine built with OpenGL.
 
 ## Build
 
@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     }
 
     // Create a window
-    int success = lcge_create_context(500, 500, "LCGE Window Example", 
+    int success = lcge_create_context(500, 500, "LCGE Example", 
                                       LCGE_NON_RESIZEABLE);
 
     // Check if there was an error creating the window
