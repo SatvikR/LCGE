@@ -68,6 +68,9 @@ target_include_directories(glad PRIVATE "${GLAD_DIR}/include")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
 target_link_libraries(${PROJECT_NAME} glad "${CMAKE_DL_LIBS}")
 
+set(STB_DIR "lib/stb")
+target_include_directories(${PROJECT_NAME} PRIVATE ${STB_DIR})
+
 IF (WIN32)
 	target_link_libraries(${PROJECT_NAME} opengl32)
 ENDIF()
