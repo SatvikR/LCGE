@@ -70,7 +70,7 @@ Every file must begin with this comment with a license notice
 
 Formatting:
 
-  - Use 4 spaces rather than tabs
+  - **Use 4 spaces rather than tabs**
   - Use 80 as your column limit/ruler
   - For naming in code:
 
