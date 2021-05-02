@@ -5,6 +5,7 @@
 
 # CMake
 build/
+cmake-build-*/
 
 # Bin
 bin/
