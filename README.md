@@ -34,8 +34,10 @@ int main(int argc, char const *argv[])
 
     while (lcge_window_is_open())
     {
-        lcge_clear_window();
+        // Do any udpating here
+
         // Do any drawing here
+        lcge_clear_window();
 
         // Get ready for next iteration
         lcge_update_window();
