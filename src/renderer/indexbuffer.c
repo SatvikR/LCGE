@@ -43,6 +43,7 @@ LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size,
 void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer)
 {
     GLCALL(glDeleteBuffers(1, &index_buffer->renderer_id));
+    free(index_buffer);
 }
 
 void lcge_index_buffer_bind(LCGE_index_buffer *index_buffer)
