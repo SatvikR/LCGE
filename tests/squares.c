@@ -36,6 +36,9 @@ int main(int argc, char const *argv[])
     int success = lcge_create_context(800, 800, "LCGE Squares Example",
                                       LCGE_NON_RESIZEABLE);
 
+    // Create clock with 60 max fps
+    LCGE_clock *clock = lcge_clock_create(60);
+
     // Check if there was an error creating the window
     if (success == LCGE_CONTEXT_ERR)
     {
@@ -56,10 +59,13 @@ int main(int argc, char const *argv[])
         lcge_rect_draw(rect_2, 108, 92, 231);
 
         // Get ready for next iteration
+        lcge_clock_tick(clock);
         lcge_window_update();
     }
+
     lcge_rect_delete(rect_1);
     lcge_rect_delete(rect_2);
+    lcge_clock_delete(clock);
 
     lcge_exit();
 

@@ -90,6 +90,15 @@ extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
 extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
                           float height);
 
+typedef struct LCGE_clock LCGE_clock;
+
+/* Creates a clock given a max fps */
+extern LCGE_clock* lcge_clock_create(unsigned int fps);
+extern void lcge_clock_delete(LCGE_clock *clock);
+
+/* Ticks the clock to get as close to the max fps as possible */
+extern void lcge_clock_tick(LCGE_clock *clock);
+
 #ifdef __cplusplus
 }
 #endif

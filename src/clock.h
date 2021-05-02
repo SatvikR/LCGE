@@ -20,34 +20,24 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _WINDOW_H
-#define _WINDOW_H
+#ifndef _CLOCK_H
+#define _CLOCK_H
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#include <LCGE/lcge.h>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-typedef struct LCGE_window
+typedef struct LCGE_clock
 {
-    unsigned int width;
-    unsigned int height;
+    double prev_time;
+    unsigned int fps;
+} LCGE_clock;
 
-    GLFWwindow *_window;
-} LCGE_window;
+LCGE_clock* lcge_clock_create(unsigned int fps);
+void lcge_clock_delete(LCGE_clock *clock);
 
-int lcge_create_context(unsigned int width, unsigned int height,
-                         const char *title, int resizable);
-
-int lcge_window_is_open();
-
-void lcge_window_clear();
-
-void lcge_window_update();
+void lcge_clock_tick(LCGE_clock *clock);
 
 #ifdef __cplusplus
 }

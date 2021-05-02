@@ -8,6 +8,7 @@ set(INCLUDE_DIR "include")
 
 set(SOURCES
     "${SRC_DIR}/window.c"
+    "${SRC_DIR}/clock.c"
     "${SRC_DIR}/core.c"
     "${SRC_DIR}/glerror.c"
     "${SRC_DIR}/renderer/indexbuffer.c"
@@ -21,6 +22,7 @@ set(SOURCES
 set(HEADERS
     "${INCLUDE_DIR}/LCGE/lcge.h"
     "${SRC_DIR}/core.h"
+    "${SRC_DIR}/clock.h"
     "${SRC_DIR}/debug.h"
     "${SRC_DIR}/glerror.h"
     "${SRC_DIR}/window.h"

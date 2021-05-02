@@ -35,6 +35,9 @@ int main(int argc, char const *argv[])
     int success = lcge_create_context(500, 500, "LCGE Window Example",
                                       LCGE_NON_RESIZEABLE);
 
+    // Create clock with 60 max fps
+    LCGE_clock *clock = lcge_clock_create(60);
+
     // Check if there was an error creating the window
     if (success == LCGE_CONTEXT_ERR)
     {
@@ -48,8 +51,10 @@ int main(int argc, char const *argv[])
         // Do any drawing here
 
         // Get ready for next iteration
+        lcge_clock_tick(clock);
         lcge_window_update();
     }
+    lcge_clock_delete(clock);
 
     lcge_exit();
 

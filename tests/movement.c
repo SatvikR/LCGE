@@ -35,6 +35,9 @@ int main(int argc, char const *argv[])
     int success = lcge_create_context(800, 800, "LCGE Movement Example",
                                       LCGE_NON_RESIZEABLE);
 
+    // Create clock with 60 max fps
+    LCGE_clock *clock = lcge_clock_create(60);
+
     // Check if there was an error creating the window
     if (success == LCGE_CONTEXT_ERR)
     {
@@ -43,17 +46,16 @@ int main(int argc, char const *argv[])
     }
 
     float x = 50;
-    float inc = 0.25f;
+    float inc = 10.0f;
     LCGE_rect *rect = lcge_rect_load(50, 325, 150, 150);
 
     while (lcge_window_is_open())
     {
         // update
 
-        // move the rectangle from right to left
-        // there is no clock in LCGE right now so the speed of the movement
-        // depends on your gpu and your driver
         x += inc;
+
+        // Reverse the rectangle once it hits the edge of the window
         if ((x + 150) > 800 || x < 0)
             inc = -1.0f * inc;
         lcge_rect_set(rect, x, 325, 150, 150);
@@ -63,8 +65,12 @@ int main(int argc, char const *argv[])
         lcge_rect_draw(rect, 108, 92, 231);
 
         // Get ready for next iteration
+        lcge_clock_tick(clock);
         lcge_window_update();
     }
+
+    lcge_rect_delete(rect);
+    lcge_clock_delete(clock);
 
     lcge_exit();
 
