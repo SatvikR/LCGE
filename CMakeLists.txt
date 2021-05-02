@@ -10,6 +10,7 @@ set(SOURCES
     "${SRC_DIR}/window.c"
     "${SRC_DIR}/clock.c"
     "${SRC_DIR}/core.c"
+    "${SRC_DIR}/stbi.c"
     "${SRC_DIR}/glerror.c"
     "${SRC_DIR}/renderer/indexbuffer.c"
     "${SRC_DIR}/renderer/shader.c"
