@@ -95,6 +95,25 @@ void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b)
     GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
 }
 
+void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
+                   float height)
+{
+    LCGE_coordinate top_l = lcge_coordinate_translate(x, y);
+    LCGE_coordinate top_r = lcge_coordinate_translate(x + width, y);
+    LCGE_coordinate bottom_l = lcge_coordinate_translate(x, y + height);
+    LCGE_coordinate bottom_r = lcge_coordinate_translate(x + width, y + height);
+
+    GLfloat positions[8] = {
+        bottom_l.x, bottom_r.y, // bottom left
+        top_l.x, top_l.y ,      // top left
+        top_r.x, top_r.y,       // top right
+        bottom_r.x, bottom_r.y, // bottom right
+    };
+
+    lcge_vertex_array_bind(rect->va);
+    lcge_vertex_buffer_update(rect->vb, positions, 8 * sizeof(GLfloat));
+}
+
 void lcge_rect_delete(LCGE_rect *rect)
 {
     // unbind everything

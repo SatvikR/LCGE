@@ -43,6 +43,8 @@ void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer);
 void lcge_vertex_buffer_bind(LCGE_vertex_buffer *vertex_buffer);
 void lcge_vertex_buffer_unbind(LCGE_vertex_buffer *vertex_buffer);
 
+void lcge_vertex_buffer_update(LCGE_vertex_buffer *vertex_buffer, void *data,
+                               GLuint size);
 #ifdef __cplusplus
 }
 #endif

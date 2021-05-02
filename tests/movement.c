@@ -20,33 +20,53 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _GEOMETRY_RECT_H_
-#define _GEOMETRY_RECT_H_
+#include <LCGE/lcge.h>
 
-#ifdef __cplusplus
-extern "C"
+int main(int argc, char const *argv[])
 {
-#endif
+    // Initialize LCGE
+    if (lcge_init("res/") == LCGE_INIT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-#include "../renderer/renderer.h"
+    // Create a window
+    int success = lcge_create_context(800, 800, "LCGE Movement Example",
+                                      LCGE_NON_RESIZEABLE);
 
-typedef struct LCGE_rect
-{
-    LCGE_vertex_array *va;
-    LCGE_vertex_buffer *vb;
-    LCGE_index_buffer *ib;
-    LCGE_shader *shader;
-} LCGE_rect;
+    // Check if there was an error creating the window
+    if (success == LCGE_CONTEXT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
-void lcge_rect_delete(LCGE_rect *rect);
+    float x = 50;
+    float inc = 0.25f;
+    LCGE_rect *rect = lcge_rect_load(50, 325, 150, 150);
 
-void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
-extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
-                          float height);
+    while (lcge_window_is_open())
+    {
+        // update
 
-#ifdef __cplusplus
+        // move the rectangle from right to left
+        // there is no clock in LCGE right now so the speed of the movement
+        // depends on your gpu and your driver
+        x += inc;
+        if ((x + 150) > 800 || x < 0)
+            inc = -1.0f * inc;
+        lcge_rect_set(rect, x, 325, 150, 150);
+
+        // draw
+        lcge_clear_window();
+        lcge_rect_draw(rect, 225, 112, 85);
+
+        // Get ready for next iteration
+        lcge_update_window();
+    }
+
+    lcge_exit();
+
+    return 0;
 }
-#endif
-
-#endif

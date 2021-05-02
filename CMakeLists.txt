@@ -39,6 +39,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 set(TEST_DIR "tests")
 set(WINDOW_EXAMPLE window_example)
 set(SQUARES_EXAMPLE squares_example)
+set(MOVE_EXAMPLE movement_example)
 
 # Tests
 add_executable(${WINDOW_EXAMPLE} "tests/window.c")
@@ -48,6 +49,10 @@ target_link_libraries(${WINDOW_EXAMPLE} PRIVATE ${PROJECT_NAME})
 add_executable(${SQUARES_EXAMPLE} "tests/squares.c")
 target_include_directories(${SQUARES_EXAMPLE} PRIVATE "./include")
 target_link_libraries(${SQUARES_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+add_executable(${MOVE_EXAMPLE} "tests/movement.c")
+target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")

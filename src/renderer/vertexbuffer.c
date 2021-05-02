@@ -31,9 +31,16 @@ LCGE_vertex_buffer* lcge_vertex_buffer_create(void *data, GLuint size)
 
     GLCALL(glGenBuffers(1, &vb->renderer_id));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vb->renderer_id));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+    GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
 
     return vb;
+}
+
+void lcge_vertex_buffer_update(LCGE_vertex_buffer *vertex_buffer, void *data,
+                               GLuint size)
+{
+    lcge_vertex_buffer_bind(vertex_buffer);
+    GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
 }
 
 void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer)
