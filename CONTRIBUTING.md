@@ -15,10 +15,7 @@ If you are creating an issue make sure to:
 ## Contributing Code
 
 The first thing you will want to do is fork this repository and clone your fork to your local machine.
-
-```sh
-git clone --recursive https://github.com/SatvikR/LCGE.git
-```
+Make sure you use the `--recursive` when cloning so you clone the submodules as well.
 
 Then, you will need to build the project:
 
@@ -26,11 +23,7 @@ Then, you will need to build the project:
 
 ```sh
 # Use cmake to create build files
-mkdir build
-cd build
-
-cmake ..
-cd ..
+cmake -B ./build .
 ```
 
 2. Build
@@ -39,16 +32,16 @@ cd ..
 cmake --build ./build
 ```
 
-These two steps will build glad, GLFW, and LCGE as static libraries, and build the examples as executables. 
+These two steps will build glad, GLFW, and LCGE as static libraries, and build the examples as executables.
 The output files will be in different places inside `./build` depending on your build system.
 
-Now that you've build LCGE, you can start writing code. 
+Now that you've built LCGE, you can start writing code.
 
 ### Style:
 
 Follow these simple guidelines for code style/formatting.
 
-Every file must begin with this comment with a license notice 
+Every file must begin with this comment with a license notice
 
 ```c
 // The MIT License (MIT)
@@ -80,52 +73,52 @@ Formatting:
   - Use 4 spaces rather than tabs
   - Use 80 as your column limit/ruler
   - For naming in code:
-  
+
   ```c
   int my_var;
-  
+
   typedef struct LCGE_struct_name
   {
   } LCGE_struct_name;
-  
+
   void lcge_function();
-  
+
   #define LCGE_CONSTANT 1
   ```
-  
+
   - For naming files, no capital letters, no spaces or underscores (ex. `window.h` or `core.c`)
-  
+
 Style:
 
   - All functions that users may access must be declared like this in `include/LCGE/lcge.h`
-  
+
   ```c
   /* Description */
   extern void lcge_function_name();
   ```
-  
+
   - Functions are implemented in `src`
   - Declare structs opaquely like this (in `include/LCGE/lcge.h`)
-  
+
   ```c
   typedef struct LCGE_name LCGE_name;
   ```
- 
+
   - Then define them in a header in `src`
-  
+
   ```c
-  
+
   #include <LCGE/lcge.h>
-  
+
   typedef struct LCGE_name
   {
     int thing;
     char *name;
   } LCGE_name;
   ```
-  
+
   - Use these header guards
-  
+
   ```c
   #ifndef _FILE_H
   #define _FILE_H
@@ -134,12 +127,12 @@ Style:
   extern "C"
   {
   #endif
-  
+
   /* code */
-  
+
   #ifdef __cplusplus
   }
   #endif
-  
+
   #endif
   ```

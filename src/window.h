@@ -44,9 +44,9 @@ int lcge_create_context(unsigned int width, unsigned int height,
 
 int lcge_window_is_open();
 
-void lcge_clear_window();
+void lcge_window_clear();
 
-void lcge_update_window();
+void lcge_window_update();
 
 #ifdef __cplusplus
 }

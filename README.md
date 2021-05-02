@@ -3,7 +3,18 @@ A Lightweight C game engine built with OpenGL.
 
 ## Build
 
-Follow the instructions in [CONTRIBUTING.md](https://github.com/SatvikR/LCGE/blob/main/CONTRIBUTING.md#contributing-code)
+1. Clone
+
+```sh
+git clone --recursive https://github.com/SatvikR/LCGE.git
+```
+
+2. Build using [CMake](https://cmake.org/)
+
+```
+cmake -B ./build .
+cmake --build ./build
+```
 
 ## Basic usage
 
@@ -37,10 +48,10 @@ int main(int argc, char const *argv[])
         // Do any udpating here
 
         // Do any drawing here
-        lcge_clear_window();
+        lcge_window_clear();
 
         // Get ready for next iteration
-        lcge_update_window();
+        lcge_window_udpate();
     }
 
     lcge_exit();

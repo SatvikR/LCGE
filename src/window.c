@@ -70,12 +70,12 @@ int lcge_window_is_open()
     return !glfwWindowShouldClose(g_state->window->_window);
 }
 
-void lcge_clear_window()
+void lcge_window_clear()
 {
     GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-void lcge_update_window()
+void lcge_window_update()
 {
     glfwSwapBuffers(g_state->window->_window);
     glfwPollEvents();

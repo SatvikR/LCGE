@@ -44,11 +44,11 @@ int main(int argc, char const *argv[])
 
     while (lcge_window_is_open())
     {
-        lcge_clear_window();
+        lcge_window_clear();
         // Do any drawing here
 
         // Get ready for next iteration
-        lcge_update_window();
+        lcge_window_update();
     }
 
     lcge_exit();

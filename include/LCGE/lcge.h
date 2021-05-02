@@ -69,10 +69,10 @@ extern int lcge_window_is_open();
 extern void lcge_exit();
 
 /* Clears the color buffer on the window */
-extern void lcge_clear_window();
+extern void lcge_window_clear();
 
 /* Swaps front and back buffers and polls for process events */
-extern void lcge_update_window();
+extern void lcge_window_update();
 
 typedef struct LCGE_rect LCGE_rect;
 

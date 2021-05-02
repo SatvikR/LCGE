@@ -49,14 +49,14 @@ int main(int argc, char const *argv[])
 
     while (lcge_window_is_open())
     {
-        lcge_clear_window();
+        lcge_window_clear();
 
         // Draw rectangle with teal and purple
         lcge_rect_draw(rect_1, 0, 206, 201);
         lcge_rect_draw(rect_2, 108, 92, 231);
 
         // Get ready for next iteration
-        lcge_update_window();
+        lcge_window_update();
     }
     lcge_rect_delete(rect_1);
     lcge_rect_delete(rect_2);

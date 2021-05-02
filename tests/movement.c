@@ -59,11 +59,11 @@ int main(int argc, char const *argv[])
         lcge_rect_set(rect, x, 325, 150, 150);
 
         // draw
-        lcge_clear_window();
-        lcge_rect_draw(rect, 225, 112, 85);
+        lcge_window_clear();
+        lcge_rect_draw(rect, 108, 92, 231);
 
         // Get ready for next iteration
-        lcge_update_window();
+        lcge_window_update();
     }
 
     lcge_exit();
