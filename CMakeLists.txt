@@ -78,6 +78,10 @@ target_include_directories(glad PRIVATE "${GLAD_DIR}/include")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
 target_link_libraries(${PROJECT_NAME} glad "${CMAKE_DL_LIBS}")
 
+if (NOT CMAKE_BUILD_TYPE MATCHES Debug)
+    add_definitions(-DNDEBUG)
+endif()
+
 set(STB_DIR "lib/stb")
 target_include_directories(${PROJECT_NAME} PRIVATE ${STB_DIR})
 

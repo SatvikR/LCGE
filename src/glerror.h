@@ -34,6 +34,7 @@ extern "C"
 #include <stdio.h>
 #include "debug.h"
 
+#ifndef NDEBUG
 #ifdef _MSC_VER
 #define ASSERT(x) \
     if (!(x)) \
@@ -48,6 +49,12 @@ extern "C"
     GL_clear_error(); \
     x; \
     ASSERT(GL_log_call(__FILE__, __LINE__))
+#else
+#define ASSERT(x) \
+    x;
+#define GLCALL(x) \
+    x;
+#endif
 
 
 void GL_clear_error();
