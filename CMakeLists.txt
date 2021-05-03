@@ -43,28 +43,6 @@ set(HEADERS
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 
-set(TEST_DIR "tests")
-set(WINDOW_EXAMPLE window_example)
-set(SQUARES_EXAMPLE squares_example)
-set(MOVE_EXAMPLE movement_example)
-set(IMAGE_EXAMPLE image_example)
-
-# Tests
-add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
-target_include_directories(${WINDOW_EXAMPLE} PRIVATE ${INCLUDE_DIR})
-target_link_libraries(${WINDOW_EXAMPLE} PRIVATE ${PROJECT_NAME})
-
-add_executable(${SQUARES_EXAMPLE} "${TEST_DIR}/squares.c")
-target_include_directories(${SQUARES_EXAMPLE} PRIVATE "./include")
-target_link_libraries(${SQUARES_EXAMPLE} PRIVATE ${PROJECT_NAME})
-
-add_executable(${MOVE_EXAMPLE} "${TEST_DIR}/movement.c")
-target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
-target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
-
-add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
-target_include_directories(${IMAGE_EXAMPLE} PRIVATE "./include")
-target_link_libraries(${IMAGE_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")
@@ -87,11 +65,30 @@ endif()
 if (BUILD_32)
         set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS
 "-m32" LINK_FLAGS "-m32")
+        set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS
+"-m32" LINK_FLAGS "-m32")
          MESSAGE(STATUS "Excluding 64bit library paths from search.")
          set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS OFF)
 elseif (BUILD_64)
         set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS
 "-m64" LINK_FLAGS "-m64")
+else()
+# Tests
+add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
+target_include_directories(${WINDOW_EXAMPLE} PRIVATE ${INCLUDE_DIR})
+target_link_libraries(${WINDOW_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+add_executable(${SQUARES_EXAMPLE} "${TEST_DIR}/squares.c")
+target_include_directories(${SQUARES_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${SQUARES_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+add_executable(${MOVE_EXAMPLE} "${TEST_DIR}/movement.c")
+target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
+target_include_directories(${IMAGE_EXAMPLE} PRIVATE "./include")
+
 endif()
 
 set(STB_DIR "lib/stb")
