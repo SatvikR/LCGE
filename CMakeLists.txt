@@ -72,6 +72,13 @@ elseif (BUILD_64)
         set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS
 "-m64" LINK_FLAGS "-m64")
 else()
+
+set(TEST_DIR "tests")
+set(WINDOW_EXAMPLE window_example)
+set(SQUARES_EXAMPLE squares_example)
+set(MOVE_EXAMPLE movement_example)
+set(IMAGE_EXAMPLE image_example)
+
 # Tests
 add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
 target_include_directories(${WINDOW_EXAMPLE} PUBLIC ${INCLUDE_DIR})
