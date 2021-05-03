@@ -41,9 +41,10 @@ typedef struct LCGE_image
 
 LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
                             float height);
-
 void lcge_image_delete(LCGE_image *image);
 
+void lcge_image_set(LCGE_image *image, float x, float y, float width,
+                    float height);
 void lcge_image_draw(LCGE_image *image);
 
 #ifdef __cplusplus

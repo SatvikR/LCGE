@@ -99,6 +99,29 @@ void lcge_image_delete(LCGE_image *image)
     free(image);
 }
 
+void lcge_image_set(LCGE_image *image, float x, float y, float width,
+                    float height)
+{
+    LCGE_coordinate top_l = lcge_coordinate_translate(x, y);
+    LCGE_coordinate top_r = lcge_coordinate_translate(
+                                                    x + width,
+                                                    y);
+    LCGE_coordinate bottom_l = lcge_coordinate_translate(x,
+                                                    y + height);
+    LCGE_coordinate bottom_r = lcge_coordinate_translate(
+                                                     x + width,
+                                                     y + height);
+    GLfloat positions[16] = {
+        bottom_l.x, bottom_l.y, 0.0f, 0.0f, // bottom left
+        top_l.x, top_l.y, 0.0f, 1.0f,       // top left
+        top_r.x, top_r.y, 1.0f, 1.0f,       // top right
+        bottom_r.x, bottom_r.y, 1.0f, 0.0f  // bottom right
+    };
+
+    lcge_vertex_array_bind(image->va);
+    lcge_vertex_buffer_update(image->vb, positions, 16 * sizeof(GLfloat));
+}
+
 void lcge_image_draw(LCGE_image *image)
 {
     lcge_texture_bind(image->texture);

@@ -24,6 +24,9 @@
 
 #include <stdio.h>
 
+#define SPRITE_WIDTH  (326.0f * 0.75f)
+#define SPRITE_HEIGHT (296.0f * 0.75f)
+
 int main(int argc, char const *argv[])
 {
     // Initialize LCGE
@@ -34,8 +37,8 @@ int main(int argc, char const *argv[])
     }
 
     // Create a window
-    int success = lcge_create_context(500, 500,
-                                      "LCGE Input Example (Press space)",
+    int success = lcge_create_context(800, 800,
+                                      "LCGE Input Example (Use Arrow Keys)",
                                       LCGE_NON_RESIZEABLE);
 
     // Create clock with 60 max fps
@@ -48,16 +51,35 @@ int main(int argc, char const *argv[])
         return -1;
     }
 
-    LCGE_rect *square = lcge_rect_load(150, 150, 200, 200);
+    float x = (800 - SPRITE_WIDTH) / 2;
+    float y = (800 - SPRITE_HEIGHT) / 2;
+    float speed = 10;
+
+    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png", x, y,
+                                        SPRITE_WIDTH, SPRITE_HEIGHT);
 
     while (lcge_window_is_open())
     {
         // Do any drawing here
         lcge_window_clear();
-        if (lcge_get_key(LCGE_KEY_SPACE) == LCGE_KEY_PRESSED)
+        if (lcge_get_key(LCGE_KEY_LEFT) == LCGE_KEY_PRESSED)
         {
-            lcge_rect_draw(square, 9, 132, 227);
+            if (x >= speed)
+            {
+                x -= speed;
+                lcge_image_set(image, x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            }
         }
+        if (lcge_get_key(LCGE_KEY_RIGHT) == LCGE_KEY_PRESSED)
+        {
+            if ((x + SPRITE_WIDTH) <= (800 - speed))
+            {
+                x += speed;
+                lcge_image_set(image, x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            }
+        }
+
+        lcge_image_draw(image);
 
         // Get ready for next iteration
         lcge_clock_tick(clock);
