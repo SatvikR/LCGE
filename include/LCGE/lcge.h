@@ -93,7 +93,8 @@ extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
 typedef struct LCGE_image LCGE_image;
 
 /* Loads image from filepath given top left coordinates */
-extern LCGE_image* lcge_image_load(const char *filepath, float x, float y);
+extern LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
+                            float height);
 extern void lcge_image_delete(LCGE_image *image);
 
 extern void lcge_image_draw(LCGE_image *image);

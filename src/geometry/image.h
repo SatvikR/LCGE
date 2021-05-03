@@ -39,7 +39,9 @@ typedef struct LCGE_image
     LCGE_texture *texture;
 } LCGE_image;
 
-LCGE_image* lcge_image_load(const char *filepath, float x, float y);
+LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
+                            float height);
+
 void lcge_image_delete(LCGE_image *image);
 
 void lcge_image_draw(LCGE_image *image);

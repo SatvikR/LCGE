@@ -22,6 +22,9 @@
 
 #include <LCGE/lcge.h>
 
+#define SPRITE_WIDTH  326.0f
+#define SPRITE_HEIGHT 296.0f
+
 int main(int argc, char const *argv[])
 {
     // Initialize LCGE
@@ -47,11 +50,13 @@ int main(int argc, char const *argv[])
 
     // Load image_one
     LCGE_image *image_one = lcge_image_load("tests/images/player_sprite.png",
-                                            100, 100);
+                                            100, 100, SPRITE_WIDTH * 0.8f,
+                                            SPRITE_HEIGHT * 0.8f);
 
     // Load image_two
     LCGE_image *image_two = lcge_image_load("tests/images/player_sprite.png",
-                                            500, 400);
+                                            500, 300, SPRITE_HEIGHT * 1.5,
+                                            SPRITE_HEIGHT * 1.5);
     while (lcge_window_is_open())
     {
         lcge_window_clear();

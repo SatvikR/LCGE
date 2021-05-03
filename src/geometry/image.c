@@ -30,20 +30,21 @@
 #include "../core.h"
 #include "../glerror.h"
 
-LCGE_image* lcge_image_load(const char *filepath, float x, float y)
+LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
+                            float height)
 {
 
     LCGE_texture *texture = lcge_texture_create(filepath);
 
     LCGE_coordinate top_l = lcge_coordinate_translate(x, y);
     LCGE_coordinate top_r = lcge_coordinate_translate(
-                                                    x + texture->width,
+                                                    x + width,
                                                     y);
     LCGE_coordinate bottom_l = lcge_coordinate_translate(x,
-                                                    y + texture->height);
+                                                    y + height);
     LCGE_coordinate bottom_r = lcge_coordinate_translate(
-                                                     x + texture->width,
-                                                     y + texture->height);
+                                                     x + width,
+                                                     y + height);
     GLfloat positions[16] = {
         bottom_l.x, bottom_l.y, 0.0f, 0.0f, // bottom left
         top_l.x, top_l.y, 0.0f, 1.0f,       // top left
