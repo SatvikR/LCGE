@@ -43,7 +43,6 @@ set(HEADERS
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 
-
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")
 target_link_libraries(${PROJECT_NAME} "glfw" "${GLFW_LIBRARIES}")
@@ -75,19 +74,20 @@ elseif (BUILD_64)
 else()
 # Tests
 add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
-target_include_directories(${WINDOW_EXAMPLE} PRIVATE ${INCLUDE_DIR})
-target_link_libraries(${WINDOW_EXAMPLE} PRIVATE ${PROJECT_NAME})
+target_include_directories(${WINDOW_EXAMPLE} PUBLIC ${INCLUDE_DIR})
+target_link_libraries(${WINDOW_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 add_executable(${SQUARES_EXAMPLE} "${TEST_DIR}/squares.c")
-target_include_directories(${SQUARES_EXAMPLE} PRIVATE "./include")
-target_link_libraries(${SQUARES_EXAMPLE} PRIVATE ${PROJECT_NAME})
+target_include_directories(${SQUARES_EXAMPLE} PUBLIC "./include")
+target_link_libraries(${SQUARES_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 add_executable(${MOVE_EXAMPLE} "${TEST_DIR}/movement.c")
-target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
-target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
+target_include_directories(${MOVE_EXAMPLE} PUBLIC "./include")
+target_link_libraries(${MOVE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
-target_include_directories(${IMAGE_EXAMPLE} PRIVATE "./include")
+target_include_directories(${IMAGE_EXAMPLE} PUBLIC "./include")
+target_link_libraries(${IMAGE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 endif()
 
