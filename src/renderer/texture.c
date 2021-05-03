@@ -46,8 +46,8 @@ LCGE_texture* lcge_texture_create(const char *filepath)
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
-    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture->width, texture->height,
-                        0, GL_RGBA, GL_UNSIGNED_BYTE, data));
+    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture->width,
+                        texture->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
 
     GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 

@@ -45,7 +45,7 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y)
                                                      x + texture->width,
                                                      y + texture->height);
     GLfloat positions[16] = {
-        bottom_l.x, bottom_r.y, 0.0f, 0.0f, // bottom left
+        bottom_l.x, bottom_l.y, 0.0f, 0.0f, // bottom left
         top_l.x, top_l.y, 0.0f, 1.0f,       // top left
         top_r.x, top_r.y, 1.0f, 1.0f,       // top right
         bottom_r.x, bottom_r.y, 1.0f, 0.0f  // bottom right
