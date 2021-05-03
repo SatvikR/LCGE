@@ -9,6 +9,12 @@ A Lightweight C game engine built with OpenGL.
  - Render 2D images
  - More coming soon!
 
+# Use in your project
+
+1. Download the latest binaries from [the releases page](https://github.com/SatvikR/LCGE/releases)
+2. Link with glfw3, glad, and LCGE when compiling your project.
+3. Include `lcge.h` that will be in the `include` directory from the release
+4. Make sure you pass in the relative path to the `res` directory that you downloaded from the release page when calling `lcge_init()`
 ## Build From Source
 
 1. Clone
