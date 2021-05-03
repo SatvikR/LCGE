@@ -43,7 +43,7 @@ void lcge_rect_delete(LCGE_rect *rect);
 
 void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
 void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
-                          float height);
+                   float height);
 
 #ifdef __cplusplus
 }
