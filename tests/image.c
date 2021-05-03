@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
     }
 
     // Create a window
-    int success = lcge_create_context(500, 500, "LCGE Image Example",
+    int success = lcge_create_context(1000, 800, "LCGE Image Example",
                                       LCGE_NON_RESIZEABLE);
 
     // Create clock with 60 max fps
@@ -45,22 +45,29 @@ int main(int argc, char const *argv[])
         return -1;
     }
 
-    // Load image
-    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png", 87,
-                                        102);
+    // Load image_one
+    LCGE_image *image_one = lcge_image_load("tests/images/player_sprite.png",
+                                            100, 100);
 
+    // Load image_two
+    LCGE_image *image_two = lcge_image_load("tests/images/player_sprite.png",
+                                            500, 400);
     while (lcge_window_is_open())
     {
         lcge_window_clear();
         // Do any drawing here
-        lcge_image_draw(image);
+        lcge_image_draw(image_one);
+        lcge_image_draw(image_two);
 
         // Get ready for next iteration
         lcge_clock_tick(clock);
         lcge_window_update();
     }
 
-    lcge_image_delete(image);
+    // clean up
+    lcge_image_delete(image_one);
+    lcge_image_delete(image_two);
+
     lcge_clock_delete(clock);
 
     lcge_exit();

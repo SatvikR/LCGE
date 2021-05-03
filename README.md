@@ -1,6 +1,13 @@
 # LCGE
-A Lightweight C graphics engine built with OpenGL.
+A Lightweight 2D C graphics engine built with OpenGL.
 
+## Capabilities
+
+ - Create a window
+ - Maintain an FPS
+ - Render 2D rectangles
+ - Render 2D images
+ - More coming soon!
 ## Build
 
 1. Clone
