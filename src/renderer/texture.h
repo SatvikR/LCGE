@@ -20,34 +20,29 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _RENDERER_VERTEX_ARRAY_H
-#define _RENDERER_VERTEX_ARRAY_H
+
+#ifndef _RENDERER_TEXTURE_H
+#define _RENDERER_TEXTURE_H
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#include <glad/glad.h>
-
-#include "vertexbuffer.h"
-
-typedef struct LCGE_vertex_array
+typedef struct LCGE_texture
 {
-    GLuint renderer_id;
-} LCGE_vertex_array;
+    int width;
+    int height;
+    int comp_per_pixel;
 
-LCGE_vertex_array* lcge_vertex_array_create();
+    unsigned int renderer_id;
+} LCGE_texture;
 
-/* this is a fat function */
-void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
-                              LCGE_vertex_buffer *vertex_buffer, GLint size,
-                              GLenum type, GLuint index, GLuint offset);
+LCGE_texture* lcge_texture_create(const char *filepath);
+void lcge_texture_delete(LCGE_texture *texture);
 
-void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array);
-void lcge_vertex_array_unbind(LCGE_vertex_array *vertex_array);
-
-void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array);
+void lcge_texture_bind(LCGE_texture *texture);
+void lcge_texture_unbind(LCGE_texture *texture);
 
 #ifdef __cplusplus
 }

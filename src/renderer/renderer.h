@@ -33,6 +33,7 @@ extern "C"
 #include "vertexbuffer.h"
 #include "shader.h"
 #include "indexbuffer.h"
+#include "texture.h"
 
 #ifdef __cplusplus
 }

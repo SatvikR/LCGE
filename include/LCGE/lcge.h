@@ -90,6 +90,14 @@ extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
 extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
                           float height);
 
+typedef struct LCGE_image LCGE_image;
+
+/* Loads image from filepath given top left coordinates */
+extern LCGE_image* lcge_image_load(const char *filepath, float x, float y);
+extern void lcge_image_delete(LCGE_image *image);
+
+extern void lcge_image_draw(LCGE_image *image);
+
 typedef struct LCGE_clock LCGE_clock;
 
 /* Creates a clock given a max fps */

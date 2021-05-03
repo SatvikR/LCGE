@@ -20,34 +20,29 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _RENDERER_VERTEX_ARRAY_H
-#define _RENDERER_VERTEX_ARRAY_H
+#ifndef _GEOMETRY_IMAGE_H
+#define _GEOMETRY_IMAGE_H
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#include <glad/glad.h>
+#include "../renderer/renderer.h"
 
-#include "vertexbuffer.h"
-
-typedef struct LCGE_vertex_array
+typedef struct LCGE_image
 {
-    GLuint renderer_id;
-} LCGE_vertex_array;
+    LCGE_vertex_array *va;
+    LCGE_vertex_buffer *vb;
+    LCGE_index_buffer *ib;
+    LCGE_shader *shader;
+    LCGE_texture *texture;
+} LCGE_image;
 
-LCGE_vertex_array* lcge_vertex_array_create();
+LCGE_image* lcge_image_load(const char *filepath, float x, float y);
+void lcge_image_delete(LCGE_image *image);
 
-/* this is a fat function */
-void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
-                              LCGE_vertex_buffer *vertex_buffer, GLint size,
-                              GLenum type, GLuint index, GLuint offset);
-
-void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array);
-void lcge_vertex_array_unbind(LCGE_vertex_array *vertex_array);
-
-void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array);
+void lcge_image_draw(LCGE_image *image);
 
 #ifdef __cplusplus
 }

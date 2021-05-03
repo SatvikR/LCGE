@@ -138,8 +138,7 @@ void lcge_shader_unbind(LCGE_shader *shader)
     GLCALL(glUseProgram(0));
 }
 
-GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
-                                GLfloat a, GLfloat b, GLfloat c, GLfloat d)
+static GLint get_uniform_location(LCGE_shader *shader, const char *name)
 {
     GLint location;
     GLCALL(location = glGetUniformLocation(shader->renderer_id, name));
@@ -149,6 +148,23 @@ GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
         printf("Warning: uniform %s does not exist\n", name);
     }
 
+    return location;
+}
+
+GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
+                                GLfloat a, GLfloat b, GLfloat c, GLfloat d)
+{
+    GLint location = get_uniform_location(shader, name);
+
     GLCALL(glUniform4f(location, a, b, c, d));
+    return location;
+}
+
+GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
+                                 GLint v0)
+{
+    GLint location = get_uniform_location(shader, name);
+
+    GLCALL(glUniform1i(location, v0));
     return location;
 }

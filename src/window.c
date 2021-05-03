@@ -60,7 +60,11 @@ int lcge_create_context(unsigned int width, unsigned int height,
         glfwTerminate();
         return LCGE_CONTEXT_ERR;
     }
+    GLCALL(glEnable(GL_BLEND));
+    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
     g_state->basic_geo = lcge_shader_create(g_state->res_dir, "basic_geo");
+    g_state->texture = lcge_shader_create(g_state->res_dir, "texture");
 
     return LCGE_CONTEXT_OK;
 }

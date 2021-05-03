@@ -38,6 +38,7 @@ typedef struct LCGE_state
     char *res_dir;
     LCGE_window *window;
     LCGE_shader *basic_geo;
+    LCGE_shader *texture;
 } LCGE_state;
 
 extern LCGE_state *g_state;

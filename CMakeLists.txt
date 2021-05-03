@@ -16,7 +16,9 @@ set(SOURCES
     "${SRC_DIR}/renderer/shader.c"
     "${SRC_DIR}/renderer/vertexarray.c"
     "${SRC_DIR}/renderer/vertexbuffer.c"
+    "${SRC_DIR}/renderer/texture.c"
     "${SRC_DIR}/geometry/rect.c"
+    "${SRC_DIR}/geometry/image.c"
     "${SRC_DIR}/geometry/math.c"
 )
 
@@ -32,7 +34,9 @@ set(HEADERS
     "${SRC_DIR}/renderer/vertexarray.h"
     "${SRC_DIR}/renderer/vertexbuffer.h"
     "${SRC_DIR}/renderer/renderer.h"
+    "${SRC_DIR}/renderer/texture.h"
     "${SRC_DIR}/geometry/rect.h"
+    "${SRC_DIR}/geometry/image.h"
     "${SRC_DIR}/geometry/math.h"
 )
 
@@ -43,19 +47,24 @@ set(TEST_DIR "tests")
 set(WINDOW_EXAMPLE window_example)
 set(SQUARES_EXAMPLE squares_example)
 set(MOVE_EXAMPLE movement_example)
+set(IMAGE_EXAMPLE image_example)
 
 # Tests
-add_executable(${WINDOW_EXAMPLE} "tests/window.c")
+add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
 target_include_directories(${WINDOW_EXAMPLE} PRIVATE ${INCLUDE_DIR})
 target_link_libraries(${WINDOW_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
-add_executable(${SQUARES_EXAMPLE} "tests/squares.c")
+add_executable(${SQUARES_EXAMPLE} "${TEST_DIR}/squares.c")
 target_include_directories(${SQUARES_EXAMPLE} PRIVATE "./include")
 target_link_libraries(${SQUARES_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
-add_executable(${MOVE_EXAMPLE} "tests/movement.c")
+add_executable(${MOVE_EXAMPLE} "${TEST_DIR}/movement.c")
 target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
 target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
+target_include_directories(${IMAGE_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${IMAGE_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")

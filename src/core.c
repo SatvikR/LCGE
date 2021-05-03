@@ -74,6 +74,7 @@ static void lcge_clean_up()
     if (g_state->initialized == LCGE_INIT_OK)
     {
         lcge_shader_delete(g_state->basic_geo);
+        lcge_shader_delete(g_state->texture);
 
         glfwTerminate();
         glfwDestroyWindow(g_state->window->_window);

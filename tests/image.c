@@ -20,37 +20,49 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _RENDERER_VERTEX_ARRAY_H
-#define _RENDERER_VERTEX_ARRAY_H
+#include <LCGE/lcge.h>
 
-#ifdef __cplusplus
-extern "C"
+int main(int argc, char const *argv[])
 {
-#endif
+    // Initialize LCGE
+    if (lcge_init("res/") == LCGE_INIT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-#include <glad/glad.h>
+    // Create a window
+    int success = lcge_create_context(500, 500, "LCGE Image Example",
+                                      LCGE_NON_RESIZEABLE);
 
-#include "vertexbuffer.h"
+    // Create clock with 60 max fps
+    LCGE_clock *clock = lcge_clock_create(60);
 
-typedef struct LCGE_vertex_array
-{
-    GLuint renderer_id;
-} LCGE_vertex_array;
+    // Check if there was an error creating the window
+    if (success == LCGE_CONTEXT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-LCGE_vertex_array* lcge_vertex_array_create();
+    // Load image
+    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png", 0, 0);
 
-/* this is a fat function */
-void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
-                              LCGE_vertex_buffer *vertex_buffer, GLint size,
-                              GLenum type, GLuint index, GLuint offset);
+    while (lcge_window_is_open())
+    {
+        lcge_window_clear();
+        // Do any drawing here
+        lcge_image_draw(image);
 
-void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array);
-void lcge_vertex_array_unbind(LCGE_vertex_array *vertex_array);
+        // Get ready for next iteration
+        lcge_clock_tick(clock);
+        lcge_window_update();
+    }
 
-void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array);
+    lcge_image_delete(image);
+    lcge_clock_delete(clock);
 
-#ifdef __cplusplus
+    lcge_exit();
+
+    return 0;
 }
-#endif
-
-#endif

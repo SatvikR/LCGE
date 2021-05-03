@@ -41,8 +41,10 @@ void lcge_shader_bind(LCGE_shader *shader);
 void lcge_shader_unbind(LCGE_shader *shader);
 
 GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
-                                GLfloat a, GLfloat b, GLfloat c, GLfloat d);
+                                 GLfloat a, GLfloat b, GLfloat c, GLfloat d);
 
+GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
+                                 GLint v0);
 #ifdef __cplusplus
 }
 #endif
