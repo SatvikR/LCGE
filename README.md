@@ -9,7 +9,7 @@ A Lightweight C game engine built with OpenGL.
  - Render 2D images
  - More coming soon!
 
-## Build
+## Build From Source
 
 1. Clone
 
