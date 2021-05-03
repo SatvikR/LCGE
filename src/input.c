@@ -20,48 +20,16 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _WINDOW_H
-#define _WINDOW_H
-
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#define LCGE_WINDOW_OPEN   1
-#define LCGE_WINDOW_CLOSED 0
+#include "input.h"
+#include "core.h"
 
-#define LCGE_INIT_ERR -1
-#define LCGE_INIT_OK   0
-
-#define LCGE_RESIZEABLE     1
-#define LCGE_NON_RESIZEABLE 0
-
-#define LCGE_CONTEXT_ERR -1
-#define LCGE_CONTEXT_OK   1
-
-typedef struct LCGE_window
+int lcge_get_key(int key)
 {
-    unsigned int width;
-    unsigned int height;
-
-    GLFWwindow *_window;
-} LCGE_window;
-
-int lcge_create_context(unsigned int width, unsigned int height,
-                         const char *title, int resizable);
-
-int lcge_window_is_open();
-
-void lcge_window_clear();
-
-void lcge_window_update();
-
-#ifdef __cplusplus
+    int state = glfwGetKey(g_state->window->_window, key);
+    if (state == GLFW_PRESS || state == GLFW_REPEAT)
+        return LCGE_KEY_PRESSED;
+    return LCGE_KEY_RELEASED;
 }
-#endif
-
-#endif

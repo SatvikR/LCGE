@@ -20,48 +20,52 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _WINDOW_H
-#define _WINDOW_H
+#include <LCGE/lcge.h>
 
-#ifdef __cplusplus
-extern "C"
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
 {
-#endif
+    // Initialize LCGE
+    if (lcge_init("res/") == LCGE_INIT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+    // Create a window
+    int success = lcge_create_context(500, 500,
+                                      "LCGE Input Example (Press space)",
+                                      LCGE_NON_RESIZEABLE);
 
-#define LCGE_WINDOW_OPEN   1
-#define LCGE_WINDOW_CLOSED 0
+    // Create clock with 60 max fps
+    LCGE_clock *clock = lcge_clock_create(60);
 
-#define LCGE_INIT_ERR -1
-#define LCGE_INIT_OK   0
+    // Check if there was an error creating the window
+    if (success == LCGE_CONTEXT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-#define LCGE_RESIZEABLE     1
-#define LCGE_NON_RESIZEABLE 0
+    LCGE_rect *square = lcge_rect_load(150, 150, 200, 200);
 
-#define LCGE_CONTEXT_ERR -1
-#define LCGE_CONTEXT_OK   1
+    while (lcge_window_is_open())
+    {
+        // Do any drawing here
+        lcge_window_clear();
+        if (lcge_get_key(LCGE_KEY_SPACE) == LCGE_KEY_PRESSED)
+        {
+            lcge_rect_draw(square, 9, 132, 227);
+        }
 
-typedef struct LCGE_window
-{
-    unsigned int width;
-    unsigned int height;
+        // Get ready for next iteration
+        lcge_clock_tick(clock);
+        lcge_window_update();
+    }
+    lcge_clock_delete(clock);
 
-    GLFWwindow *_window;
-} LCGE_window;
+    lcge_exit();
 
-int lcge_create_context(unsigned int width, unsigned int height,
-                         const char *title, int resizable);
-
-int lcge_window_is_open();
-
-void lcge_window_clear();
-
-void lcge_window_update();
-
-#ifdef __cplusplus
+    return 0;
 }
-#endif
-
-#endif

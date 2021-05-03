@@ -10,6 +10,7 @@ set(SOURCES
     "${SRC_DIR}/window.c"
     "${SRC_DIR}/clock.c"
     "${SRC_DIR}/core.c"
+    "${SRC_DIR}/input.c"
     "${SRC_DIR}/stbi.c"
     "${SRC_DIR}/glerror.c"
     "${SRC_DIR}/renderer/indexbuffer.c"
@@ -26,6 +27,7 @@ set(HEADERS
     "${INCLUDE_DIR}/LCGE/lcge.h"
     "${SRC_DIR}/core.h"
     "${SRC_DIR}/clock.h"
+    "${SRC_DIR}/input.h"
     "${SRC_DIR}/debug.h"
     "${SRC_DIR}/glerror.h"
     "${SRC_DIR}/window.h"
@@ -78,6 +80,7 @@ set(WINDOW_EXAMPLE window_example)
 set(SQUARES_EXAMPLE squares_example)
 set(MOVE_EXAMPLE movement_example)
 set(IMAGE_EXAMPLE image_example)
+set(INPUT_EXAMPLE input_example)
 
 # Tests
 add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
@@ -95,6 +98,10 @@ target_link_libraries(${MOVE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
 target_include_directories(${IMAGE_EXAMPLE} PUBLIC "./include")
 target_link_libraries(${IMAGE_EXAMPLE} PUBLIC ${PROJECT_NAME})
+
+add_executable(${INPUT_EXAMPLE} "${TEST_DIR}/input.c")
+target_include_directories(${INPUT_EXAMPLE} PUBLIC "./include")
+target_link_libraries(${INPUT_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 endif()
 
