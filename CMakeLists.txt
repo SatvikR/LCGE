@@ -82,10 +82,16 @@ if (NOT CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DNDEBUG)
 endif()
 
-if (DEFINED DISTMINGW32)
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> ../dist/mingw-x86/
-    )
+# For Mingw and GCC builds ONLY
+# for MSVC use -A Win32
+if (BUILD_32)
+        set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS
+"-m32" LINK_FLAGS "-m32")
+         MESSAGE(STATUS "Excluding 64bit library paths from search.")
+         set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS OFF)
+elseif (BUILD_64)
+        set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS
+"-m64" LINK_FLAGS "-m64")
 endif()
 
 set(STB_DIR "lib/stb")
