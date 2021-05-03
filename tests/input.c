@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
 
     // Create a window
     int success = lcge_create_context(800, 800,
-                                      "LCGE Input Example (Use Arrow Keys)",
+                                      "LCGE Input Example (Press space)",
                                       LCGE_NON_RESIZEABLE);
 
     // Create clock with 60 max fps
@@ -51,31 +51,36 @@ int main(int argc, char const *argv[])
         return -1;
     }
 
-    float x = (800 - SPRITE_WIDTH) / 2;
-    float y = (800 - SPRITE_HEIGHT) / 2;
     float speed = 10;
 
-    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png", x, y,
+    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png",
+                                        (800 - SPRITE_WIDTH) / 2,
+                                        (800 - SPRITE_HEIGHT) / 2,
                                         SPRITE_WIDTH, SPRITE_HEIGHT);
 
     while (lcge_window_is_open())
     {
         // Do any drawing here
         lcge_window_clear();
+        float curr_x = lcge_image_get_x(image);
+        float curr_y = lcge_image_get_y(image);
+
         if (lcge_get_key(LCGE_KEY_LEFT) == LCGE_KEY_PRESSED)
         {
-            if (x >= speed)
+            if (curr_x >= speed)
             {
-                x -= speed;
-                lcge_image_set(image, x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
+                curr_x -= speed;
+                lcge_image_set(image, curr_x, curr_y, SPRITE_WIDTH,
+                               SPRITE_HEIGHT);
             }
         }
         if (lcge_get_key(LCGE_KEY_RIGHT) == LCGE_KEY_PRESSED)
         {
-            if ((x + SPRITE_WIDTH) <= (800 - speed))
+            if ((curr_x + SPRITE_WIDTH) <= (800 - speed))
             {
-                x += speed;
-                lcge_image_set(image, x, y, SPRITE_WIDTH, SPRITE_HEIGHT);
+                curr_x += speed;
+                lcge_image_set(image, curr_x, curr_y, SPRITE_WIDTH,
+                               SPRITE_HEIGHT);
             }
         }
 

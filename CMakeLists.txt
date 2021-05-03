@@ -110,6 +110,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${STB_DIR})
 
 IF (WIN32)
 	target_link_libraries(${PROJECT_NAME} opengl32)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 ENDIF()
 
 message("Generated with config types: ${CMAKE_CONFIGURATION_TYPES}")

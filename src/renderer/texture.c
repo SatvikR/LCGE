@@ -70,5 +70,5 @@ void lcge_texture_bind(LCGE_texture *texture)
 
 void lcge_texture_unbind(LCGE_texture *texture)
 {
-    GLCALL(glBindTexture(GL_TEXTURE_2D, NULL));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 }

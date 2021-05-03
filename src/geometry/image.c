@@ -63,7 +63,7 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
                                                        16 * sizeof(GLfloat));
 
 
-    lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, NULL, sizeof(GLfloat) * 4);
+    lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, 0, sizeof(GLfloat) * 4);
     lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 1,
                             sizeof(GLfloat) * 2, sizeof(GLfloat) * 4);
 
@@ -77,6 +77,11 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
     image->ib = ib;
     image->texture = texture;
     image->shader = g_state->texture;
+
+    image->x = x;
+    image->y = y;
+    image->width = width;
+    image->height = height;
 
     return image;
 }
@@ -120,6 +125,11 @@ void lcge_image_set(LCGE_image *image, float x, float y, float width,
 
     lcge_vertex_array_bind(image->va);
     lcge_vertex_buffer_update(image->vb, positions, 16 * sizeof(GLfloat));
+
+    image->x = x;
+    image->y = y;
+    image->width = width;
+    image->height = height;
 }
 
 void lcge_image_draw(LCGE_image *image)
@@ -133,4 +143,24 @@ void lcge_image_draw(LCGE_image *image)
     lcge_index_buffer_bind(image->ib);
 
     GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
+}
+
+float lcge_image_get_x(LCGE_image *image)
+{
+    return image->x;
+}
+
+float lcge_image_get_y(LCGE_image *image)
+{
+    return image->y;
+}
+
+float lcge_image_get_width(LCGE_image *image)
+{
+    return image->width;
+}
+
+float lcge_image_get_height(LCGE_image *image)
+{
+    return image->height;
 }

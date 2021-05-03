@@ -101,6 +101,11 @@ extern void lcge_image_set(LCGE_image *image, float x, float y, float width,
                            float height);
 extern void lcge_image_draw(LCGE_image *image);
 
+extern float lcge_image_get_x(LCGE_image *image);
+extern float lcge_image_get_y(LCGE_image *image);
+extern float lcge_image_get_width(LCGE_image *image);
+extern float lcge_image_get_height(LCGE_image *image);
+
 typedef struct LCGE_clock LCGE_clock;
 
 /* Creates a clock given a max fps */
@@ -230,7 +235,7 @@ extern void lcge_clock_tick(LCGE_clock *clock);
 #define LCGE_KEY_RIGHT_CONTROL      345
 #define LCGE_KEY_RIGHT_ALT          346
 #define LCGE_KEY_RIGHT_SUPER        347
-#define LCGE_KEY_MENU               34
+#define LCGE_KEY_MENU               348
 
 #define LCGE_KEY_PRESSED  1
 #define LCGE_KEY_RELEASED -1

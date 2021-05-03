@@ -51,7 +51,7 @@ void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
 
     GLCALL(glEnableVertexAttribArray(index));
     GLCALL(glVertexAttribPointer(index, size, type, GL_FALSE,
-                                 stride, (const GLvoid*)offset));
+                                 stride, offset));
 }
 
 void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array)

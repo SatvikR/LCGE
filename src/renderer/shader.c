@@ -47,7 +47,7 @@ static GLuint compile_shader(const char* path, GLenum type)
     len = ftell(f);
 
     // Make sure there is some shader code
-    ASSERT(len > 0);
+    ASSERT((len > 0));
 
     fseek(f, 0, SEEK_SET);
     text = calloc(1, sizeof(char) * len);

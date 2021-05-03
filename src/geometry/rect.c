@@ -57,7 +57,7 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
                                                        8 * sizeof(GLfloat));
 
 
-    lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, NULL, sizeof(GLfloat) * 2);
+    lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, 0, sizeof(GLfloat) * 2);
 
     LCGE_index_buffer *ib = lcge_index_buffer_create(6 * sizeof(GLuint),
                                                      indeces);
