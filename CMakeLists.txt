@@ -82,6 +82,12 @@ if (NOT CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DNDEBUG)
 endif()
 
+if (DEFINED DISTMINGW32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> ../dist/mingw-x86/
+    )
+endif()
+
 set(STB_DIR "lib/stb")
 target_include_directories(${PROJECT_NAME} PRIVATE ${STB_DIR})
 
