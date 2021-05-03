@@ -7,6 +7,7 @@ A Lightweight C game engine built with OpenGL.
  - Maintain an FPS
  - Render 2D rectangles
  - Render 2D images
+ - Get keyboard input
  - More coming soon!
 
 ## Build From Source
