@@ -48,16 +48,8 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y)
         bottom_l.x, bottom_r.y, 0.0f, 0.0f, // bottom left
         top_l.x, top_l.y, 0.0f, 1.0f,       // top left
         top_r.x, top_r.y, 1.0f, 1.0f,       // top right
-        bottom_r.x, bottom_r.y, 0.0f, 1.0f  // bottom right
+        bottom_r.x, bottom_r.y, 1.0f, 0.0f  // bottom right
     };
-
-    printf("%d\n, %d\n", texture->width, texture->height);
-
-    int i;
-    for (i = 0; i < 16; i += 4)
-    {
-        printf("(%f, %f), (%f, %f)\n", positions[i], positions[i + 1], positions[i + 2], positions[i + 3]);
-    }
 
     GLuint indeces[6] = {
         0, 1, 2, // triangle 1
@@ -70,9 +62,9 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y)
                                                        16 * sizeof(GLfloat));
 
 
-    lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, NULL);
+    lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, NULL, sizeof(GLfloat) * 4);
     lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 1,
-                            (size_t)NULL + sizeof(GLfloat) * 2);
+                            sizeof(GLfloat) * 2, sizeof(GLfloat) * 4);
 
     LCGE_index_buffer *ib = lcge_index_buffer_create(6 * sizeof(GLuint),
                                                      indeces);

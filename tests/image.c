@@ -46,7 +46,8 @@ int main(int argc, char const *argv[])
     }
 
     // Load image
-    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png", 0, 0);
+    LCGE_image *image = lcge_image_load("tests/images/player_sprite.png", 87,
+                                        102);
 
     while (lcge_window_is_open())
     {

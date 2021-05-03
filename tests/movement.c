@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
 
     float x = 50;
     float inc = 10.0f;
-    LCGE_rect *rect = lcge_rect_load(50, 325, 150, 150);
+    LCGE_rect *rect = lcge_rect_load(50, 325, 150, 200);
 
     while (lcge_window_is_open())
     {
@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
         // Reverse the rectangle once it hits the edge of the window
         if ((x + 150) > 800 || x < 0)
             inc = -1.0f * inc;
-        lcge_rect_set(rect, x, 325, 150, 150);
+        lcge_rect_set(rect, x, 325, 150, 200);
 
         // draw
         lcge_window_clear();

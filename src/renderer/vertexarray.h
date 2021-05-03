@@ -42,7 +42,8 @@ LCGE_vertex_array* lcge_vertex_array_create();
 /* this is a fat function */
 void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
                               LCGE_vertex_buffer *vertex_buffer, GLint size,
-                              GLenum type, GLuint index, GLuint offset);
+                              GLenum type, GLuint index, GLuint offset,
+                              GLsizei stride);
 
 void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array);
 void lcge_vertex_array_unbind(LCGE_vertex_array *vertex_array);

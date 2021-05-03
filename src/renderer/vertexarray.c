@@ -42,7 +42,8 @@ void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array)
 
 void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
                               LCGE_vertex_buffer *vertex_buffer, GLint size,
-                              GLenum type, GLuint index, GLuint offset)
+                              GLenum type, GLuint index, GLuint offset,
+                              GLsizei stride)
 {
     lcge_vertex_array_bind(vertex_array);
 
@@ -50,7 +51,7 @@ void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
 
     GLCALL(glEnableVertexAttribArray(index));
     GLCALL(glVertexAttribPointer(index, size, type, GL_FALSE,
-                                 sizeof(type) * size, (const GLvoid*)offset));
+                                 stride, (const GLvoid*)offset));
 }
 
 void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array)

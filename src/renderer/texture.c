@@ -23,6 +23,8 @@
 #include <glad/glad.h>
 #include <stb/stb_image.h>
 
+#include <stdlib.h>
+
 #include "texture.h"
 #include "../glerror.h"
 
