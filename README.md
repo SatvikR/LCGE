@@ -1,5 +1,5 @@
 # LCGE
-A Lightweight C graphics engine built with OpenGL.
+A Lightweight C game engine built with OpenGL.
 
 ## Build
 
