@@ -88,6 +88,24 @@ int main(int argc, char const *argv[])
                                SPRITE_HEIGHT);
             }
         }
+        if (lcge_get_key(LCGE_KEY_UP) == LCGE_KEY_PRESSED)
+        {
+            if (curr_y >= speed)
+            {
+                curr_y -= speed;
+                lcge_image_set(image, curr_x, curr_y, SPRITE_WIDTH,
+                               SPRITE_HEIGHT);
+            }
+        }
+        if (lcge_get_key(LCGE_KEY_DOWN) == LCGE_KEY_PRESSED)
+        {
+            if ((curr_y + SPRITE_HEIGHT) <= (WIN_HEIGHT - speed))
+            {
+                curr_y += speed;
+                lcge_image_set(image, curr_x, curr_y, SPRITE_WIDTH,
+                               SPRITE_HEIGHT);
+            }
+        }
 
         lcge_image_draw(image);
 
