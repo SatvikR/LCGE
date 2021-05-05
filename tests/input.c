@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
 
     // Create a window
     int success = lcge_create_context(800, 800,
-                                      "LCGE Input Example (Press space)",
+                                      "LCGE Input Example (Use arrow keys)",
                                       LCGE_NON_RESIZEABLE);
 
     // Create clock with 60 max fps
