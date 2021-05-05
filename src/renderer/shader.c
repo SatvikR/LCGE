@@ -87,16 +87,16 @@ LCGE_shader* lcge_shader_create(const char *path, const char *name)
     size_t path_len = strlen(path);
     size_t name_len = strlen(name);
 
-    char *vert_full_path = calloc(1, sizeof(char) * (path_len + name_len + 4));
-    char *frag_full_path = calloc(1, sizeof(char) * (path_len + name_len + 4));
+    char *vert_full_path = calloc(1, sizeof(char) * (path_len + name_len + 11));
+    char *frag_full_path = calloc(1, sizeof(char) * (path_len + name_len + 11));
 
     strcat(vert_full_path, path);
     strcat(vert_full_path, name);
-    strcat(vert_full_path, ".vs");
+    strcat(vert_full_path, ".vert.glsl");
 
     strcat(frag_full_path, path);
     strcat(frag_full_path, name);
-    strcat(frag_full_path, ".fs");
+    strcat(frag_full_path, ".frag.glsl");
 
     LCGE_shader *shader = malloc(sizeof(LCGE_shader));
 
