@@ -1,14 +1,15 @@
 # LCGE
+
 A Lightweight C game engine built with OpenGL.
 
 ## Capabilities
 
- - Create a window
- - Maintain an FPS
- - Render 2D rectangles
- - Render 2D images
- - Get keyboard input
- - More coming soon!
+- Create a window
+- Maintain an FPS
+- Render 2D rectangles
+- Render 2D images
+- Get keyboard input
+- More coming soon!
 
 ## Build From Source
 
@@ -76,6 +77,20 @@ int main(int argc, char const *argv[])
 }
 ```
 
-## License
+## License(s)
 
-[LGPL version 2.1](https://github.com/SatvikR/LCGE/blob/main/LICENSE)
+LCGE is licensed under the [LGPL version 2.1](https://github.com/SatvikR/LCGE/blob/main/LICENSE)
+
+A brief summary of the license:
+
+- You can use LCGE in any project you want (closed or open source)
+- If you make changes/additions to LCGE you must they must be release with either the LGPL 2.1 or a compatible license (GPLv2 and GPLv3)
+- More info in the `LICENSE` file in the root of the source tree
+
+### Dependencies
+
+| Dependency | License                                                                                             |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| GLFW       | [zlib/libpng](https://github.com/glfw/glfw/blob/master/LICENSE.md)                                  |
+| glad       | [Public Domain/WTFPL/CC0](https://github.com/Dav1dde/glad#whats-the-license-of-glad-generated-code) |
+| stb        | [MIT/Public Domain](https://github.com/nothings/stb/blob/master/LICENSE)                            |
