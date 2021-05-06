@@ -78,4 +78,4 @@ int main(int argc, char const *argv[])
 
 ## License
 
-[MIT](https://github.com/SatvikR/LCGE/blob/main/LICENSE)
+[LGPL version 2.1](https://github.com/SatvikR/LCGE/blob/main/LICENSE)
