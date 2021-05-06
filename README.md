@@ -84,7 +84,7 @@ LCGE is licensed under the [LGPL version 2.1](https://github.com/SatvikR/LCGE/bl
 A brief summary of the license:
 
 - You can use LCGE in any project you want (closed or open source)
-- If you make changes/additions to LCGE you must they must be release with either the LGPL 2.1 or a compatible license (GPLv2 and GPLv3)
+- If you make changes/additions to LCGE you must they must be release with either the LGPL 2.1, GPLv2, or GPLv3 licenses (though I prefer you submit your changes back to this repository)
 - More info in the `LICENSE` file in the root of the source tree
 
 ### Dependencies
