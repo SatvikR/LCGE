@@ -101,6 +101,8 @@ extern LCGE_image* lcge_image_load(const char *filepath, float x, float y, float
                             float height);
 extern void lcge_image_delete(LCGE_image *image);
 
+/* Rotates image angle degress */
+extern void lcge_image_rotate(LCGE_image *image, float angle);
 extern void lcge_image_set(LCGE_image *image, float x, float y, float width,
                            float height);
 extern void lcge_image_draw(LCGE_image *image);

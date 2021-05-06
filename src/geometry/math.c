@@ -53,10 +53,7 @@ LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
         ((x0-xc)*cos_a - (y0-yc)*sin_a) + xc,
         (x0 - xc) * sin_a + (y0 - yc) * cos_a + yc
     };
-    // printf("val: %f\n", (x0-xc) * cos_a);
-    // printf("val: %f\n", (y0-yc) * sin_a + xc);
 
-    // printf("%f, %f, %f, %f, %f\n", x0, y0, xc, yc, angle);
     return coordinate;
 }
 

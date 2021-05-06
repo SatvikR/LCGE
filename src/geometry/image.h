@@ -28,6 +28,7 @@ extern "C"
 {
 #endif
 
+#include "math.h"
 #include "../renderer/renderer.h"
 
 typedef struct LCGE_image
@@ -38,16 +39,17 @@ typedef struct LCGE_image
     LCGE_shader *shader;
     LCGE_texture *texture;
 
-    float x;
-    float y;
-    float width;
-    float height;
+    LCGE_coordinate top_l;
+    LCGE_coordinate top_r;
+    LCGE_coordinate bottom_l;
+    LCGE_coordinate bottom_r;
 } LCGE_image;
 
 LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
                             float height);
 void lcge_image_delete(LCGE_image *image);
 
+void lcge_image_rotate(LCGE_image *image, float angle);
 void lcge_image_set(LCGE_image *image, float x, float y, float width,
                     float height);
 void lcge_image_draw(LCGE_image *image);

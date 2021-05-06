@@ -79,10 +79,10 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
     image->texture = texture;
     image->shader = g_state->texture;
 
-    image->x = x;
-    image->y = y;
-    image->width = width;
-    image->height = height;
+    image->top_l = top_l;
+    image->top_r = top_r;
+    image->bottom_l = bottom_l;
+    image->bottom_r = bottom_r;
 
     return image;
 }
@@ -110,6 +110,7 @@ void lcge_image_set(LCGE_image *image, float x, float y, float width,
 {
     LCGE_coordinate top_l
                     = lcge_coordinate_translate(x, y);
+    printf("top_ly: %f, %f, %f\n", x, y, (lcge_coordinate_translate(x, y)).y);
     LCGE_coordinate top_r
                     = lcge_coordinate_translate(x + width, y);
     LCGE_coordinate bottom_l
@@ -127,10 +128,10 @@ void lcge_image_set(LCGE_image *image, float x, float y, float width,
     lcge_vertex_array_bind(image->va);
     lcge_vertex_buffer_update(image->vb, positions, 16 * sizeof(GLfloat));
 
-    image->x = x;
-    image->y = y;
-    image->width = width;
-    image->height = height;
+    image->top_l = top_l;
+    image->top_r = top_r;
+    image->bottom_l = bottom_l;
+    image->bottom_r = bottom_r;
 }
 
 void lcge_image_draw(LCGE_image *image)
@@ -146,22 +147,61 @@ void lcge_image_draw(LCGE_image *image)
     GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
 }
 
+void lcge_image_rotate(LCGE_image *image, float angle)
+{
+    LCGE_coordinate center =
+    {
+        (image->top_l.x + image->bottom_r.x) / 2.0f,
+        (image->top_l.y + image->bottom_r.y) / 2.0f,
+    };
+
+    LCGE_coordinate top_l
+                    = lcge_coordinate_rotate(image->top_l.x, image->top_l.y,
+                                             center.x, center.y, angle);
+    LCGE_coordinate top_r
+                    = lcge_coordinate_rotate(image->top_r.x, image->top_r.y,
+                                             center.x, center.y, angle);
+    LCGE_coordinate bottom_l
+                    = lcge_coordinate_rotate(image->bottom_l.x, image->bottom_l.y,
+                                             center.x, center.y, angle);
+    LCGE_coordinate bottom_r
+                    = lcge_coordinate_rotate(image->bottom_r.x, image->bottom_r.y,
+                                             center.x, center.y, angle);
+
+    GLfloat positions[16] = {
+        bottom_l.x, bottom_l.y, 0.0f, 0.0f, // bottom left
+        top_l.x, top_l.y, 0.0f, 1.0f,       // top left
+        top_r.x, top_r.y, 1.0f, 1.0f,       // top right
+        bottom_r.x, bottom_r.y, 1.0f, 0.0f  // bottom right
+    };
+
+    lcge_vertex_array_bind(image->va);
+    lcge_vertex_buffer_update(image->vb, positions, 16 * sizeof(GLfloat));
+
+    image->top_l = top_l;
+    image->top_r = top_r;
+    image->bottom_l = bottom_l;
+    image->bottom_r = bottom_r;
+}
+
 float lcge_image_get_x(LCGE_image *image)
 {
-    return image->x;
+    return (image->top_l.x + 1) / 2.0f * g_state->window->width;
 }
 
 float lcge_image_get_y(LCGE_image *image)
 {
-    return image->y;
+    return (image->top_l.y * -1.0f + 1.0f) * g_state->window->height / 2.0f;
 }
 
 float lcge_image_get_width(LCGE_image *image)
 {
-    return image->width;
+    return lcge_coordinate_distance(image->top_l, image->top_r) / 2.0f *
+                                                        g_state->window->width;
 }
 
 float lcge_image_get_height(LCGE_image *image)
 {
-    return image->height;
+    return lcge_coordinate_distance(image->top_l, image->bottom_l) / 2.0f *
+                                                        g_state->window->height;
 }

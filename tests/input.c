@@ -62,6 +62,8 @@ int main(int argc, char const *argv[])
                                         SPRITE_WIDTH, SPRITE_HEIGHT);
     LCGE_rect *background = lcge_rect_load(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
+    int count = 0;
+
     while (lcge_window_is_open())
     {
         // Do any drawing here

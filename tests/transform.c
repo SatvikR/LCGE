@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
 
     LCGE_rect *rect = lcge_rect_load((WIN_WIDTH - 100) / 2, (WIN_HEIGHT - 100) / 2, 100, 150);
 
-    int inc = 1;
+    float inc = 1.0f;
 
     while (lcge_window_is_open())
     {

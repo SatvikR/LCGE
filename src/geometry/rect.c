@@ -178,10 +178,12 @@ void lcge_rect_delete(LCGE_rect *rect)
 
 float lcge_rect_width(LCGE_rect *rect)
 {
-    return lcge_coordinate_distance(rect->bottom_l, rect->bottom_r);
+    return lcge_coordinate_distance(rect->bottom_l, rect->bottom_r) / 2 *
+                                                        g_state->window->width;
 }
 
 float lcge_rect_height(LCGE_rect *rect)
 {
-    return lcge_coordinate_distance(rect->bottom_l, rect->top_l);
+    return lcge_coordinate_distance(rect->bottom_l, rect->top_l) / 2 *
+                                                        g_state->window->height;
 }

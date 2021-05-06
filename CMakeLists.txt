@@ -82,6 +82,7 @@ set(MOVE_EXAMPLE movement_example)
 set(IMAGE_EXAMPLE image_example)
 set(INPUT_EXAMPLE input_example)
 set(TRANSFORM_EXAMPLE transform_example)
+set(NINJASTAR_EXAMPLE ninjastar_example)
 
 # Tests
 add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
@@ -107,6 +108,10 @@ target_link_libraries(${INPUT_EXAMPLE} PUBLIC ${PROJECT_NAME})
 add_executable(${TRANSFORM_EXAMPLE} "${TEST_DIR}/transform.c")
 target_include_directories(${TRANSFORM_EXAMPLE} PUBLIC "./include")
 target_link_libraries(${TRANSFORM_EXAMPLE} PUBLIC ${PROJECT_NAME})
+
+add_executable(${NINJASTAR_EXAMPLE} "${TEST_DIR}/ninjastar.c")
+target_include_directories(${NINJASTAR_EXAMPLE} PUBLIC "./include")
+target_link_libraries(${NINJASTAR_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 endif()
 
