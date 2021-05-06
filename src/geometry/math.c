@@ -20,8 +20,16 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
+#include <stdio.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include "math.h"
 #include "../core.h"
+
+static double to_rad(float deg) {
+    return deg * (M_PI / 180.0f);
+}
 
 LCGE_coordinate lcge_coordinate_translate(float x, float y)
 {
@@ -32,4 +40,28 @@ LCGE_coordinate lcge_coordinate_translate(float x, float y)
     };
 
     return coordinate;
+}
+
+LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
+                                       float angle)
+{
+    float cos_a = (float)cos(to_rad(angle));
+    float sin_a = (float)sin(to_rad(angle));
+
+    LCGE_coordinate coordinate =
+    {
+        ((x0-xc)*cos_a - (y0-yc)*sin_a) + xc,
+        (x0 - xc) * sin_a + (y0 - yc) * cos_a + yc
+    };
+    // printf("val: %f\n", (x0-xc) * cos_a);
+    // printf("val: %f\n", (y0-yc) * sin_a + xc);
+
+    // printf("%f, %f, %f, %f, %f\n", x0, y0, xc, yc, angle);
+    return coordinate;
+}
+
+
+float lcge_coordinate_distance(LCGE_coordinate v1, LCGE_coordinate v2)
+{
+    return (float)sqrt((float)pow(v2.x - v1.x, 2) + (float)pow(v2.y - v1.y, 2));
 }

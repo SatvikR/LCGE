@@ -39,7 +39,7 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
     LCGE_coordinate bottom_r = lcge_coordinate_translate(x + width, y + height);
 
     GLfloat positions[8] = {
-        bottom_l.x, bottom_r.y, // bottom left
+        bottom_l.x, bottom_l.y, // bottom left
         top_l.x, top_l.y ,      // top left
         top_r.x, top_r.y,       // top right
         bottom_r.x, bottom_r.y, // bottom right
@@ -71,6 +71,10 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
     rect->ib = ib;
     rect->shader = g_state->basic_geo;
 
+    rect->top_l = top_l;
+    rect->top_r = top_r;
+    rect->bottom_l = bottom_l;
+    rect->bottom_r = bottom_r;
 
     lcge_vertex_array_unbind(va);
 
@@ -104,11 +108,52 @@ void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
     LCGE_coordinate bottom_r = lcge_coordinate_translate(x + width, y + height);
 
     GLfloat positions[8] = {
-        bottom_l.x, bottom_r.y, // bottom left
+        bottom_l.x, bottom_l.y, // bottom left
         top_l.x, top_l.y ,      // top left
         top_r.x, top_r.y,       // top right
         bottom_r.x, bottom_r.y, // bottom right
     };
+
+    rect->top_l = top_l;
+    rect->top_r = top_r;
+    rect->bottom_l = bottom_l;
+    rect->bottom_r = bottom_r;
+
+    lcge_vertex_array_bind(rect->va);
+    lcge_vertex_buffer_update(rect->vb, positions, 8 * sizeof(GLfloat));
+}
+
+void lcge_rect_rotate(LCGE_rect *rect, float angle)
+{
+    LCGE_coordinate center =
+    {
+        (rect->top_l.x + rect->bottom_r.x) / 2.0f,
+        (rect->top_l.y + rect->bottom_r.y) / 2.0f,
+    };
+
+    LCGE_coordinate top_l
+                    = lcge_coordinate_rotate(rect->top_l.x, rect->top_l.y,
+                                             center.x, center.y, angle);
+    LCGE_coordinate top_r
+                    = lcge_coordinate_rotate(rect->top_r.x, rect->top_r.y,
+                                             center.x, center.y, angle);
+    LCGE_coordinate bottom_l
+                    = lcge_coordinate_rotate(rect->bottom_l.x, rect->bottom_l.y,
+                                             center.x, center.y, angle);
+    LCGE_coordinate bottom_r
+                    = lcge_coordinate_rotate(rect->bottom_r.x, rect->bottom_r.y,
+                                             center.x, center.y, angle);
+    GLfloat positions[8] = {
+        bottom_l.x, bottom_l.y, // bottom left
+        top_l.x, top_l.y ,      // top left
+        top_r.x, top_r.y,       // top right
+        bottom_r.x, bottom_r.y, // bottom right
+    };
+
+    rect->top_l = top_l;
+    rect->top_r = top_r;
+    rect->bottom_l = bottom_l;
+    rect->bottom_r = bottom_r;
 
     lcge_vertex_array_bind(rect->va);
     lcge_vertex_buffer_update(rect->vb, positions, 8 * sizeof(GLfloat));
@@ -129,4 +174,14 @@ void lcge_rect_delete(LCGE_rect *rect)
 
     // delete rectangle
     free(rect);
+}
+
+float lcge_rect_width(LCGE_rect *rect)
+{
+    return lcge_coordinate_distance(rect->bottom_l, rect->bottom_r);
+}
+
+float lcge_rect_height(LCGE_rect *rect)
+{
+    return lcge_coordinate_distance(rect->bottom_l, rect->top_l);
 }

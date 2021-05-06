@@ -20,43 +20,54 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 
-#ifndef _GEOMETRY_RECT_H_
-#define _GEOMETRY_RECT_H_
+#include <LCGE/lcge.h>
 
-#ifdef __cplusplus
-extern "C"
+#define WIN_WIDTH  500
+#define WIN_HEIGHT 500
+
+int main(int argc, char const *argv[])
 {
-#endif
+    // Initialize LCGE
+    if (lcge_init("res/") == LCGE_INIT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-#include "../renderer/renderer.h"
-#include "math.h"
+    // Create a window
+    int success = lcge_create_context(WIN_WIDTH, WIN_HEIGHT, "LCGE Window Example",
+                                      LCGE_NON_RESIZEABLE);
 
-typedef struct LCGE_rect
-{
-    LCGE_vertex_array *va;
-    LCGE_vertex_buffer *vb;
-    LCGE_index_buffer *ib;
-    LCGE_shader *shader;
 
-    LCGE_coordinate top_l;
-    LCGE_coordinate top_r;
-    LCGE_coordinate bottom_l;
-    LCGE_coordinate bottom_r;
-} LCGE_rect;
+    // Check if there was an error creating the window
+    if (success == LCGE_CONTEXT_ERR)
+    {
+        lcge_exit();
+        return -1;
+    }
 
-LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
-void lcge_rect_delete(LCGE_rect *rect);
+    // Create clock with 60 max fps
+    LCGE_clock *clock = lcge_clock_create(60);
 
-void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
-void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
-                   float height);
+    LCGE_rect *rect = lcge_rect_load((WIN_WIDTH - 100) / 2, (WIN_HEIGHT - 100) / 2, 100, 150);
 
-void lcge_rect_rotate(LCGE_rect *rect, float angle);
-float lcge_rect_width(LCGE_rect *rect);
-float lcge_rect_height(LCGE_rect *rect);
+    int inc = 1;
 
-#ifdef __cplusplus
+    while (lcge_window_is_open())
+    {
+        lcge_rect_rotate(rect, inc);
+        // lcge_rect_rotate(rect, inc);
+        lcge_window_clear();
+        // Do any drawing here
+        lcge_rect_draw(rect, 41, 173, 255);
+
+        // Get ready for next iteration
+        lcge_clock_tick(clock);
+        lcge_window_update();
+    }
+    lcge_clock_delete(clock);
+
+    lcge_exit();
+
+    return 0;
 }
-#endif
-
-#endif

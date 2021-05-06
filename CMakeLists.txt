@@ -81,6 +81,7 @@ set(SQUARES_EXAMPLE squares_example)
 set(MOVE_EXAMPLE movement_example)
 set(IMAGE_EXAMPLE image_example)
 set(INPUT_EXAMPLE input_example)
+set(TRANSFORM_EXAMPLE transform_example)
 
 # Tests
 add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
@@ -102,6 +103,10 @@ target_link_libraries(${IMAGE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 add_executable(${INPUT_EXAMPLE} "${TEST_DIR}/input.c")
 target_include_directories(${INPUT_EXAMPLE} PUBLIC "./include")
 target_link_libraries(${INPUT_EXAMPLE} PUBLIC ${PROJECT_NAME})
+
+add_executable(${TRANSFORM_EXAMPLE} "${TEST_DIR}/transform.c")
+target_include_directories(${TRANSFORM_EXAMPLE} PUBLIC "./include")
+target_link_libraries(${TRANSFORM_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 endif()
 

@@ -37,6 +37,9 @@ typedef struct LCGE_coordinate
 } LCGE_coordinate;
 
 LCGE_coordinate lcge_coordinate_translate(float x, float y);
+LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
+                                       float angle);
+float lcge_coordinate_distance(LCGE_coordinate v1, LCGE_coordinate v2);
 
 #ifdef __cplusplus
 }

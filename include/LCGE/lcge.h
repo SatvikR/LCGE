@@ -89,6 +89,10 @@ extern void lcge_rect_delete(LCGE_rect *rect);
 extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
 extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
                           float height);
+/* Rotate by degrees */
+void lcge_rect_rotate(LCGE_rect *rect, float angle);
+float lcge_rect_width(LCGE_rect *rect);
+float lcge_rect_height(LCGE_rect *rect);
 
 typedef struct LCGE_image LCGE_image;
 
