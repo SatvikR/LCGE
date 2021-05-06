@@ -176,13 +176,23 @@ void lcge_rect_delete(LCGE_rect *rect)
     free(rect);
 }
 
-float lcge_rect_width(LCGE_rect *rect)
+float lcge_rect_get_x(LCGE_rect *rect)
+{
+    return (rect->top_l.x + 1) / 2.0f * g_state->window->width;
+}
+
+float lcge_rect_get_y(LCGE_rect *rect)
+{
+    return (rect->top_l.y * -1.0f + 1.0f) * g_state->window->height / 2.0f;
+}
+
+float lcge_rect_get_width(LCGE_rect *rect)
 {
     return lcge_coordinate_distance(rect->bottom_l, rect->bottom_r) / 2 *
                                                         g_state->window->width;
 }
 
-float lcge_rect_height(LCGE_rect *rect)
+float lcge_rect_get_height(LCGE_rect *rect)
 {
     return lcge_coordinate_distance(rect->bottom_l, rect->top_l) / 2 *
                                                         g_state->window->height;

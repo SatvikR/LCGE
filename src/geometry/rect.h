@@ -52,8 +52,10 @@ void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
                    float height);
 
 void lcge_rect_rotate(LCGE_rect *rect, float angle);
-float lcge_rect_width(LCGE_rect *rect);
-float lcge_rect_height(LCGE_rect *rect);
+float lcge_rect_get_width(LCGE_rect *rect);
+float lcge_rect_get_height(LCGE_rect *rect);
+float lcge_rect_get_x(LCGE_rect *rect);
+float lcge_rect_get_y(LCGE_rect *rect);
 
 #ifdef __cplusplus
 }

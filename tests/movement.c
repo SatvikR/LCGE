@@ -49,16 +49,18 @@ int main(int argc, char const *argv[])
     float inc = 10.0f;
     LCGE_rect *rect = lcge_rect_load(50, 325, 150, 200);
 
+    float width = lcge_rect_get_width(rect);
+    float height = lcge_rect_get_height(rect);
+
     while (lcge_window_is_open())
     {
         // update
-
         x += inc;
 
         // Reverse the rectangle once it hits the edge of the window
-        if ((x + 150) > 800 || x < 0)
+        if ((x + width) > 800 || x < 0)
             inc = -1.0f * inc;
-        lcge_rect_set(rect, x, 325, 150, 200);
+        lcge_rect_set(rect, x, lcge_rect_get_y(rect), width, height);
 
         // draw
         lcge_window_clear();
