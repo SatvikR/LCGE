@@ -86,6 +86,7 @@ set(IMAGE_EXAMPLE image_example)
 set(INPUT_EXAMPLE input_example)
 set(TRANSFORM_EXAMPLE transform_example)
 set(NINJASTAR_EXAMPLE ninjastar_example)
+set(TEXT_EXAMPLE text_example)
 
 # Tests
 add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
@@ -97,24 +98,28 @@ target_include_directories(${SQUARES_EXAMPLE} PUBLIC "./include")
 target_link_libraries(${SQUARES_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 add_executable(${MOVE_EXAMPLE} "${TEST_DIR}/movement.c")
-target_include_directories(${MOVE_EXAMPLE} PUBLIC "./include")
-target_link_libraries(${MOVE_EXAMPLE} PUBLIC ${PROJECT_NAME})
+target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
-target_include_directories(${IMAGE_EXAMPLE} PUBLIC "./include")
-target_link_libraries(${IMAGE_EXAMPLE} PUBLIC ${PROJECT_NAME})
+target_include_directories(${IMAGE_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${IMAGE_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 add_executable(${INPUT_EXAMPLE} "${TEST_DIR}/input.c")
-target_include_directories(${INPUT_EXAMPLE} PUBLIC "./include")
-target_link_libraries(${INPUT_EXAMPLE} PUBLIC ${PROJECT_NAME})
+target_include_directories(${INPUT_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${INPUT_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 add_executable(${TRANSFORM_EXAMPLE} "${TEST_DIR}/transform.c")
-target_include_directories(${TRANSFORM_EXAMPLE} PUBLIC "./include")
-target_link_libraries(${TRANSFORM_EXAMPLE} PUBLIC ${PROJECT_NAME})
+target_include_directories(${TRANSFORM_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${TRANSFORM_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+add_executable(${TEXT_EXAMPLE} "${TEST_DIR}/text.c")
+target_include_directories(${TEXT_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${TEXT_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 add_executable(${NINJASTAR_EXAMPLE} "${TEST_DIR}/ninjastar.c")
-target_include_directories(${NINJASTAR_EXAMPLE} PUBLIC "./include")
-target_link_libraries(${NINJASTAR_EXAMPLE} PUBLIC ${PROJECT_NAME})
+target_include_directories(${NINJASTAR_EXAMPLE} PRIVATE "./include")
+target_link_libraries(${NINJASTAR_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 endif()
 
