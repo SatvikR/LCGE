@@ -26,6 +26,8 @@ cmake -B ./build .
 cmake --build ./build
 ```
 
+> Make sure you link with LCGE (shared), glad, and glfw
+
 ## Basic usage
 
 Look [here](https://github.com/SatvikR/LCGE/tree/main/tests) for specific exaxmples
