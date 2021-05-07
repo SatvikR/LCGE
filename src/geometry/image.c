@@ -30,7 +30,7 @@
 #include "../core.h"
 #include "../glerror.h"
 
-LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
+LCGE_EXPORT LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
                             float height)
 {
 
@@ -87,7 +87,7 @@ LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
     return image;
 }
 
-void lcge_image_delete(LCGE_image *image)
+LCGE_EXPORT void lcge_image_delete(LCGE_image *image)
 {
     // unbind everything
     lcge_vertex_array_unbind(image->va);
@@ -105,7 +105,7 @@ void lcge_image_delete(LCGE_image *image)
     free(image);
 }
 
-void lcge_image_set(LCGE_image *image, float x, float y, float width,
+LCGE_EXPORT void lcge_image_set(LCGE_image *image, float x, float y, float width,
                     float height)
 {
     LCGE_coordinate top_l
@@ -134,7 +134,7 @@ void lcge_image_set(LCGE_image *image, float x, float y, float width,
     image->bottom_r = bottom_r;
 }
 
-void lcge_image_draw(LCGE_image *image)
+LCGE_EXPORT void lcge_image_draw(LCGE_image *image)
 {
     lcge_texture_bind(image->texture);
 
@@ -147,7 +147,7 @@ void lcge_image_draw(LCGE_image *image)
     GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
 }
 
-void lcge_image_rotate(LCGE_image *image, float angle)
+LCGE_EXPORT void lcge_image_rotate(LCGE_image *image, float angle)
 {
     LCGE_coordinate center =
     {
@@ -184,23 +184,23 @@ void lcge_image_rotate(LCGE_image *image, float angle)
     image->bottom_r = bottom_r;
 }
 
-float lcge_image_get_x(LCGE_image *image)
+LCGE_EXPORT float lcge_image_get_x(LCGE_image *image)
 {
     return (image->top_l.x + 1) / 2.0f * g_state->window->width;
 }
 
-float lcge_image_get_y(LCGE_image *image)
+LCGE_EXPORT float lcge_image_get_y(LCGE_image *image)
 {
     return (image->top_l.y * -1.0f + 1.0f) * g_state->window->height / 2.0f;
 }
 
-float lcge_image_get_width(LCGE_image *image)
+LCGE_EXPORT float lcge_image_get_width(LCGE_image *image)
 {
     return lcge_coordinate_distance(image->top_l, image->top_r) / 2.0f *
                                                         g_state->window->width;
 }
 
-float lcge_image_get_height(LCGE_image *image)
+LCGE_EXPORT float lcge_image_get_height(LCGE_image *image)
 {
     return lcge_coordinate_distance(image->top_l, image->bottom_l) / 2.0f *
                                                         g_state->window->height;

@@ -27,7 +27,7 @@
 
 #include "clock.h"
 
-LCGE_clock* lcge_clock_create(unsigned int fps)
+LCGE_EXPORT LCGE_clock* lcge_clock_create(unsigned int fps)
 {
     LCGE_clock *clock = calloc(1, sizeof(LCGE_clock));
 
@@ -37,12 +37,12 @@ LCGE_clock* lcge_clock_create(unsigned int fps)
     return clock;
 }
 
-void lcge_clock_delete(LCGE_clock *clock)
+LCGE_EXPORT void lcge_clock_delete(LCGE_clock *clock)
 {
     free(clock);
 }
 
-void lcge_clock_tick(LCGE_clock *clock)
+LCGE_EXPORT void lcge_clock_tick(LCGE_clock *clock)
 {
     while (glfwGetTime() - clock->prev_time < (1.0f / clock->fps))
     {

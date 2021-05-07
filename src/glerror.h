@@ -57,9 +57,11 @@ extern "C"
 #endif
 
 
-void GL_clear_error();
+#include "export.h"
 
-bool GL_log_call(const char *file, int line);
+LCGE_EXPORT void GL_clear_error();
+
+LCGE_EXPORT bool GL_log_call(const char *file, int line);
 
 #ifdef __cplusplus
 }

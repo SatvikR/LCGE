@@ -20,47 +20,19 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-#ifndef _WINDOW_H
-#define _WINDOW_H
+#ifndef _EXPORT_H
+#define _EXPORT_H
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include "export.h"
-
-#define LCGE_WINDOW_OPEN   1
-#define LCGE_WINDOW_CLOSED 0
-
-#define LCGE_INIT_ERR -1
-#define LCGE_INIT_OK   0
-
-#define LCGE_RESIZEABLE     1
-#define LCGE_NON_RESIZEABLE 0
-
-#define LCGE_CONTEXT_ERR -1
-#define LCGE_CONTEXT_OK   1
-
-typedef LCGE_EXPORT struct LCGE_window
-{
-    unsigned int width;
-    unsigned int height;
-
-    GLFWwindow *_window;
-} LCGE_window;
-
-LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
-                                    const char *title, int resizable);
-
-LCGE_EXPORT int lcge_window_is_open();
-
-LCGE_EXPORT void lcge_window_clear();
-
-LCGE_EXPORT void lcge_window_update();
+#ifdef _WIN32
+    #define LCGE_EXPORT __declspec(dllexport)
+#else
+    #define LCGE_EXPORT
+#endif
 
 #ifdef __cplusplus
 }

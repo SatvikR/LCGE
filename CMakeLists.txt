@@ -45,7 +45,7 @@ set(HEADERS
     "${SRC_DIR}/geometry/math.h"
 )
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 
 set(GLFW_DIR "lib/glfw")

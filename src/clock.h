@@ -28,16 +28,18 @@ extern "C"
 {
 #endif
 
-typedef struct LCGE_clock
+#include "export.h"
+
+typedef LCGE_EXPORT struct LCGE_clock
 {
     double prev_time;
     unsigned int fps;
 } LCGE_clock;
 
-LCGE_clock* lcge_clock_create(unsigned int fps);
-void lcge_clock_delete(LCGE_clock *clock);
+LCGE_EXPORT LCGE_clock* lcge_clock_create(unsigned int fps);
+LCGE_EXPORT void lcge_clock_delete(LCGE_clock *clock);
 
-void lcge_clock_tick(LCGE_clock *clock);
+LCGE_EXPORT void lcge_clock_tick(LCGE_clock *clock);
 
 #ifdef __cplusplus
 }

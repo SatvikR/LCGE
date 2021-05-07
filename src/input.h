@@ -28,6 +28,8 @@ extern "C"
 {
 #endif
 
+#include "export.h"
+
 /* Same values as GLFW keys */
 #define LCGE_KEY_SPACE              32
 #define LCGE_KEY_APOSTROPHE         39  /* ' */
@@ -154,7 +156,7 @@ extern "C"
 #define LCGE_KEY_PRESSED  1
 #define LCGE_KEY_RELEASED -1
 
-int lcge_get_key(int key);
+LCGE_EXPORT int lcge_get_key(int key);
 #ifdef __cplusplus
 }
 #endif

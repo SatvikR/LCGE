@@ -20,7 +20,6 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-#include <LCGE/lcge.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -30,10 +29,11 @@
 #include <string.h>
 
 #include "core.h"
+#include "export.h"
 
 LCGE_state *g_state;
 
-int lcge_init(const char *lcge_res_dir)
+LCGE_EXPORT int lcge_init(const char *lcge_res_dir)
 {
     g_state = malloc(sizeof(LCGE_state));
 
@@ -87,7 +87,7 @@ static void lcge_clean_up()
     glfwTerminate();
 }
 
-void lcge_exit()
+LCGE_EXPORT void lcge_exit()
 {
     lcge_clean_up();
 

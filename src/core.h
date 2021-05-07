@@ -28,11 +28,11 @@ extern "C"
 {
 #endif
 
-#include <LCGE/lcge.h>
+#include "export.h"
 #include "window.h"
 #include "renderer/shader.h"
 
-typedef struct LCGE_state
+typedef LCGE_EXPORT struct LCGE_state
 {
     int initialized;
     char *res_dir;
@@ -43,8 +43,8 @@ typedef struct LCGE_state
 
 extern LCGE_state *g_state;
 
-int lcge_init(const char *lcge_res_dir);
-void lcge_exit();
+LCGE_EXPORT int lcge_init(const char *lcge_res_dir);
+LCGE_EXPORT void lcge_exit();
 
 #ifdef __cplusplus
 }

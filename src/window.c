@@ -30,7 +30,7 @@
 #include "core.h"
 #include "glerror.h"
 
-int lcge_create_context(unsigned int width, unsigned int height,
+LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
                         const char *title, int resizable)
 {
     if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
@@ -71,17 +71,17 @@ int lcge_create_context(unsigned int width, unsigned int height,
     return LCGE_CONTEXT_OK;
 }
 
-int lcge_window_is_open()
+LCGE_EXPORT int lcge_window_is_open()
 {
     return !glfwWindowShouldClose(g_state->window->_window);
 }
 
-void lcge_window_clear()
+LCGE_EXPORT void lcge_window_clear()
 {
     GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-void lcge_window_update()
+LCGE_EXPORT void lcge_window_update()
 {
     glfwSwapBuffers(g_state->window->_window);
     glfwPollEvents();

@@ -30,8 +30,9 @@ extern "C"
 
 #include "math.h"
 #include "../renderer/renderer.h"
+#include "../export.h"
 
-typedef struct LCGE_image
+typedef LCGE_EXPORT struct LCGE_image
 {
     LCGE_vertex_array *va;
     LCGE_vertex_buffer *vb;
@@ -45,19 +46,19 @@ typedef struct LCGE_image
     LCGE_coordinate bottom_r;
 } LCGE_image;
 
-LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
+LCGE_EXPORT LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
                             float height);
-void lcge_image_delete(LCGE_image *image);
+LCGE_EXPORT void lcge_image_delete(LCGE_image *image);
 
-void lcge_image_rotate(LCGE_image *image, float angle);
-void lcge_image_set(LCGE_image *image, float x, float y, float width,
+LCGE_EXPORT void lcge_image_rotate(LCGE_image *image, float angle);
+LCGE_EXPORT void lcge_image_set(LCGE_image *image, float x, float y, float width,
                     float height);
-void lcge_image_draw(LCGE_image *image);
+LCGE_EXPORT void lcge_image_draw(LCGE_image *image);
 
-float lcge_image_get_x(LCGE_image *image);
-float lcge_image_get_y(LCGE_image *image);
-float lcge_image_get_width(LCGE_image *image);
-float lcge_image_get_height(LCGE_image *image);
+LCGE_EXPORT float lcge_image_get_x(LCGE_image *image);
+LCGE_EXPORT float lcge_image_get_y(LCGE_image *image);
+LCGE_EXPORT float lcge_image_get_width(LCGE_image *image);
+LCGE_EXPORT float lcge_image_get_height(LCGE_image *image);
 
 #ifdef __cplusplus
 }

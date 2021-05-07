@@ -23,12 +23,19 @@
 #ifndef LCGE_H
 #define LCGE_H
 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-typedef struct LCGE_window LCGE_window;
+#ifdef _WIN32
+    #define LCGE_IMPORT __declspec(dllimport)
+#else
+    #define LCGE_IMPORT
+#endif
+
+typedef struct LCGE_IMPORT LCGE_window LCGE_window;
 
 #define LCGE_WINDOW_OPEN   1
 #define LCGE_WINDOW_CLOSED 0
@@ -48,7 +55,7 @@ typedef struct LCGE_window LCGE_window;
  * Returns LCGE_INIT_ERR if there was an error
  * if not, returns LCGE_INIT_OK
  */
-extern int lcge_init(const char *lcge_res_dir);
+LCGE_IMPORT extern int lcge_init(const char *lcge_res_dir);
 
 /**
  * Create a window and get back a handle
@@ -56,25 +63,25 @@ extern int lcge_init(const char *lcge_res_dir);
  * width and height are in pixels
  * resizeable is either LCGE_RESIZEABLE or LCGE_NON_RESIZEABLE
  */
-extern int lcge_create_context(unsigned int width, unsigned int height,
+LCGE_IMPORT extern int lcge_create_context(unsigned int width, unsigned int height,
                                const char *title, int resizable);
 
 /**
  * Returns LCGE_WINDOW_CLOSED if the window should be closed
  * if not, returns LCGE_WINDOW_OPEN
  */
-extern int lcge_window_is_open();
+LCGE_IMPORT extern int lcge_window_is_open();
 
 /* Terminates LCGE */
-extern void lcge_exit();
+LCGE_IMPORT extern void lcge_exit();
 
 /* Clears the color buffer on the window */
-extern void lcge_window_clear();
+LCGE_IMPORT extern void lcge_window_clear();
 
 /* Swaps front and back buffers and polls for process events */
-extern void lcge_window_update();
+LCGE_IMPORT extern void lcge_window_update();
 
-typedef struct LCGE_rect LCGE_rect;
+typedef struct LCGE_IMPORT LCGE_rect LCGE_rect;
 
 /**
  * Takes in x, y coordinates and width and height
@@ -82,46 +89,46 @@ typedef struct LCGE_rect LCGE_rect;
  *
  * Width and height are in pixels.
  */
-extern LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
-extern void lcge_rect_delete(LCGE_rect *rect);
+LCGE_IMPORT extern LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
+LCGE_IMPORT extern void lcge_rect_delete(LCGE_rect *rect);
 
 /* Draw a rectangle given (r, g, b) color values */
-extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
-extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
+LCGE_IMPORT extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
+LCGE_IMPORT extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
                           float height);
 /* Rotate by degrees */
-extern void lcge_rect_rotate(LCGE_rect *rect, float angle);
-extern float lcge_rect_get_x(LCGE_rect *rect);
-extern float lcge_rect_get_y(LCGE_rect *rect);
-extern float lcge_rect_get_width(LCGE_rect *rect);
-extern float lcge_rect_get_height(LCGE_rect *rect);
+LCGE_IMPORT extern void lcge_rect_rotate(LCGE_rect *rect, float angle);
+LCGE_IMPORT extern float lcge_rect_get_x(LCGE_rect *rect);
+LCGE_IMPORT extern float lcge_rect_get_y(LCGE_rect *rect);
+LCGE_IMPORT extern float lcge_rect_get_width(LCGE_rect *rect);
+LCGE_IMPORT extern float lcge_rect_get_height(LCGE_rect *rect);
 
-typedef struct LCGE_image LCGE_image;
+typedef struct LCGE_IMPORT LCGE_image LCGE_image;
 
 /* Loads image from filepath given top left coordinates */
-extern LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
+LCGE_IMPORT extern LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
                             float height);
-extern void lcge_image_delete(LCGE_image *image);
+LCGE_IMPORT extern void lcge_image_delete(LCGE_image *image);
 
 /* Rotates image angle degress */
-extern void lcge_image_rotate(LCGE_image *image, float angle);
-extern void lcge_image_set(LCGE_image *image, float x, float y, float width,
+LCGE_IMPORT extern void lcge_image_rotate(LCGE_image *image, float angle);
+LCGE_IMPORT extern void lcge_image_set(LCGE_image *image, float x, float y, float width,
                            float height);
-extern void lcge_image_draw(LCGE_image *image);
+LCGE_IMPORT extern void lcge_image_draw(LCGE_image *image);
 
-extern float lcge_image_get_x(LCGE_image *image);
-extern float lcge_image_get_y(LCGE_image *image);
-extern float lcge_image_get_width(LCGE_image *image);
-extern float lcge_image_get_height(LCGE_image *image);
+LCGE_IMPORT extern float lcge_image_get_x(LCGE_image *image);
+LCGE_IMPORT extern float lcge_image_get_y(LCGE_image *image);
+LCGE_IMPORT extern float lcge_image_get_width(LCGE_image *image);
+LCGE_IMPORT extern float lcge_image_get_height(LCGE_image *image);
 
-typedef struct LCGE_clock LCGE_clock;
+typedef struct LCGE_IMPORT LCGE_clock LCGE_clock;
 
 /* Creates a clock given a max fps */
-extern LCGE_clock* lcge_clock_create(unsigned int fps);
-extern void lcge_clock_delete(LCGE_clock *clock);
+LCGE_IMPORT extern LCGE_clock* lcge_clock_create(unsigned int fps);
+LCGE_IMPORT extern void lcge_clock_delete(LCGE_clock *clock);
 
 /* Ticks the clock to get as close to the max fps as possible */
-extern void lcge_clock_tick(LCGE_clock *clock);
+LCGE_IMPORT extern void lcge_clock_tick(LCGE_clock *clock);
 
 /* Same values as GLFW keys */
 #define LCGE_KEY_SPACE              32
@@ -248,7 +255,7 @@ extern void lcge_clock_tick(LCGE_clock *clock);
 #define LCGE_KEY_PRESSED  1
 #define LCGE_KEY_RELEASED -1
 
-extern int lcge_get_key(int key);
+LCGE_IMPORT extern int lcge_get_key(int key);
 #ifdef __cplusplus
 }
 #endif

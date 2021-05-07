@@ -31,7 +31,7 @@
 #include "math.h"
 
 
-LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
+LCGE_EXPORT LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
 {
     LCGE_coordinate top_l = lcge_coordinate_translate(x, y);
     LCGE_coordinate top_r = lcge_coordinate_translate(x + width, y);
@@ -88,7 +88,7 @@ LCGE_rect* lcge_rect_load(float x, float y, float width, float height)
     return rect;
 }
 
-void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b)
+LCGE_EXPORT void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b)
 {
     lcge_shader_bind(rect->shader);
     lcge_shader_set_uniform_4f(rect->shader, "u_color", r / 255.0f, g / 255.0f,
@@ -99,7 +99,7 @@ void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b)
     GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
 }
 
-void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
+LCGE_EXPORT void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
                    float height)
 {
     LCGE_coordinate top_l = lcge_coordinate_translate(x, y);
@@ -123,7 +123,7 @@ void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
     lcge_vertex_buffer_update(rect->vb, positions, 8 * sizeof(GLfloat));
 }
 
-void lcge_rect_rotate(LCGE_rect *rect, float angle)
+LCGE_EXPORT void lcge_rect_rotate(LCGE_rect *rect, float angle)
 {
     LCGE_coordinate center =
     {
@@ -159,7 +159,7 @@ void lcge_rect_rotate(LCGE_rect *rect, float angle)
     lcge_vertex_buffer_update(rect->vb, positions, 8 * sizeof(GLfloat));
 }
 
-void lcge_rect_delete(LCGE_rect *rect)
+LCGE_EXPORT void lcge_rect_delete(LCGE_rect *rect)
 {
     // unbind everything
     lcge_vertex_array_unbind(rect->va);
@@ -176,23 +176,23 @@ void lcge_rect_delete(LCGE_rect *rect)
     free(rect);
 }
 
-float lcge_rect_get_x(LCGE_rect *rect)
+LCGE_EXPORT float lcge_rect_get_x(LCGE_rect *rect)
 {
     return (rect->top_l.x + 1) / 2.0f * g_state->window->width;
 }
 
-float lcge_rect_get_y(LCGE_rect *rect)
+LCGE_EXPORT float lcge_rect_get_y(LCGE_rect *rect)
 {
     return (rect->top_l.y * -1.0f + 1.0f) * g_state->window->height / 2.0f;
 }
 
-float lcge_rect_get_width(LCGE_rect *rect)
+LCGE_EXPORT float lcge_rect_get_width(LCGE_rect *rect)
 {
     return lcge_coordinate_distance(rect->bottom_l, rect->bottom_r) / 2 *
                                                         g_state->window->width;
 }
 
-float lcge_rect_get_height(LCGE_rect *rect)
+LCGE_EXPORT float lcge_rect_get_height(LCGE_rect *rect)
 {
     return lcge_coordinate_distance(rect->bottom_l, rect->top_l) / 2 *
                                                         g_state->window->height;

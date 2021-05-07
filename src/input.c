@@ -26,7 +26,7 @@
 #include "input.h"
 #include "core.h"
 
-int lcge_get_key(int key)
+LCGE_EXPORT int lcge_get_key(int key)
 {
     int state = glfwGetKey(g_state->window->_window, key);
     if (state == GLFW_PRESS || state == GLFW_REPEAT)

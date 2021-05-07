@@ -24,12 +24,12 @@
 
 #include "glerror.h"
 
-void GL_clear_error()
+LCGE_EXPORT void GL_clear_error()
 {
     while (glGetError() != GL_NO_ERROR);
 }
 
-bool GL_log_call(const char *file, int line)
+LCGE_EXPORT bool GL_log_call(const char *file, int line)
 {
 
     GLenum error = glGetError();
