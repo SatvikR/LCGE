@@ -2,6 +2,14 @@
 
 A Lightweight C game engine built with OpenGL.
 
+## TOC
+
+- [Capabilities](https://github.com/SatvikR/LCGE#capabilities)
+- [Build from source](https://github.com/SatvikR/LCGE#build-from-source)
+- [Basic Usage](https://github.com/SatvikR/LCGE#basic-usage)
+- [License](https://github.com/SatvikR/LCGE#licenses)
+- [Dependencies](https://github.com/SatvikR/LCGE#dependencies)
+
 ## Capabilities
 
 - Create a window
