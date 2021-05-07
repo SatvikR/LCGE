@@ -48,6 +48,8 @@ int main(int argc, char const *argv[])
     // Create clock with 60 max fps
     LCGE_clock *clock = lcge_clock_create(60);
 
+    LCGE_font *font = lcge_font_load("tests/fonts/VT323-Regular.ttf");
+
     while (lcge_window_is_open())
     {
         lcge_window_clear();
@@ -58,6 +60,7 @@ int main(int argc, char const *argv[])
         lcge_window_update();
     }
     lcge_clock_delete(clock);
+    lcge_font_delete(font);
 
     lcge_exit();
 

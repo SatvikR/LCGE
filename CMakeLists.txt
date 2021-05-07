@@ -24,6 +24,7 @@ set(SOURCES
     "${SRC_DIR}/geometry/rect.c"
     "${SRC_DIR}/geometry/image.c"
     "${SRC_DIR}/geometry/math.c"
+    "${SRC_DIR}/geometry/text.c"
 )
 
 set(HEADERS
@@ -44,6 +45,7 @@ set(HEADERS
     "${SRC_DIR}/geometry/rect.h"
     "${SRC_DIR}/geometry/image.h"
     "${SRC_DIR}/geometry/math.h"
+    "${SRC_DIR}/geometry/text.h"
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})

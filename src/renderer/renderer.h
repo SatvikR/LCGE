@@ -34,6 +34,7 @@ extern "C"
 #include "shader.h"
 #include "indexbuffer.h"
 #include "texture.h"
+#include "ttftexture.h"
 
 #ifdef __cplusplus
 }

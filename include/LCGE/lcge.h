@@ -256,6 +256,13 @@ LCGE_IMPORT extern void lcge_clock_tick(LCGE_clock *clock);
 #define LCGE_KEY_RELEASED -1
 
 LCGE_IMPORT extern int lcge_get_key(int key);
+
+
+typedef struct LCGE_IMPORT LCGE_font LCGE_font;
+
+LCGE_IMPORT extern LCGE_font* lcge_font_load(const char *filepath);
+LCGE_IMPORT extern void lcge_font_delete(LCGE_font *font);
+
 #ifdef __cplusplus
 }
 #endif

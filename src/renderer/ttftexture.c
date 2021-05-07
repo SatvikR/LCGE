@@ -28,7 +28,7 @@
 #include "ttftexture.h"
 #include "../glerror.h"
 
-LCGE_ttftexture* lcge_ttftexture_create(const char *filepath)
+LCGE_ttftexture* lcge_ttftexture_load(const char *filepath)
 {
     LCGE_ttftexture* texture = calloc(1, sizeof(LCGE_ttftexture));
 
@@ -39,7 +39,15 @@ LCGE_ttftexture* lcge_ttftexture_create(const char *filepath)
     unsigned char *ttf_buffer = malloc(sizeof(unsigned char) * (1<<20));
     unsigned char *temp_bitmap = malloc(sizeof(unsigned char) * (512*512));
 
-    fread(ttf_buffer, 1, 1<<20, fopen(filepath, "rb"));
+    FILE *f = fopen(filepath, "rb");
+    if (f == NULL)
+    {
+        printf("Failed to load font from %s\n", filepath);
+        exit(-1);
+    }
+    fread(ttf_buffer, 1, 1<<20, f);
+    fclose(f);
+
     stbtt_BakeFontBitmap(ttf_buffer, 0, 32.0f, temp_bitmap, 512, 512, 32, 96,
                          texture->data);
 
@@ -78,11 +86,11 @@ void lcge_ttftexture_unbind(LCGE_ttftexture *texture)
 }
 
 stbtt_aligned_quad lcge_ttftexture_get_char(LCGE_ttftexture *texture,
-                                            const char c, float x, float y)
+                                            const char c, float *x, float *y)
 {
     stbtt_aligned_quad q;
 
-    stbtt_GetBakedQuad(texture->data, 512, 512, c-32, &x, &y, &q, 1);
+    stbtt_GetBakedQuad(texture->data, 512, 512, c-32, x, y, &q, 1);
 
     return q;
 }
