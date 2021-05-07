@@ -67,6 +67,14 @@ if (NOT CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DNDEBUG)
 endif()
 
+if (UNIX)
+    set(CMAKE_C_FLAGS                " ${CMAKE_C_FLAGS_INIT} -fPIC")
+    set(CMAKE_C_FLAGS_DEBUG          "-g -DDEBUG")
+    set(CMAKE_C_FLAGS_MINSIZEREL     "-Os -DNDEBUG")
+    set(CMAKE_C_FLAGS_RELEASE        "-O4 -DNDEBUG")
+    set(CMAKE_C_FLAGS_RELWITHDEBINFO "-O2 -g -DDEBUG")
+endif()
+
 # For Mingw and GCC builds ONLY
 # for MSVC use -A Win32
 if (BUILD_32)
