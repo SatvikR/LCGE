@@ -114,14 +114,13 @@ LCGE_EXPORT void lcge_text_delete(LCGE_text *text)
     lcge_shader_unbind(text->shader);
 
     // delete all
-    lcge_ttftexture_delete(text->font->texture);
     lcge_index_buffer_delete(text->ib);
 
     int i;
     for (i = 0; i < text->len; i++)
     {
         lcge_vertex_buffer_delete(text->vbs[i]);
-        lcge_vertex_array_bind(text->vas[i]);
+        lcge_vertex_array_delete(text->vas[i]);
     }
 
     free(text->vas);

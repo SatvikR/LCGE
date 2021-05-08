@@ -70,6 +70,7 @@ LCGE_ttftexture* lcge_ttftexture_load(const char *filepath)
 
 void lcge_ttftexture_delete(LCGE_ttftexture *texture)
 {
+    lcge_ttftexture_unbind(texture);
     GLCALL(glDeleteTextures(1, &texture->renderer_id));
     free(texture->data);
     free(texture);
@@ -82,7 +83,7 @@ void lcge_ttftexture_bind(LCGE_ttftexture *texture)
 }
 void lcge_ttftexture_unbind(LCGE_ttftexture *texture)
 {
-    GLCALL(glBindTexture(1, 0));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
 stbtt_aligned_quad lcge_ttftexture_get_char(LCGE_ttftexture *texture,
