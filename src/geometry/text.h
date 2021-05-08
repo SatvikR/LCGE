@@ -36,7 +36,7 @@ LCGE_EXPORT typedef struct LCGE_font
     LCGE_ttftexture *texture;
 } LCGE_font;
 
-LCGE_EXPORT LCGE_font* lcge_font_load(const char *filepath);
+LCGE_EXPORT LCGE_font* lcge_font_load(const char *filepath, float height);
 LCGE_EXPORT void lcge_font_delete(LCGE_font *font);
 
 LCGE_EXPORT typedef struct LCGE_text
@@ -49,6 +49,13 @@ LCGE_EXPORT typedef struct LCGE_text
     LCGE_vertex_array **vas;
     LCGE_vertex_buffer **vbs;
     LCGE_index_buffer *ib;
+
+    float x0;
+    float y0;
+    float x1;
+    float y1;
+
+    const char *data;
 } LCGE_text;
 
 LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
@@ -56,6 +63,13 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
 LCGE_EXPORT void lcge_text_delete(LCGE_text *text);
 
 LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
+
+LCGE_EXPORT void lcge_text_set(LCGE_text *text, float x, float y);
+
+LCGE_EXPORT float lcge_text_get_x(LCGE_text *text);
+LCGE_EXPORT float lcge_text_get_y(LCGE_text *text);
+LCGE_EXPORT float lcge_text_get_width(LCGE_text *text);
+LCGE_EXPORT float lcge_text_get_height(LCGE_text *text);
 
 #ifdef __cplusplus
 }

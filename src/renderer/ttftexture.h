@@ -38,7 +38,7 @@ typedef struct LCGE_ttftexture
     stbtt_bakedchar *data;
 } LCGE_ttftexture;
 
-LCGE_ttftexture* lcge_ttftexture_load(const char *filepath);
+LCGE_ttftexture* lcge_ttftexture_load(const char *filepath, float height);
 void lcge_ttftexture_delete(LCGE_ttftexture *texture);
 
 void lcge_ttftexture_bind(LCGE_ttftexture *texture);

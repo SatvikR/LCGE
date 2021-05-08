@@ -164,9 +164,14 @@ var lcge_8h =
     [ "lcge_clock_delete", "lcge_8h.html#adfc3025fcc071fc7e7b762fcb63dfdd4", null ],
     [ "lcge_clock_tick", "lcge_8h.html#a5ddd7e5fa248aecb1b585bbad5885b8f", null ],
     [ "lcge_get_key", "lcge_8h.html#ae091acd0c607340f37cdf33b8de0a5e1", null ],
-    [ "lcge_font_load", "lcge_8h.html#adaec8ae5b30a6edcb2fc6c88da244da3", null ],
+    [ "lcge_font_load", "lcge_8h.html#a61b109a549c0fc0020883d7da34d455c", null ],
     [ "lcge_font_delete", "lcge_8h.html#a482d25515a8523e4ff975f1b35bf4568", null ],
     [ "lcge_text_load", "lcge_8h.html#ae221338f2237e8fc12b5a7e3b7626fe7", null ],
     [ "lcge_text_delete", "lcge_8h.html#aaa18328b72f1011dedb66c1acdfaf527", null ],
-    [ "lcge_text_draw", "lcge_8h.html#ae1e17577b238aba7bde3e7c50cf49e53", null ]
+    [ "lcge_text_draw", "lcge_8h.html#ae1e17577b238aba7bde3e7c50cf49e53", null ],
+    [ "lcge_text_set", "lcge_8h.html#a577dfef6fbea66b92124fde2d4496db7", null ],
+    [ "lcge_text_get_x", "lcge_8h.html#a5bf95f471c0ba7cac62b89fbee183db1", null ],
+    [ "lcge_text_get_y", "lcge_8h.html#a75f206fe14b1c244baec2641019c9ac0", null ],
+    [ "lcge_text_get_width", "lcge_8h.html#a688e82d6836f4562491b717bcbbcc75c", null ],
+    [ "lcge_text_get_height", "lcge_8h.html#afa68bc3481cd922dd7ce85cf651003c7", null ]
 ];

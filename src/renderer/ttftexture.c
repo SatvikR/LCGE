@@ -28,7 +28,7 @@
 #include "ttftexture.h"
 #include "../glerror.h"
 
-LCGE_ttftexture* lcge_ttftexture_load(const char *filepath)
+LCGE_ttftexture* lcge_ttftexture_load(const char *filepath, float height)
 {
     LCGE_ttftexture* texture = calloc(1, sizeof(LCGE_ttftexture));
 
@@ -48,8 +48,8 @@ LCGE_ttftexture* lcge_ttftexture_load(const char *filepath)
     fread(ttf_buffer, 1, 1<<20, f);
     fclose(f);
 
-    stbtt_BakeFontBitmap(ttf_buffer, 0, 32.0f, temp_bitmap, 512, 512, 32, 96,
-                         texture->data);
+    stbtt_BakeFontBitmap(ttf_buffer, 0, height, temp_bitmap, 512, 512,
+                         32, 96, texture->data);
 
     GLCALL(glGenTextures(1, &texture->renderer_id));
     GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));

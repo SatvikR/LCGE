@@ -401,9 +401,10 @@ typedef struct LCGE_IMPORT LCGE_font LCGE_font;
 /**
  * @brief Loads a font.
  *
- * Takes in a path to a .ttf file
+ * Takes in a path to a .ttf file and the height of characters to be rendered in
+ * pixels.
  */
-LCGE_IMPORT extern LCGE_font* lcge_font_load(const char *filepath);
+LCGE_IMPORT LCGE_font* lcge_font_load(const char *filepath, float height);
 
 /**
  * @brief Deletes a font.
@@ -437,6 +438,37 @@ LCGE_IMPORT void lcge_text_delete(LCGE_text *text);
  * Takes in the loaded text, and r, g, b color values
  */
 LCGE_IMPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
+
+/**
+ * @brief Set new data for text.
+ *
+ * Lets you specify new x and y values
+ */
+LCGE_IMPORT void lcge_text_set(LCGE_text *text, float x, float y);
+
+/**
+ * @brief Gets x value of text.
+ *
+ * x value is the top left.
+ */
+LCGE_IMPORT float lcge_text_get_x(LCGE_text *text);
+
+/**
+ * @brief Gets y value of text.
+ *
+ * y value is the top left.
+ */
+LCGE_IMPORT float lcge_text_get_y(LCGE_text *text);
+
+/**
+ * @brief Gets the width of the text.
+ */
+LCGE_IMPORT float lcge_text_get_width(LCGE_text *text);
+
+/**
+ * @brief Gets the height of the text.
+ */
+LCGE_IMPORT float lcge_text_get_height(LCGE_text *text);
 
 #ifdef __cplusplus
 }

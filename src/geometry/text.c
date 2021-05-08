@@ -32,11 +32,11 @@
 #include "../core.h"
 #include "../glerror.h"
 
-LCGE_EXPORT LCGE_font* lcge_font_load(const char *filepath)
+LCGE_EXPORT LCGE_font* lcge_font_load(const char *filepath, float height)
 {
     LCGE_font *font = calloc(1, sizeof(LCGE_font));
 
-    font->texture = lcge_ttftexture_load(filepath);
+    font->texture = lcge_ttftexture_load(filepath, height);
 
     return font;
 }
@@ -60,6 +60,7 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
     m_text->font = font;
     m_text->shader = g_state->text;
     m_text->len = len;
+    m_text->data = text;
 
     int i;
     for (i = 0; i < len; i++)
@@ -67,6 +68,17 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
         stbtt_aligned_quad q =
                            lcge_ttftexture_get_char(font->texture, text[i],
                                                     &x, &y);
+
+        if (i == 0)
+        {
+            m_text->x0 = q.x0;
+            m_text->y0 = q.y0;
+        }
+        else if (i == (len - 1))
+        {
+            m_text->x1 = q.x1;
+            m_text->y1 = q.y1;
+        }
 
         LCGE_coordinate top_l
                         = lcge_coordinate_translate(q.x0, q.y0);
@@ -146,4 +158,66 @@ LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b)
         GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
     }
 
+}
+
+LCGE_EXPORT void lcge_text_set(LCGE_text *text, float x, float y)
+{
+    int i;
+    for (i = 0; i < text->len; i++)
+    {
+        stbtt_aligned_quad q =
+                           lcge_ttftexture_get_char(text->font->texture,
+                                                    text->data[i], &x, &y);
+
+        if (i == 0)
+        {
+            text->x0 = q.x0;
+            text->y0 = q.y0;
+        }
+        else if (i == (text->len - 1))
+        {
+            text->x1 = q.x1;
+            text->y1 = q.y1;
+        }
+
+        LCGE_coordinate top_l
+                        = lcge_coordinate_translate(q.x0, q.y0);
+        LCGE_coordinate top_r
+                        = lcge_coordinate_translate(q.x1, q.y0);
+        LCGE_coordinate bottom_l
+                        = lcge_coordinate_translate(q.x0, q.y1);
+        LCGE_coordinate bottom_r
+                        = lcge_coordinate_translate(q.x1, q.y1);
+
+        GLfloat positions[16] = {
+            bottom_l.x, bottom_l.y, q.s0, q.t1, // bottom left
+            top_l.x, top_l.y, q.s0, q.t0,       // top left
+            top_r.x, top_r.y, q.s1, q.t0,       // top right
+            bottom_r.x, bottom_r.y, q.s1, q.t1  // bottom right
+        };
+
+        lcge_vertex_array_bind(text->vas[i]);
+        lcge_vertex_buffer_update(text->vbs[i], positions,
+                                  16 * sizeof(GLfloat));
+    }
+}
+
+LCGE_EXPORT float lcge_text_get_x(LCGE_text *text)
+{
+    return text->x0;
+}
+
+LCGE_EXPORT float lcge_text_get_y(LCGE_text *text)
+{
+    return text->y0;
+}
+
+LCGE_EXPORT float lcge_text_get_width(LCGE_text *text)
+{
+    return text->x1 - text->x0;
+}
+
+LCGE_EXPORT float lcge_text_get_height(LCGE_text *text)
+{
+    return text->y1 - text->y0;
 }
