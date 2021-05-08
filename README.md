@@ -2,6 +2,8 @@
 
 A Lightweight C game engine built with OpenGL.
 
+[Docs](https://satvikr.github.io/LCGE/)
+
 ## TOC
 
 - [Capabilities](https://github.com/SatvikR/LCGE#capabilities)
