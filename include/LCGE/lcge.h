@@ -35,7 +35,6 @@ extern "C"
     #define LCGE_IMPORT
 #endif
 
-typedef struct LCGE_IMPORT LCGE_window LCGE_window;
 
 #define LCGE_WINDOW_OPEN   1
 #define LCGE_WINDOW_CLOSED 0
@@ -50,84 +49,214 @@ typedef struct LCGE_IMPORT LCGE_window LCGE_window;
 #define LCGE_CONTEXT_OK   1
 
 /**
- * Initializes LCGE
+ * @mainpage LCGE
+ * @file lcge.h
+ * @author Satvik Reddy
+ * @brief Header file to include when using the LCGE engine
  *
- * Returns LCGE_INIT_ERR if there was an error
- * if not, returns LCGE_INIT_OK
+ * LCGE is a 2D game engine written in C that uses the OpenGL graphics API.
+ */
+
+/**
+ * @brief Initializes LCGE.
+ *
+ * This function will setup GLFW, as well as save the LCGE asset directory
+ * in memory, which will be used later to load shaders
  */
 LCGE_IMPORT extern int lcge_init(const char *lcge_res_dir);
 
 /**
- * Create a window and get back a handle
+ * @brief Create a window and get back a handle.
  *
- * width and height are in pixels
+ * Takes in width and height in pixels
  * resizeable is either LCGE_RESIZEABLE or LCGE_NON_RESIZEABLE
  */
 LCGE_IMPORT extern int lcge_create_context(unsigned int width, unsigned int height,
                                const char *title, int resizable);
 
 /**
+ * @brief Returns whether or not the window is still open.
+ *
  * Returns LCGE_WINDOW_CLOSED if the window should be closed
  * if not, returns LCGE_WINDOW_OPEN
  */
 LCGE_IMPORT extern int lcge_window_is_open();
 
-/* Terminates LCGE */
+/**
+ * @brief Exits lcge.
+ *
+ * Delets any leftover garbage from the engine. this DOES NOT delete user
+ * created memory. Delete those yourself.
+ */
 LCGE_IMPORT extern void lcge_exit();
 
-/* Clears the color buffer on the window */
+/**
+ * @brief Clears the window.
+ *
+ * This will clear the color buffer and set the screen to all black
+ */
 LCGE_IMPORT extern void lcge_window_clear();
 
-/* Swaps front and back buffers and polls for process events */
+/**
+ * @brief Updates the window and polls for events.
+ */
 LCGE_IMPORT extern void lcge_window_update();
 
+/**
+ * @brief A 2D rectangle.
+ *
+ * @see lcge_rect_load
+ * @see lcge_rect_draw
+ */
 typedef struct LCGE_IMPORT LCGE_rect LCGE_rect;
 
 /**
+ * @brief Loads rectangle data and returns a handle.
+ *
  * Takes in x, y coordinates and width and height
  * (0, 0) is considered to be at the top left of the window
  *
  * Width and height are in pixels.
  */
 LCGE_IMPORT extern LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
+
+/**
+ * @brief Deletes a rectangle.
+ */
 LCGE_IMPORT extern void lcge_rect_delete(LCGE_rect *rect);
 
-/* Draw a rectangle given (r, g, b) color values */
+/**
+ * @brief Draw a loaded rectangle to the screen.
+ *
+ * Takes r, g, b (0 to 255) color values as input.
+ */
 LCGE_IMPORT extern void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
-LCGE_IMPORT extern void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
-                          float height);
-/* Rotate by degrees */
+
+/**
+ * @brief Updates rectangle data for a loaded rectangle.
+ *
+ * This function allows you to set new x, y, width, and height values for your
+ * rectangle
+ */
+LCGE_IMPORT extern void lcge_rect_set(LCGE_rect *rect, float x, float y,
+                                      float width, float height);
+
+/**
+ * @brief Rotates a loaded rectangle.
+ *
+ * Takes in an angle in degrees. Rotates counterclockwise.
+ */
 LCGE_IMPORT extern void lcge_rect_rotate(LCGE_rect *rect, float angle);
+
+/**
+ * @brief Gets the rectangle x value.
+ */
 LCGE_IMPORT extern float lcge_rect_get_x(LCGE_rect *rect);
+
+/**
+ * @brief Gets the rectangle y value.
+ */
 LCGE_IMPORT extern float lcge_rect_get_y(LCGE_rect *rect);
+
+/**
+ * @brief Gets the rectangle width.
+ */
 LCGE_IMPORT extern float lcge_rect_get_width(LCGE_rect *rect);
+
+/**
+ * @brief Gets the rectangle height.
+ */
 LCGE_IMPORT extern float lcge_rect_get_height(LCGE_rect *rect);
 
+/**
+ * @brief A 2D image
+ *
+ * @see lcge_image_load
+ * @see lcge_image_draw
+ */
 typedef struct LCGE_IMPORT LCGE_image LCGE_image;
 
-/* Loads image from filepath given top left coordinates */
-LCGE_IMPORT extern LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
-                            float height);
+/**
+ * @brief Loads an image from a file.
+ *
+ * Takes in a filepath, x/y coordinates, and a width and height to use when
+ * drawing
+ */
+LCGE_IMPORT extern LCGE_image* lcge_image_load(const char *filepath, float x,
+                                               float y, float width,
+                                               float height);
+
+/**
+ * @brief Deletes an image.
+ */
 LCGE_IMPORT extern void lcge_image_delete(LCGE_image *image);
 
-/* Rotates image angle degress */
+/**
+ * @brief Rotates an image.
+ *
+ * Takes in the angle in degrees.
+ */
 LCGE_IMPORT extern void lcge_image_rotate(LCGE_image *image, float angle);
-LCGE_IMPORT extern void lcge_image_set(LCGE_image *image, float x, float y, float width,
-                           float height);
+
+/**
+ * @brief Sets new data for a loaded image.
+ *
+ * Lets you set x, y, width, and height values
+ */
+LCGE_IMPORT extern void lcge_image_set(LCGE_image *image, float x, float y,
+                                       float width, float height);
+
+/**
+ * @brief Draws a loaded image to the screen
+ */
 LCGE_IMPORT extern void lcge_image_draw(LCGE_image *image);
 
+/**
+ * @brief Gets image x.
+ */
 LCGE_IMPORT extern float lcge_image_get_x(LCGE_image *image);
+
+/**
+ * @brief Gets image y.
+ */
 LCGE_IMPORT extern float lcge_image_get_y(LCGE_image *image);
+
+/**
+ * @brief Gets image width.
+ */
 LCGE_IMPORT extern float lcge_image_get_width(LCGE_image *image);
+
+/**
+ * @brief Gets image height.
+ */
 LCGE_IMPORT extern float lcge_image_get_height(LCGE_image *image);
 
+/**
+ * @brief Basic FPS clock.
+ *
+ * @see lcge_clock_create
+ * @see lcge_clock_tick
+ */
 typedef struct LCGE_IMPORT LCGE_clock LCGE_clock;
 
-/* Creates a clock given a max fps */
+/**
+ * @brief Creates a clock.
+ *
+ * Takes in an fps. The clock will make sure that your window's fps is as close
+ * to the target fps as possible.
+ */
 LCGE_IMPORT extern LCGE_clock* lcge_clock_create(unsigned int fps);
+
+/**
+ * @brief Deletes a clock.
+ */
 LCGE_IMPORT extern void lcge_clock_delete(LCGE_clock *clock);
 
-/* Ticks the clock to get as close to the max fps as possible */
+/**
+ * @brief tickst the clock.
+ *
+ * Ticks the clock to get as close to the max fps as possible
+ */
 LCGE_IMPORT extern void lcge_clock_tick(LCGE_clock *clock);
 
 /* Same values as GLFW keys */
@@ -255,21 +384,58 @@ LCGE_IMPORT extern void lcge_clock_tick(LCGE_clock *clock);
 #define LCGE_KEY_PRESSED  1
 #define LCGE_KEY_RELEASED -1
 
+/**
+ * @brief Gets the input status of a key.
+ *
+ * Takes in a key code, eg. LCGE_KEY_<key_name>
+ */
 LCGE_IMPORT extern int lcge_get_key(int key);
 
+/**
+ * @brief A true type font.
+ *
+ * @see lcge_font_load
+ */
 typedef struct LCGE_IMPORT LCGE_font LCGE_font;
 
-/* Load a true type font from a .ttf file */
+/**
+ * @brief Loads a font.
+ *
+ * Takes in a path to a .ttf file
+ */
 LCGE_IMPORT extern LCGE_font* lcge_font_load(const char *filepath);
+
+/**
+ * @brief Deletes a font.
+ */
 LCGE_IMPORT extern void lcge_font_delete(LCGE_font *font);
 
+/**
+ * @brief 2D text.
+ *
+ * @see lcge_text_load
+ * @see lcge_text_draw
+ */
 typedef struct LCGE_IMPORT LCGE_text LCGE_text;
 
-/* Load a string */
+/**
+ * @brief Loads a 2D text struct.
+ *
+ * Takes in text as a string, x/y coordinates, and the font
+ */
 LCGE_IMPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
                                       LCGE_font *font);
+
+/**
+ * @brief Deletes a text struct.
+ */
 LCGE_IMPORT void lcge_text_delete(LCGE_text *text);
 
+/**
+ * @brief Draws 2D text.
+ *
+ * Takes in the loaded text, and r, g, b color values
+ */
 LCGE_IMPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
 
 #ifdef __cplusplus
