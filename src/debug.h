@@ -30,7 +30,7 @@ extern "C"
 
 #include <stdio.h>
 
-#define DEBUG printf("file: %s\n line: %d\n", __FILE__, __LINE__)
+#define DEBUGP printf("file: %s\n line: %d\n", __FILE__, __LINE__)
 
 #ifdef __cplusplus
 }

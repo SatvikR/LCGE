@@ -43,7 +43,10 @@ LCGE_EXPORT typedef struct LCGE_text
 {
     LCGE_font *font;
 
-    LCGE_vertex_array *va;
+    size_t len;
+
+    LCGE_shader *shader;
+    LCGE_vertex_array **vas;
     LCGE_vertex_buffer **vbs;
     LCGE_index_buffer *ib;
 } LCGE_text;
@@ -52,7 +55,7 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
                                       LCGE_font *font);
 LCGE_EXPORT void lcge_text_delete(LCGE_text *text);
 
-LCGE_EXPORT void lcge_text_draw(LCGE_text *text);
+LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
 
 #ifdef __cplusplus
 }

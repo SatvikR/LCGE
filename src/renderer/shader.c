@@ -168,3 +168,12 @@ GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
     GLCALL(glUniform1i(location, v0));
     return location;
 }
+
+GLint lcge_shader_set_inform_3f(LCGE_shader *shader, const char *name,
+                                GLfloat v0, GLfloat v1, GLfloat v2)
+{
+    GLint location = get_uniform_location(shader, name);
+
+    GLCALL(glUniform3f(location, v0, v1, v2));
+    return location;
+}

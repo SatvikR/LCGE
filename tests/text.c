@@ -49,11 +49,13 @@ int main(int argc, char const *argv[])
     LCGE_clock *clock = lcge_clock_create(60);
 
     LCGE_font *font = lcge_font_load("tests/fonts/VT323-Regular.ttf");
+    LCGE_text *text = lcge_text_load("Hello, world!", 100, 100, font);
 
     while (lcge_window_is_open())
     {
         lcge_window_clear();
         // Do any drawing here
+        lcge_text_draw(text, 80, 219, 180);
 
         // Get ready for next iteration
         lcge_clock_tick(clock);

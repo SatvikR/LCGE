@@ -257,11 +257,20 @@ LCGE_IMPORT extern void lcge_clock_tick(LCGE_clock *clock);
 
 LCGE_IMPORT extern int lcge_get_key(int key);
 
-
 typedef struct LCGE_IMPORT LCGE_font LCGE_font;
 
+/* Load a true type font from a .ttf file */
 LCGE_IMPORT extern LCGE_font* lcge_font_load(const char *filepath);
 LCGE_IMPORT extern void lcge_font_delete(LCGE_font *font);
+
+typedef struct LCGE_IMPORT LCGE_text LCGE_text;
+
+/* Load a string */
+LCGE_IMPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
+                                      LCGE_font *font);
+LCGE_IMPORT void lcge_text_delete(LCGE_text *text);
+
+LCGE_IMPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
 
 #ifdef __cplusplus
 }

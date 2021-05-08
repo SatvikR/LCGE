@@ -67,6 +67,7 @@ LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
 
     g_state->basic_geo = lcge_shader_create(g_state->res_dir, "basic_geo");
     g_state->texture = lcge_shader_create(g_state->res_dir, "texture");
+    g_state->text = lcge_shader_create(g_state->res_dir, "text");
 
     return LCGE_CONTEXT_OK;
 }

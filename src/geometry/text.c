@@ -20,6 +20,8 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
+#include <glad/glad.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -27,6 +29,8 @@
 
 #include "text.h"
 #include "math.h"
+#include "../core.h"
+#include "../glerror.h"
 
 LCGE_EXPORT LCGE_font* lcge_font_load(const char *filepath)
 {
@@ -51,14 +55,17 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
     size_t len = strlen(text);
 
     m_text->vbs = calloc(1, sizeof(LCGE_vertex_buffer*) * len);
-    m_text->va = lcge_vertex_array_create();
+    // m_text->va = lcge_vertex_array_create();
+    m_text->vas = calloc(1, sizeof(LCGE_vertex_array*) * len);
     m_text->font = font;
+    m_text->shader = g_state->text;
+    m_text->len = len;
 
     int i;
     for (i = 0; i < len; i++)
     {
         stbtt_aligned_quad q =
-                           lcge_ttftexture_get_char(font->texture, text[i]-32,
+                           lcge_ttftexture_get_char(font->texture, text[i],
                                                     &x, &y);
 
         LCGE_coordinate top_l
@@ -77,12 +84,14 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
             bottom_r.x, bottom_r.y, q.s1, q.t1  // bottom right
         };
 
+        m_text->vas[i] = lcge_vertex_array_create();
+
         m_text->vbs[i] = lcge_vertex_buffer_create(positions,
                                                    16 * sizeof(GLfloat));
 
-        lcge_vertex_array_layout(m_text->va, m_text->vbs[i], 2, GL_FLOAT, 0, 0,
+        lcge_vertex_array_layout(m_text->vas[i], m_text->vbs[i], 2, GL_FLOAT, 0, 0,
                                  sizeof(GLfloat) * 4);
-        lcge_vertex_array_layout(m_text->va, m_text->vbs[i], 2, GL_FLOAT, 1,
+        lcge_vertex_array_layout(m_text->vas[i], m_text->vbs[i], 2, GL_FLOAT, 1,
                                  sizeof(GLfloat) * 2, sizeof(GLfloat) * 4);
     }
 
@@ -98,10 +107,44 @@ LCGE_EXPORT LCGE_text* lcge_text_load(const char *text, float x, float y,
 
 LCGE_EXPORT void lcge_text_delete(LCGE_text *text)
 {
+    // unbind all
+    lcge_ttftexture_unbind(text->font->texture);
+    lcge_vertex_array_unbind((LCGE_vertex_array*)NULL);
+    lcge_index_buffer_unbind(text->ib);
+    lcge_shader_unbind(text->shader);
+
+    // delete all
+    lcge_ttftexture_delete(text->font->texture);
+    lcge_index_buffer_delete(text->ib);
+
+    int i;
+    for (i = 0; i < text->len; i++)
+    {
+        lcge_vertex_buffer_delete(text->vbs[i]);
+        lcge_vertex_array_bind(text->vas[i]);
+    }
+
+    free(text->vas);
+    free(text->vbs);
     free(text);
 }
 
-LCGE_EXPORT void lcge_text_draw(LCGE_text *text)
+LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b)
 {
+    lcge_ttftexture_bind(text->font->texture);
+    lcge_index_buffer_bind(text->ib);
+    lcge_shader_bind(text->shader);
+
+    lcge_shader_set_uniform_1i(text->shader, "u_texture", 0);
+    lcge_shader_set_inform_3f(text->shader, "u_color", r / 255.0f, g / 255.0f,
+                              b / 255.0f);
+
+    int i;
+    for (i = 0; i < text->len; i++)
+    {
+        lcge_vertex_array_bind(text->vas[i]);
+        lcge_index_buffer_bind(text->ib);
+        GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL));
+    }
 
 }

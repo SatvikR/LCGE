@@ -20,35 +20,15 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-#ifndef _CORE_H
-#define _CORE_H
+#version 330 core
 
-#ifdef __cplusplus
-extern "C"
+layout (location = 0) in vec4 m_position;
+layout (location = 1) in vec2 m_texture_coord;
+
+out vec2 texture_coord;
+
+void main()
 {
-#endif
-
-#include "export.h"
-#include "window.h"
-#include "renderer/shader.h"
-
-typedef LCGE_EXPORT struct LCGE_state
-{
-    int initialized;
-    char *res_dir;
-    LCGE_window *window;
-    LCGE_shader *basic_geo;
-    LCGE_shader *texture;
-    LCGE_shader *text;
-} LCGE_state;
-
-extern LCGE_state *g_state;
-
-LCGE_EXPORT int lcge_init(const char *lcge_res_dir);
-LCGE_EXPORT void lcge_exit();
-
-#ifdef __cplusplus
+    gl_Position = m_position;
+    texture_coord = m_texture_coord;
 }
-#endif
-
-#endif

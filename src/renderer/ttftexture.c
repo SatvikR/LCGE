@@ -59,7 +59,7 @@ LCGE_ttftexture* lcge_ttftexture_load(const char *filepath)
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, 512, 512, 0, GL_ALPHA,
+    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, 512, 512, 0, GL_RED,
                         GL_UNSIGNED_BYTE, temp_bitmap));
 
     free(ttf_buffer);
@@ -78,7 +78,7 @@ void lcge_ttftexture_delete(LCGE_ttftexture *texture)
 void lcge_ttftexture_bind(LCGE_ttftexture *texture)
 {
     GLCALL(glActiveTexture(GL_TEXTURE0));
-    GLCALL(glBindTexture(1, texture->renderer_id));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
 }
 void lcge_ttftexture_unbind(LCGE_ttftexture *texture)
 {
