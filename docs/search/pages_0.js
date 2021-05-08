@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lcge_351',['LCGE',['../index.html',1,'']]]
+  ['lcge_20docs_351',['LCGE Docs',['../index.html',1,'']]]
 ];

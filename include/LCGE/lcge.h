@@ -49,7 +49,73 @@ extern "C"
 #define LCGE_CONTEXT_OK   1
 
 /**
- * @mainpage LCGE
+ * @mainpage LCGE Docs
+ *
+ * @section intro What is LCGE?
+ * A Lightweight C game engine built with OpenGL.
+ *
+ * @section build_info Build
+ * @code{.sh}
+ * git clone --recursive https://github.com/SatvikR/LCGE.git
+ * cmake -B ./build .
+ * cmake --build ./build
+ * @endcode
+ *
+ * @section usage Basic Usage
+ *
+ * @code{.c}
+ * #include <LCGE/lcge.h>
+ *
+ * int main(int argc, char const *argv[])
+ * {
+ *     // Initialize LCGE with the path to the res directory of LCGE
+ *     if (lcge_init("vendor/LCGE/res") == LCGE_INIT_ERR)
+ *     {
+ *         lcge_exit();
+ *         return -1;
+ *     }
+ *
+ *     // Create a window
+ *     int success = lcge_create_context(500, 500, "LCGE Example",
+ *                                       LCGE_NON_RESIZEABLE);
+ *
+ *     // Create clock with a max fps
+ *     LCGE_clock *clock = lcge_clock_create(60);
+ *
+ *     // Check if there was an error creating the window
+ *     if (success == LCGE_CONTEXT_ERR)
+ *     {
+ *         lcge_exit();
+ *         return -1;
+ *     }
+ *
+ *     while (lcge_window_is_open())
+ *     {
+ *         // Do any udpating here
+ *
+ *         // Do any drawing here
+ *         lcge_window_clear();
+ *
+ *         // Get ready for next iteration
+ *         lcge_clock_tick(clock);
+ *         lcge_window_udpate();
+ *     }
+ *
+ *     // Clean up
+ *     lcge_clock_delete(clock);
+ *
+ *     lcge_exit();
+ *
+ *     return 0;
+ * }
+ *
+ * @endcode
+ * @section license_info License
+ *
+ * LCGE is licensed under the GNU Lesser General Public License v2.1
+ */
+
+/**
  * @file lcge.h
  * @author Satvik Reddy
  * @brief Header file to include when using the LCGE engine

@@ -25,6 +25,12 @@
 var NAVTREE =
 [
   [ "LCGE", "index.html", [
+    [ "LCGE Docs", "index.html", [
+      [ "What is LCGE?", "index.html#intro", null ],
+      [ "Build", "index.html#build_info", null ],
+      [ "Basic Usage", "index.html#usage", null ],
+      [ "License", "index.html#license_info", null ]
+    ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [

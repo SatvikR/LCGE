@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lcge_0',['LCGE',['../index.html',1,'']]],
+  ['lcge_20docs_0',['LCGE Docs',['../index.html',1,'']]],
   ['lcge_2eh_1',['lcge.h',['../lcge_8h.html',1,'']]],
   ['lcge_5fclock_2',['LCGE_clock',['../lcge_8h.html#a38c9d2f16b6241617fd4d2c43956b523',1,'lcge.h']]],
   ['lcge_5fclock_5fcreate_3',['lcge_clock_create',['../lcge_8h.html#a15833a381df39b9af6d67a23f58a810c',1,'lcge.h']]],

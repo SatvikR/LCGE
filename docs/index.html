@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LCGE: LCGE</title>
+<title>LCGE: LCGE Docs</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -94,10 +94,80 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">LCGE </div>  </div>
+<div class="title">LCGE Docs </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"></div></div><!-- PageDoc -->
+<div class="textblock"><h1><a class="anchor" id="intro"></a>
+What is LCGE?</h1>
+<p>A Lightweight C game engine built with OpenGL.</p>
+<h1><a class="anchor" id="build_info"></a>
+Build</h1>
+<div class="fragment"><div class="line">git clone --recursive https://github.com/SatvikR/LCGE.git</div>
+<div class="line">cmake -B ./build .</div>
+<div class="line">cmake --build ./build</div>
+</div><!-- fragment --><h1><a class="anchor" id="usage"></a>
+Basic Usage</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="lcge_8h.html">LCGE/lcge.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> <span class="keyword">const</span> *argv[])</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// Initialize LCGE with the path to the res directory of LCGE</span></div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="lcge_8h.html#a11353996d713d6e3b16f594a07c71e09">lcge_init</a>(<span class="stringliteral">&quot;vendor/LCGE/res&quot;</span>) == <a class="code" href="lcge_8h.html#a5fda94aac96ba51ce6cd40457706046e">LCGE_INIT_ERR</a>)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="lcge_8h.html#acf81613fb8c5e7b06ecc2b2080b0fd9b">lcge_exit</a>();</div>
+<div class="line">        <span class="keywordflow">return</span> -1;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create a window</span></div>
+<div class="line">    <span class="keywordtype">int</span> success = <a class="code" href="lcge_8h.html#a701df0fcadaf31cf6e975100c7830ade">lcge_create_context</a>(500, 500, <span class="stringliteral">&quot;LCGE Example&quot;</span>,</div>
+<div class="line">                                      <a class="code" href="lcge_8h.html#abc4db0190f0948eb21a85237a9b6a042">LCGE_NON_RESIZEABLE</a>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create clock with a max fps</span></div>
+<div class="line">    <a class="code" href="lcge_8h.html#a38c9d2f16b6241617fd4d2c43956b523">LCGE_clock</a> *clock = <a class="code" href="lcge_8h.html#a15833a381df39b9af6d67a23f58a810c">lcge_clock_create</a>(60);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Check if there was an error creating the window</span></div>
+<div class="line">    <span class="keywordflow">if</span> (success == <a class="code" href="lcge_8h.html#aacceeb9966144541957dfba836a3b153">LCGE_CONTEXT_ERR</a>)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="lcge_8h.html#acf81613fb8c5e7b06ecc2b2080b0fd9b">lcge_exit</a>();</div>
+<div class="line">        <span class="keywordflow">return</span> -1;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">while</span> (<a class="code" href="lcge_8h.html#a3a54d10e7ac7dac87848d5da728a2026">lcge_window_is_open</a>())</div>
+<div class="line">    {</div>
+<div class="line">        <span class="comment">// Do any udpating here</span></div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Do any drawing here</span></div>
+<div class="line">        <a class="code" href="lcge_8h.html#accafcf6d78d9d4dbac7fc1af206afba7">lcge_window_clear</a>();</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Get ready for next iteration</span></div>
+<div class="line">        <a class="code" href="lcge_8h.html#a5ddd7e5fa248aecb1b585bbad5885b8f">lcge_clock_tick</a>(clock);</div>
+<div class="line">        lcge_window_udpate();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Clean up</span></div>
+<div class="line">    <a class="code" href="lcge_8h.html#adfc3025fcc071fc7e7b762fcb63dfdd4">lcge_clock_delete</a>(clock);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="lcge_8h.html#acf81613fb8c5e7b06ecc2b2080b0fd9b">lcge_exit</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="alcge_8h_html"><div class="ttname"><a href="lcge_8h.html">lcge.h</a></div><div class="ttdoc">Header file to include when using the LCGE engine.</div></div>
+<div class="ttc" id="alcge_8h_html_a11353996d713d6e3b16f594a07c71e09"><div class="ttname"><a href="lcge_8h.html#a11353996d713d6e3b16f594a07c71e09">lcge_init</a></div><div class="ttdeci">LCGE_IMPORT int lcge_init(const char *lcge_res_dir)</div><div class="ttdoc">Initializes LCGE.</div></div>
+<div class="ttc" id="alcge_8h_html_a15833a381df39b9af6d67a23f58a810c"><div class="ttname"><a href="lcge_8h.html#a15833a381df39b9af6d67a23f58a810c">lcge_clock_create</a></div><div class="ttdeci">LCGE_IMPORT LCGE_clock * lcge_clock_create(unsigned int fps)</div><div class="ttdoc">Creates a clock.</div></div>
+<div class="ttc" id="alcge_8h_html_a38c9d2f16b6241617fd4d2c43956b523"><div class="ttname"><a href="lcge_8h.html#a38c9d2f16b6241617fd4d2c43956b523">LCGE_clock</a></div><div class="ttdeci">struct LCGE_IMPORT LCGE_clock LCGE_clock</div><div class="ttdoc">Basic FPS clock.</div><div class="ttdef"><b>Definition:</b> lcge.h:306</div></div>
+<div class="ttc" id="alcge_8h_html_a3a54d10e7ac7dac87848d5da728a2026"><div class="ttname"><a href="lcge_8h.html#a3a54d10e7ac7dac87848d5da728a2026">lcge_window_is_open</a></div><div class="ttdeci">LCGE_IMPORT int lcge_window_is_open()</div><div class="ttdoc">Returns whether or not the window is still open.</div></div>
+<div class="ttc" id="alcge_8h_html_a5ddd7e5fa248aecb1b585bbad5885b8f"><div class="ttname"><a href="lcge_8h.html#a5ddd7e5fa248aecb1b585bbad5885b8f">lcge_clock_tick</a></div><div class="ttdeci">LCGE_IMPORT void lcge_clock_tick(LCGE_clock *clock)</div><div class="ttdoc">tickst the clock.</div></div>
+<div class="ttc" id="alcge_8h_html_a5fda94aac96ba51ce6cd40457706046e"><div class="ttname"><a href="lcge_8h.html#a5fda94aac96ba51ce6cd40457706046e">LCGE_INIT_ERR</a></div><div class="ttdeci">#define LCGE_INIT_ERR</div><div class="ttdef"><b>Definition:</b> lcge.h:42</div></div>
+<div class="ttc" id="alcge_8h_html_a701df0fcadaf31cf6e975100c7830ade"><div class="ttname"><a href="lcge_8h.html#a701df0fcadaf31cf6e975100c7830ade">lcge_create_context</a></div><div class="ttdeci">LCGE_IMPORT int lcge_create_context(unsigned int width, unsigned int height, const char *title, int resizable)</div><div class="ttdoc">Create a window and get back a handle.</div></div>
+<div class="ttc" id="alcge_8h_html_aacceeb9966144541957dfba836a3b153"><div class="ttname"><a href="lcge_8h.html#aacceeb9966144541957dfba836a3b153">LCGE_CONTEXT_ERR</a></div><div class="ttdeci">#define LCGE_CONTEXT_ERR</div><div class="ttdef"><b>Definition:</b> lcge.h:48</div></div>
+<div class="ttc" id="alcge_8h_html_abc4db0190f0948eb21a85237a9b6a042"><div class="ttname"><a href="lcge_8h.html#abc4db0190f0948eb21a85237a9b6a042">LCGE_NON_RESIZEABLE</a></div><div class="ttdeci">#define LCGE_NON_RESIZEABLE</div><div class="ttdef"><b>Definition:</b> lcge.h:46</div></div>
+<div class="ttc" id="alcge_8h_html_accafcf6d78d9d4dbac7fc1af206afba7"><div class="ttname"><a href="lcge_8h.html#accafcf6d78d9d4dbac7fc1af206afba7">lcge_window_clear</a></div><div class="ttdeci">LCGE_IMPORT void lcge_window_clear()</div><div class="ttdoc">Clears the window.</div></div>
+<div class="ttc" id="alcge_8h_html_acf81613fb8c5e7b06ecc2b2080b0fd9b"><div class="ttname"><a href="lcge_8h.html#acf81613fb8c5e7b06ecc2b2080b0fd9b">lcge_exit</a></div><div class="ttdeci">LCGE_IMPORT void lcge_exit()</div><div class="ttdoc">Exits lcge.</div></div>
+<div class="ttc" id="alcge_8h_html_adfc3025fcc071fc7e7b762fcb63dfdd4"><div class="ttname"><a href="lcge_8h.html#adfc3025fcc071fc7e7b762fcb63dfdd4">lcge_clock_delete</a></div><div class="ttdeci">LCGE_IMPORT void lcge_clock_delete(LCGE_clock *clock)</div><div class="ttdoc">Deletes a clock.</div></div>
+</div><!-- fragment --> <h1><a class="anchor" id="license_info"></a>
+License</h1>
+<p>LCGE is licensed under the GNU Lesser General Public License v2.1 </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
