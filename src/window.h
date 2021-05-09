@@ -24,8 +24,7 @@
 #define _WINDOW_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <glad/glad.h>
@@ -33,28 +32,27 @@ extern "C"
 
 #include "export.h"
 
-#define LCGE_WINDOW_OPEN   1
+#define LCGE_WINDOW_OPEN 1
 #define LCGE_WINDOW_CLOSED 0
 
 #define LCGE_INIT_ERR -1
-#define LCGE_INIT_OK   0
+#define LCGE_INIT_OK 0
 
-#define LCGE_RESIZEABLE     1
+#define LCGE_RESIZEABLE 1
 #define LCGE_NON_RESIZEABLE 0
 
 #define LCGE_CONTEXT_ERR -1
-#define LCGE_CONTEXT_OK   1
+#define LCGE_CONTEXT_OK 1
 
-typedef LCGE_EXPORT struct LCGE_window
-{
-    unsigned int width;
-    unsigned int height;
+typedef LCGE_EXPORT struct LCGE_window {
+	unsigned int width;
+	unsigned int height;
 
-    GLFWwindow *_window;
+	GLFWwindow *_window;
 } LCGE_window;
 
 LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
-                                    const char *title, int resizable);
+				    const char *title, int resizable);
 
 LCGE_EXPORT int lcge_window_is_open();
 

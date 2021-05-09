@@ -22,60 +22,57 @@
 
 #include <LCGE/lcge.h>
 
-#define SPRITE_WIDTH  326.0f
+#define SPRITE_WIDTH 326.0f
 #define SPRITE_HEIGHT 296.0f
 
 int main(int argc, char const *argv[])
 {
-    // Initialize LCGE
-    if (lcge_init("res/") == LCGE_INIT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+	// Initialize LCGE
+	if (lcge_init("res/") == LCGE_INIT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-    // Create a window
-    int success = lcge_create_context(1000, 800, "LCGE Image Example",
-                                      LCGE_NON_RESIZEABLE);
+	// Create a window
+	int success = lcge_create_context(1000, 800, "LCGE Image Example",
+					  LCGE_NON_RESIZEABLE);
 
-    // Create clock with 60 max fps
-    LCGE_clock *clock = lcge_clock_create(60);
+	// Create clock with 60 max fps
+	LCGE_clock *clock = lcge_clock_create(60);
 
-    // Check if there was an error creating the window
-    if (success == LCGE_CONTEXT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+	// Check if there was an error creating the window
+	if (success == LCGE_CONTEXT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-    // Load image_one
-    LCGE_image *image_one = lcge_image_load("tests/images/player_sprite.png",
-                                            100, 100, SPRITE_WIDTH * 0.8f,
-                                            SPRITE_HEIGHT * 0.8f);
+	// Load image_one
+	LCGE_image *image_one =
+		lcge_image_load("tests/images/player_sprite.png", 100, 100,
+				SPRITE_WIDTH * 0.8f, SPRITE_HEIGHT * 0.8f);
 
-    // Load image_two
-    LCGE_image *image_two = lcge_image_load("tests/images/player_sprite.png",
-                                            500, 300, SPRITE_HEIGHT * 1.5,
-                                            SPRITE_HEIGHT * 1.5);
-    while (lcge_window_is_open())
-    {
-        lcge_window_clear();
-        // Do any drawing here
-        lcge_image_draw(image_one);
-        lcge_image_draw(image_two);
+	// Load image_two
+	LCGE_image *image_two =
+		lcge_image_load("tests/images/player_sprite.png", 500, 300,
+				SPRITE_HEIGHT * 1.5, SPRITE_HEIGHT * 1.5);
+	while (lcge_window_is_open()) {
+		lcge_window_clear();
+		// Do any drawing here
+		lcge_image_draw(image_one);
+		lcge_image_draw(image_two);
 
-        // Get ready for next iteration
-        lcge_clock_tick(clock);
-        lcge_window_update();
-    }
+		// Get ready for next iteration
+		lcge_clock_tick(clock);
+		lcge_window_update();
+	}
 
-    // clean up
-    lcge_image_delete(image_one);
-    lcge_image_delete(image_two);
+	// clean up
+	lcge_image_delete(image_one);
+	lcge_image_delete(image_two);
 
-    lcge_clock_delete(clock);
+	lcge_clock_delete(clock);
 
-    lcge_exit();
+	lcge_exit();
 
-    return 0;
+	return 0;
 }

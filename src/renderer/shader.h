@@ -20,35 +20,35 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-
 #ifndef _RENDERER_SHADER_H
 #define _RENDERER_SHADER_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-typedef struct LCGE_shader
-{
-    GLuint renderer_id;
-    struct { char *key; GLint value; } *uniform_cache;
+typedef struct LCGE_shader {
+	GLuint renderer_id;
+	struct {
+		char *key;
+		GLint value;
+	} * uniform_cache;
 } LCGE_shader;
 
-LCGE_shader* lcge_shader_create(const char *path, const char *name);
+LCGE_shader *lcge_shader_create(const char *path, const char *name);
 void lcge_shader_delete(LCGE_shader *shader);
 
 void lcge_shader_bind(LCGE_shader *shader);
 void lcge_shader_unbind(LCGE_shader *shader);
 
 GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
-                                 GLfloat a, GLfloat b, GLfloat c, GLfloat d);
+				 GLfloat a, GLfloat b, GLfloat c, GLfloat d);
 
 GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
-                                 GLint v0);
+				 GLint v0);
 
 GLint lcge_shader_set_inform_3f(LCGE_shader *shader, const char *name,
-                                GLfloat v0, GLfloat v1, GLfloat v2);
+				GLfloat v0, GLfloat v1, GLfloat v2);
 
 #ifdef __cplusplus
 }

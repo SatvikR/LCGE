@@ -20,33 +20,30 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-
 #ifndef _RENDERER_TTFTEXTURE_H
 #define _RENDERER_TTFTEXTURE_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <glad/glad.h>
 #include <stb/stb_truetype.h>
 
-typedef struct LCGE_ttftexture
-{
-    GLuint renderer_id;
-    unsigned int texture_slot;
-    stbtt_bakedchar *data;
+typedef struct LCGE_ttftexture {
+	GLuint renderer_id;
+	unsigned int texture_slot;
+	stbtt_bakedchar *data;
 } LCGE_ttftexture;
 
-LCGE_ttftexture* lcge_ttftexture_load(const char *filepath, float height);
+LCGE_ttftexture *lcge_ttftexture_load(const char *filepath, float height);
 void lcge_ttftexture_delete(LCGE_ttftexture *texture);
 
 void lcge_ttftexture_bind(LCGE_ttftexture *texture);
 void lcge_ttftexture_unbind(LCGE_ttftexture *texture);
 
 stbtt_aligned_quad lcge_ttftexture_get_char(LCGE_ttftexture *texture,
-                                            const char c, float *x, float *y);
+					    const char c, float *x, float *y);
 
 #ifdef __cplusplus
 }

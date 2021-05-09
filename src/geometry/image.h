@@ -24,35 +24,33 @@
 #define _GEOMETRY_IMAGE_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "math.h"
 #include "../renderer/renderer.h"
 #include "../export.h"
 
-typedef LCGE_EXPORT struct LCGE_image
-{
-    LCGE_vertex_array *va;
-    LCGE_vertex_buffer *vb;
-    LCGE_index_buffer *ib;
-    LCGE_shader *shader;
-    LCGE_texture *texture;
+typedef LCGE_EXPORT struct LCGE_image {
+	LCGE_vertex_array *va;
+	LCGE_vertex_buffer *vb;
+	LCGE_index_buffer *ib;
+	LCGE_shader *shader;
+	LCGE_texture *texture;
 
-    LCGE_coordinate top_l;
-    LCGE_coordinate top_r;
-    LCGE_coordinate bottom_l;
-    LCGE_coordinate bottom_r;
+	LCGE_coordinate top_l;
+	LCGE_coordinate top_r;
+	LCGE_coordinate bottom_l;
+	LCGE_coordinate bottom_r;
 } LCGE_image;
 
-LCGE_EXPORT LCGE_image* lcge_image_load(const char *filepath, float x, float y, float width,
-                            float height);
+LCGE_EXPORT LCGE_image *lcge_image_load(const char *filepath, float x, float y,
+					float width, float height);
 LCGE_EXPORT void lcge_image_delete(LCGE_image *image);
 
 LCGE_EXPORT void lcge_image_rotate(LCGE_image *image, float angle);
-LCGE_EXPORT void lcge_image_set(LCGE_image *image, float x, float y, float width,
-                    float height);
+LCGE_EXPORT void lcge_image_set(LCGE_image *image, float x, float y,
+				float width, float height);
 LCGE_EXPORT void lcge_image_draw(LCGE_image *image);
 
 LCGE_EXPORT float lcge_image_get_x(LCGE_image *image);

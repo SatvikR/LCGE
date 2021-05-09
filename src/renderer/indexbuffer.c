@@ -20,7 +20,6 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-
 #include <glad/glad.h>
 
 #include <stdlib.h>
@@ -28,30 +27,31 @@
 #include "indexbuffer.h"
 #include "../glerror.h"
 
-LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size,
-                                            const GLvoid *data)
+LCGE_index_buffer *lcge_index_buffer_create(GLsizeiptr size, const GLvoid *data)
 {
-    LCGE_index_buffer *index_buffer = malloc(sizeof(index_buffer));
+	LCGE_index_buffer *index_buffer = malloc(sizeof(index_buffer));
 
-    GLCALL(glGenBuffers(1, &index_buffer->renderer_id));
-    lcge_index_buffer_bind(index_buffer);
-    GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+	GLCALL(glGenBuffers(1, &index_buffer->renderer_id));
+	lcge_index_buffer_bind(index_buffer);
+	GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data,
+			    GL_STATIC_DRAW));
 
-    return index_buffer;
+	return index_buffer;
 }
 
 void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer)
 {
-    GLCALL(glDeleteBuffers(1, &index_buffer->renderer_id));
-    free(index_buffer);
+	GLCALL(glDeleteBuffers(1, &index_buffer->renderer_id));
+	free(index_buffer);
 }
 
 void lcge_index_buffer_bind(LCGE_index_buffer *index_buffer)
 {
-    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer->renderer_id));
+	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,
+			    index_buffer->renderer_id));
 }
 
 void lcge_index_buffer_unbind(LCGE_index_buffer *index_buffer)
 {
-    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }

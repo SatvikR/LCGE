@@ -20,23 +20,20 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-
 #ifndef _RENDERER_VERTEX_BUFFER_H
 #define _RENDERER_VERTEX_BUFFER_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <glad/glad.h>
 
-typedef struct LCGE_vertex_buffer
-{
-    GLuint renderer_id;
+typedef struct LCGE_vertex_buffer {
+	GLuint renderer_id;
 } LCGE_vertex_buffer;
 
-LCGE_vertex_buffer* lcge_vertex_buffer_create(void *data, GLuint size);
+LCGE_vertex_buffer *lcge_vertex_buffer_create(void *data, GLuint size);
 
 void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer);
 
@@ -44,7 +41,7 @@ void lcge_vertex_buffer_bind(LCGE_vertex_buffer *vertex_buffer);
 void lcge_vertex_buffer_unbind(LCGE_vertex_buffer *vertex_buffer);
 
 void lcge_vertex_buffer_update(LCGE_vertex_buffer *vertex_buffer, void *data,
-                               GLuint size);
+			       GLuint size);
 #ifdef __cplusplus
 }
 #endif

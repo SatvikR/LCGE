@@ -27,39 +27,39 @@
 #include "vertexarray.h"
 #include "../glerror.h"
 
-LCGE_vertex_array* lcge_vertex_array_create()
+LCGE_vertex_array *lcge_vertex_array_create()
 {
-    LCGE_vertex_array *vertex_array = malloc(sizeof(LCGE_vertex_array));
-    GLCALL(glGenVertexArrays(1, &vertex_array->renderer_id));
+	LCGE_vertex_array *vertex_array = malloc(sizeof(LCGE_vertex_array));
+	GLCALL(glGenVertexArrays(1, &vertex_array->renderer_id));
 
-    return vertex_array;
+	return vertex_array;
 }
 void lcge_vertex_array_delete(LCGE_vertex_array *vertex_array)
 {
-    GLCALL(glDeleteVertexArrays(1, &vertex_array->renderer_id));
-    free(vertex_array);
+	GLCALL(glDeleteVertexArrays(1, &vertex_array->renderer_id));
+	free(vertex_array);
 }
 
 void lcge_vertex_array_layout(LCGE_vertex_array *vertex_array,
-                              LCGE_vertex_buffer *vertex_buffer, GLint size,
-                              GLenum type, GLuint index, GLuint offset,
-                              GLsizei stride)
+			      LCGE_vertex_buffer *vertex_buffer, GLint size,
+			      GLenum type, GLuint index, GLuint offset,
+			      GLsizei stride)
 {
-    lcge_vertex_array_bind(vertex_array);
+	lcge_vertex_array_bind(vertex_array);
 
-    lcge_vertex_buffer_bind(vertex_buffer);
+	lcge_vertex_buffer_bind(vertex_buffer);
 
-    GLCALL(glEnableVertexAttribArray(index));
-    GLCALL(glVertexAttribPointer(index, size, type, GL_FALSE,
-                                 stride, (const void*)(uintptr_t)offset));
+	GLCALL(glEnableVertexAttribArray(index));
+	GLCALL(glVertexAttribPointer(index, size, type, GL_FALSE, stride,
+				     (const void *)(uintptr_t)offset));
 }
 
 void lcge_vertex_array_bind(LCGE_vertex_array *vertex_array)
 {
-    GLCALL(glBindVertexArray(vertex_array->renderer_id));
+	GLCALL(glBindVertexArray(vertex_array->renderer_id));
 }
 
 void lcge_vertex_array_unbind(LCGE_vertex_array *vertex_array)
 {
-    GLCALL(glBindVertexArray(0));
+	GLCALL(glBindVertexArray(0));
 }

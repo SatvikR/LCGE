@@ -24,19 +24,17 @@
 #define _RENDERER_INDEX_BUFFER_
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <glad/glad.h>
 
-typedef struct LCGE_index_buffer
-{
-    GLuint renderer_id;
+typedef struct LCGE_index_buffer {
+	GLuint renderer_id;
 } LCGE_index_buffer;
 
-LCGE_index_buffer* lcge_index_buffer_create(GLsizeiptr size,
-                                            const GLvoid *data);
+LCGE_index_buffer *lcge_index_buffer_create(GLsizeiptr size,
+					    const GLvoid *data);
 void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer);
 
 void lcge_index_buffer_bind(LCGE_index_buffer *index_buffer);

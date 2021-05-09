@@ -24,8 +24,7 @@
 #define _CORE_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <glad/glad.h>
@@ -34,17 +33,16 @@ extern "C"
 #include "window.h"
 #include "renderer/shader.h"
 
-typedef LCGE_EXPORT struct LCGE_state
-{
-    int initialized;
-    char *res_dir;
-    LCGE_window *window;
-    LCGE_shader *basic_geo;
-    LCGE_shader *texture;
-    LCGE_shader *text;
+typedef LCGE_EXPORT struct LCGE_state {
+	int initialized;
+	char *res_dir;
+	LCGE_window *window;
+	LCGE_shader *basic_geo;
+	LCGE_shader *texture;
+	LCGE_shader *text;
 
-    GLint total_textures;
-    unsigned int next_available_texture;
+	GLint total_textures;
+	unsigned int next_available_texture;
 } LCGE_state;
 
 extern LCGE_state *g_state;

@@ -31,62 +31,62 @@
 #include "glerror.h"
 
 LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
-                        const char *title, int resizable)
+				    const char *title, int resizable)
 {
-    if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
-        return LCGE_CONTEXT_ERR;
+	if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
+		return LCGE_CONTEXT_ERR;
 
-    LCGE_window *window = malloc(sizeof(LCGE_window));
+	LCGE_window *window = malloc(sizeof(LCGE_window));
 
-    window->width = width;
-    window->height = height;
+	window->width = width;
+	window->height = height;
 
-    glfwWindowHint(GLFW_DOUBLEBUFFER, GL_FALSE);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, resizable);
-    window->_window = glfwCreateWindow(window->width, window->height, title,
-                                       NULL, NULL);
+	glfwWindowHint(GLFW_DOUBLEBUFFER, GL_FALSE);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_RESIZABLE, resizable);
+	window->_window = glfwCreateWindow(window->width, window->height, title,
+					   NULL, NULL);
 
-    g_state->window = window;
-    glfwMakeContextCurrent(window->_window);
+	g_state->window = window;
+	glfwMakeContextCurrent(window->_window);
 
-    // Load opengl functions
-    int gladInitRes = gladLoadGL();
-    if (!gladInitRes)
-    {
-        glfwDestroyWindow(window->_window);
-        glfwTerminate();
-        return LCGE_CONTEXT_ERR;
-    }
-    GLCALL(glEnable(GL_BLEND));
-    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-    GLCALL(glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &g_state->total_textures));
+	// Load opengl functions
+	int gladInitRes = gladLoadGL();
+	if (!gladInitRes) {
+		glfwDestroyWindow(window->_window);
+		glfwTerminate();
+		return LCGE_CONTEXT_ERR;
+	}
+	GLCALL(glEnable(GL_BLEND));
+	GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+	GLCALL(glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS,
+			     &g_state->total_textures));
 
-    g_state->next_available_texture = 0;
+	g_state->next_available_texture = 0;
 
-    printf("OpenGL %s\n", glGetString(GL_VERSION));
+	printf("OpenGL %s\n", glGetString(GL_VERSION));
 
-    g_state->basic_geo = lcge_shader_create(g_state->res_dir, "basic_geo");
-    g_state->texture = lcge_shader_create(g_state->res_dir, "texture");
-    g_state->text = lcge_shader_create(g_state->res_dir, "text");
+	g_state->basic_geo = lcge_shader_create(g_state->res_dir, "basic_geo");
+	g_state->texture = lcge_shader_create(g_state->res_dir, "texture");
+	g_state->text = lcge_shader_create(g_state->res_dir, "text");
 
-    return LCGE_CONTEXT_OK;
+	return LCGE_CONTEXT_OK;
 }
 
 LCGE_EXPORT int lcge_window_is_open()
 {
-    return !glfwWindowShouldClose(g_state->window->_window);
+	return !glfwWindowShouldClose(g_state->window->_window);
 }
 
 LCGE_EXPORT void lcge_window_clear()
 {
-    GLCALL(glClear(GL_COLOR_BUFFER_BIT));
+	GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 }
 
 LCGE_EXPORT void lcge_window_update()
 {
-    glfwSwapBuffers(g_state->window->_window);
-    glfwPollEvents();
+	glfwSwapBuffers(g_state->window->_window);
+	glfwPollEvents();
 }

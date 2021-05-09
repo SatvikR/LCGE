@@ -26,17 +26,17 @@
 
 LCGE_EXPORT void GL_clear_error()
 {
-    while (glGetError() != GL_NO_ERROR);
+	while (glGetError() != GL_NO_ERROR)
+		;
 }
 
 LCGE_EXPORT bool GL_log_call(const char *file, int line)
 {
-
-    GLenum error = glGetError();
-    if (error)
-    {
-        printf("[GL ERROR] (0x%x) file: %s, line: %d\n", error, file, line);
-        return false;
-    }
-    return true;
+	GLenum error = glGetError();
+	if (error) {
+		printf("[GL ERROR] (0x%x) file: %s, line: %d\n", error, file,
+		       line);
+		return false;
+	}
+	return true;
 }

@@ -35,73 +35,67 @@ LCGE_state *g_state;
 
 LCGE_EXPORT int lcge_init(const char *lcge_res_dir)
 {
-    g_state = malloc(sizeof(LCGE_state));
+	g_state = malloc(sizeof(LCGE_state));
 
-    // create glfw window
-    if (!glfwInit())
-    {
-        g_state->initialized = LCGE_INIT_ERR;
-        return g_state->initialized;
-    }
+	// create glfw window
+	if (!glfwInit()) {
+		g_state->initialized = LCGE_INIT_ERR;
+		return g_state->initialized;
+	}
 
-    size_t res_dir_len = strlen(lcge_res_dir);
-    size_t shader_name_len = strlen("shaders/");
+	size_t res_dir_len = strlen(lcge_res_dir);
+	size_t shader_name_len = strlen("shaders/");
 
-    if (lcge_res_dir[res_dir_len-1] != '/')
-    {
-        g_state->res_dir = calloc(1, sizeof(char) *
-                                     (res_dir_len + shader_name_len + 2));
+	if (lcge_res_dir[res_dir_len - 1] != '/') {
+		g_state->res_dir = calloc(
+			1, sizeof(char) * (res_dir_len + shader_name_len + 2));
 
-        strcat(g_state->res_dir, lcge_res_dir);
-        strcat(g_state->res_dir, "/");
-        strcat(g_state->res_dir, "shaders/");
-    }
-    else
-    {
-        g_state->res_dir = calloc(1, sizeof(char) *
-                                     (res_dir_len + shader_name_len + 1));
+		strcat(g_state->res_dir, lcge_res_dir);
+		strcat(g_state->res_dir, "/");
+		strcat(g_state->res_dir, "shaders/");
+	} else {
+		g_state->res_dir = calloc(
+			1, sizeof(char) * (res_dir_len + shader_name_len + 1));
 
-        strcat(g_state->res_dir, lcge_res_dir);
-        strcat(g_state->res_dir, "shaders/");
-    }
+		strcat(g_state->res_dir, lcge_res_dir);
+		strcat(g_state->res_dir, "shaders/");
+	}
 
-    g_state->initialized = LCGE_INIT_OK;
-    return g_state->initialized;
+	g_state->initialized = LCGE_INIT_OK;
+	return g_state->initialized;
 }
 
 static void lcge_clean_up()
 {
-    if (g_state->initialized == LCGE_INIT_OK)
-    {
-        lcge_shader_delete(g_state->basic_geo);
-        lcge_shader_delete(g_state->texture);
-        lcge_shader_delete(g_state->text);
+	if (g_state->initialized == LCGE_INIT_OK) {
+		lcge_shader_delete(g_state->basic_geo);
+		lcge_shader_delete(g_state->texture);
+		lcge_shader_delete(g_state->text);
 
-        glfwTerminate();
-        glfwDestroyWindow(g_state->window->_window);
+		glfwTerminate();
+		glfwDestroyWindow(g_state->window->_window);
 
-        free(g_state->res_dir);
-        free(g_state->window);
-        return;
-    }
+		free(g_state->res_dir);
+		free(g_state->window);
+		return;
+	}
 
-    glfwTerminate();
+	glfwTerminate();
 }
 
 LCGE_EXPORT void lcge_exit()
 {
-    lcge_clean_up();
+	lcge_clean_up();
 
-    free(g_state);
+	free(g_state);
 }
 
 void lcge_update_texture_slot()
 {
-    if (g_state->next_available_texture == (g_state->total_textures - 1))
-    {
-        g_state->next_available_texture = 0;
-        return;
-    }
+	if (g_state->next_available_texture == (g_state->total_textures - 1)) {
+		g_state->next_available_texture = 0;
+		return;
+	}
 
-    g_state->next_available_texture++;
+	g_state->next_available_texture++;
 }

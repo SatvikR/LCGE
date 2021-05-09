@@ -24,33 +24,32 @@
 #define _GEOMETRY_RECT_H_
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "../renderer/renderer.h"
 #include "../export.h"
 #include "math.h"
 
-LCGE_EXPORT typedef struct LCGE_rect
-{
-    LCGE_vertex_array *va;
-    LCGE_vertex_buffer *vb;
-    LCGE_index_buffer *ib;
-    LCGE_shader *shader;
+LCGE_EXPORT typedef struct LCGE_rect {
+	LCGE_vertex_array *va;
+	LCGE_vertex_buffer *vb;
+	LCGE_index_buffer *ib;
+	LCGE_shader *shader;
 
-    LCGE_coordinate top_l;
-    LCGE_coordinate top_r;
-    LCGE_coordinate bottom_l;
-    LCGE_coordinate bottom_r;
+	LCGE_coordinate top_l;
+	LCGE_coordinate top_r;
+	LCGE_coordinate bottom_l;
+	LCGE_coordinate bottom_r;
 } LCGE_rect;
 
-LCGE_EXPORT LCGE_rect* lcge_rect_load(float x, float y, float width, float height);
+LCGE_EXPORT LCGE_rect *lcge_rect_load(float x, float y, float width,
+				      float height);
 LCGE_EXPORT void lcge_rect_delete(LCGE_rect *rect);
 
 LCGE_EXPORT void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b);
 LCGE_EXPORT void lcge_rect_set(LCGE_rect *rect, float x, float y, float width,
-                   float height);
+			       float height);
 
 LCGE_EXPORT void lcge_rect_rotate(LCGE_rect *rect, float angle);
 LCGE_EXPORT float lcge_rect_get_width(LCGE_rect *rect);

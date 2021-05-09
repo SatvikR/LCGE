@@ -24,39 +24,36 @@
 
 int main(int argc, char const *argv[])
 {
-    // Initialize LCGE
-    if (lcge_init("res/") == LCGE_INIT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+	// Initialize LCGE
+	if (lcge_init("res/") == LCGE_INIT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-    // Create a window
-    int success = lcge_create_context(500, 500, "LCGE Window Example",
-                                      LCGE_NON_RESIZEABLE);
+	// Create a window
+	int success = lcge_create_context(500, 500, "LCGE Window Example",
+					  LCGE_NON_RESIZEABLE);
 
-    // Check if there was an error creating the window
-    if (success == LCGE_CONTEXT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+	// Check if there was an error creating the window
+	if (success == LCGE_CONTEXT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-    // Create clock with 60 max fps
-    LCGE_clock *clock = lcge_clock_create(60);
+	// Create clock with 60 max fps
+	LCGE_clock *clock = lcge_clock_create(60);
 
-    while (lcge_window_is_open())
-    {
-        lcge_window_clear();
-        // Do any drawing here
+	while (lcge_window_is_open()) {
+		lcge_window_clear();
+		// Do any drawing here
 
-        // Get ready for next iteration
-        lcge_clock_tick(clock);
-        lcge_window_update();
-    }
-    lcge_clock_delete(clock);
+		// Get ready for next iteration
+		lcge_clock_tick(clock);
+		lcge_window_update();
+	}
+	lcge_clock_delete(clock);
 
-    lcge_exit();
+	lcge_exit();
 
-    return 0;
+	return 0;
 }
