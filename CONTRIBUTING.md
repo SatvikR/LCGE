@@ -2,15 +2,15 @@
 
 You can contribute to this project in two ways:
 
-  - Create an issue
-  - Contributing Code
+- Create an issue
+- Contributing Code
 
 ## Creating an Issue
 
 If you are creating an issue make sure to:
 
-  - Keep suggestions realistic
-  - Be specific
+- Keep suggestions realistic
+- Be specific
 
 ## Contributing Code
 
@@ -27,6 +27,7 @@ cmake -B ./build .
 ```
 
 2. Build
+
 ```sh
 # From the root of the repo
 cmake --build ./build
@@ -42,6 +43,8 @@ Now that you've built LCGE, you can start writing code.
 Follow these simple guidelines for code style/formatting.
 
 Every file must begin with this comment with a license notice
+
+> Before commiting, run this command `find src/ include/ tests/ -iname *.h -o -iname *.c | xargs clang-format -i`
 
 ```c
 /*
@@ -71,69 +74,69 @@ Every file must begin with this comment with a license notice
 
 Formatting:
 
-  - **Use 4 spaces rather than tabs**
-  - Use 80 as your column limit/ruler
-  - For naming in code:
+- **Use 4 spaces rather than tabs**
+- Use 80 as your column limit/ruler
+- For naming in code:
 
-  ```c
-  int my_var;
+```c
+int my_var;
 
-  typedef struct LCGE_struct_name
-  {
-  } LCGE_struct_name;
+typedef struct LCGE_struct_name
+{
+} LCGE_struct_name;
 
-  void lcge_function();
+void lcge_function();
 
-  #define LCGE_CONSTANT 1
-  ```
+#define LCGE_CONSTANT 1
+```
 
-  - For naming files, no capital letters, no spaces or underscores (ex. `window.h` or `core.c`)
+- For naming files, no capital letters, no spaces or underscores (ex. `window.h` or `core.c`)
 
 Style:
 
-  - All functions that users may access must be declared like this in `include/LCGE/lcge.h`
+- All functions that users may access must be declared like this in `include/LCGE/lcge.h`
 
-  ```c
-  /* Description */
-  extern void lcge_function_name();
-  ```
+```c
+/* Description */
+extern void lcge_function_name();
+```
 
-  - Functions are implemented in `src`
-  - Declare structs opaquely like this (in `include/LCGE/lcge.h`)
+- Functions are implemented in `src`
+- Declare structs opaquely like this (in `include/LCGE/lcge.h`)
 
-  ```c
-  typedef struct LCGE_name LCGE_name;
-  ```
+```c
+typedef struct LCGE_name LCGE_name;
+```
 
-  - Then define them in a header in `src`
+- Then define them in a header in `src`
 
-  ```c
+```c
 
-  #include <LCGE/lcge.h>
+#include <LCGE/lcge.h>
 
-  typedef struct LCGE_name
-  {
-    int thing;
-    char *name;
-  } LCGE_name;
-  ```
+typedef struct LCGE_name
+{
+  int thing;
+  char *name;
+} LCGE_name;
+```
 
-  - Use these header guards
+- Use these header guards
 
-  ```c
-  #ifndef _FILE_H
-  #define _FILE_H
+```c
+#ifndef _FILE_H
+#define _FILE_H
 
-  #ifdef __cplusplus
-  extern "C"
-  {
-  #endif
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-  /* code */
+/* code */
 
-  #ifdef __cplusplus
-  }
-  #endif
+#ifdef __cplusplus
+}
+#endif
 
-  #endif
-  ```
+#endif
+```
