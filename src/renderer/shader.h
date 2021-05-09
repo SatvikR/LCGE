@@ -32,6 +32,7 @@ extern "C"
 typedef struct LCGE_shader
 {
     GLuint renderer_id;
+    struct { char *key; GLint value; } *uniform_cache;
 } LCGE_shader;
 
 LCGE_shader* lcge_shader_create(const char *path, const char *name);

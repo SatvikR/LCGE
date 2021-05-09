@@ -21,6 +21,7 @@
 */
 
 #include <glad/glad.h>
+#include <stb/stb_ds.h>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,6 +30,8 @@
 
 #include "shader.h"
 #include "../glerror.h"
+
+#define UNIFORM_CACHE_DEFAULT -2
 
 static GLuint compile_shader(const char* path, GLenum type)
 {
@@ -111,6 +114,8 @@ LCGE_shader* lcge_shader_create(const char *path, const char *name)
     glValidateProgram(program);
 
     shader->renderer_id = program;
+    shader->uniform_cache = NULL;
+    shdefault(shader->uniform_cache, UNIFORM_CACHE_DEFAULT);
 
     glDeleteShader(vs);
     glDeleteShader(fs);
@@ -125,6 +130,7 @@ void lcge_shader_delete(LCGE_shader *shader)
 {
     GLCALL(glDeleteProgram(shader->renderer_id));
 
+    shfree(shader->uniform_cache);
     free(shader);
 }
 
@@ -141,7 +147,12 @@ void lcge_shader_unbind(LCGE_shader *shader)
 static GLint get_uniform_location(LCGE_shader *shader, const char *name)
 {
     GLint location;
-    GLCALL(location = glGetUniformLocation(shader->renderer_id, name));
+    location = shget(shader->uniform_cache, name);
+    if (location == UNIFORM_CACHE_DEFAULT)
+    {
+        GLCALL(location = glGetUniformLocation(shader->renderer_id, name));
+        shput(shader->uniform_cache, name, location);
+    }
 
     if (location == -1)
     {
