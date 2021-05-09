@@ -22,52 +22,50 @@
 
 #include <LCGE/lcge.h>
 
-#define WIN_WIDTH  500
+#define WIN_WIDTH 500
 #define WIN_HEIGHT 500
 
 int main(int argc, char const *argv[])
 {
-    // Initialize LCGE
-    if (lcge_init("res/") == LCGE_INIT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+	// Initialize LCGE
+	if (lcge_init("res/") == LCGE_INIT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-    // Create a window
-    int success = lcge_create_context(WIN_WIDTH, WIN_HEIGHT, "LCGE Window Example",
-                                      LCGE_NON_RESIZEABLE);
+	// Create a window
+	int success =
+		lcge_create_context(WIN_WIDTH, WIN_HEIGHT,
+				    "LCGE Window Example", LCGE_NON_RESIZEABLE);
 
+	// Check if there was an error creating the window
+	if (success == LCGE_CONTEXT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-    // Check if there was an error creating the window
-    if (success == LCGE_CONTEXT_ERR)
-    {
-        lcge_exit();
-        return -1;
-    }
+	// Create clock with 60 max fps
+	LCGE_clock *clock = lcge_clock_create(60);
 
-    // Create clock with 60 max fps
-    LCGE_clock *clock = lcge_clock_create(60);
+	LCGE_rect *rect = lcge_rect_load((WIN_WIDTH - 100) / 2,
+					 (WIN_HEIGHT - 100) / 2, 100, 150);
 
-    LCGE_rect *rect = lcge_rect_load((WIN_WIDTH - 100) / 2, (WIN_HEIGHT - 100) / 2, 100, 150);
+	float inc = 1.0f;
 
-    float inc = 1.0f;
+	while (lcge_window_is_open()) {
+		lcge_rect_rotate(rect, inc);
+		// lcge_rect_rotate(rect, inc);
+		lcge_window_clear();
+		// Do any drawing here
+		lcge_rect_draw(rect, 41, 173, 255);
 
-    while (lcge_window_is_open())
-    {
-        lcge_rect_rotate(rect, inc);
-        // lcge_rect_rotate(rect, inc);
-        lcge_window_clear();
-        // Do any drawing here
-        lcge_rect_draw(rect, 41, 173, 255);
+		// Get ready for next iteration
+		lcge_clock_tick(clock);
+		lcge_window_update();
+	}
+	lcge_clock_delete(clock);
 
-        // Get ready for next iteration
-        lcge_clock_tick(clock);
-        lcge_window_update();
-    }
-    lcge_clock_delete(clock);
+	lcge_exit();
 
-    lcge_exit();
-
-    return 0;
+	return 0;
 }

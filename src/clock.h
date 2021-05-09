@@ -24,19 +24,17 @@
 #define _CLOCK_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "export.h"
 
-typedef LCGE_EXPORT struct LCGE_clock
-{
-    double prev_time;
-    unsigned int fps;
+typedef LCGE_EXPORT struct LCGE_clock {
+	double prev_time;
+	unsigned int fps;
 } LCGE_clock;
 
-LCGE_EXPORT LCGE_clock* lcge_clock_create(unsigned int fps);
+LCGE_EXPORT LCGE_clock *lcge_clock_create(unsigned int fps);
 LCGE_EXPORT void lcge_clock_delete(LCGE_clock *clock);
 
 LCGE_EXPORT void lcge_clock_tick(LCGE_clock *clock);

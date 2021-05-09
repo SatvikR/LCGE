@@ -20,15 +20,12 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-
 #ifndef _GLERROR_H
 #define _GLERROR_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
-
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -36,26 +33,23 @@ extern "C"
 
 #ifndef NDEBUG
 #ifdef _MSC_VER
-#define ASSERT(x) \
-    if (!(x)) \
-        __debugbreak();
+#define ASSERT(x)                                                              \
+	if (!(x))                                                              \
+		__debugbreak();
 #else
 #include <signal.h>
-#define ASSERT(x) \
-    if (!(x)) \
-        raise(SIGTRAP);
+#define ASSERT(x)                                                              \
+	if (!(x))                                                              \
+		raise(SIGTRAP);
 #endif
-#define GLCALL(x) \
-    GL_clear_error(); \
-    x; \
-    ASSERT(GL_log_call(__FILE__, __LINE__))
+#define GLCALL(x)                                                              \
+	GL_clear_error();                                                      \
+	x;                                                                     \
+	ASSERT(GL_log_call(__FILE__, __LINE__))
 #else
-#define ASSERT(x) \
-    x;
-#define GLCALL(x) \
-    x;
+#define ASSERT(x) x;
+#define GLCALL(x) x;
 #endif
-
 
 #include "export.h"
 

@@ -20,13 +20,11 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-
 #ifndef _RENDERER_H
 #define _RENDERER_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "vertexarray.h"

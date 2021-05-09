@@ -24,14 +24,13 @@
 #define _EXPORT_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #ifdef _WIN32
-    #define LCGE_EXPORT __declspec(dllexport)
+#define LCGE_EXPORT __declspec(dllexport)
 #else
-    #define LCGE_EXPORT
+#define LCGE_EXPORT
 #endif
 
 #ifdef __cplusplus

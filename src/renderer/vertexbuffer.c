@@ -25,36 +25,36 @@
 #include "vertexbuffer.h"
 #include "../glerror.h"
 
-LCGE_vertex_buffer* lcge_vertex_buffer_create(void *data, GLuint size)
+LCGE_vertex_buffer *lcge_vertex_buffer_create(void *data, GLuint size)
 {
-    LCGE_vertex_buffer *vb = malloc(sizeof(LCGE_vertex_buffer));
+	LCGE_vertex_buffer *vb = malloc(sizeof(LCGE_vertex_buffer));
 
-    GLCALL(glGenBuffers(1, &vb->renderer_id));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vb->renderer_id));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	GLCALL(glGenBuffers(1, &vb->renderer_id));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vb->renderer_id));
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
 
-    return vb;
+	return vb;
 }
 
 void lcge_vertex_buffer_update(LCGE_vertex_buffer *vertex_buffer, void *data,
-                               GLuint size)
+			       GLuint size)
 {
-    lcge_vertex_buffer_bind(vertex_buffer);
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	lcge_vertex_buffer_bind(vertex_buffer);
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
 }
 
 void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer)
 {
-    GLCALL(glDeleteBuffers(1, &vertex_buffer->renderer_id));
-    free(vertex_buffer);
+	GLCALL(glDeleteBuffers(1, &vertex_buffer->renderer_id));
+	free(vertex_buffer);
 }
 
 void lcge_vertex_buffer_bind(LCGE_vertex_buffer *vertex_buffer)
 {
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer->renderer_id));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer->renderer_id));
 }
 
 void lcge_vertex_buffer_unbind(LCGE_vertex_buffer *vertex_buffer)
 {
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }

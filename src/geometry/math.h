@@ -24,21 +24,19 @@
 #define _GEOMETRY_MATH_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include <glad/glad.h>
 
-typedef struct LCGE_coordinate
-{
-    GLfloat x;
-    GLfloat y;
+typedef struct LCGE_coordinate {
+	GLfloat x;
+	GLfloat y;
 } LCGE_coordinate;
 
 LCGE_coordinate lcge_coordinate_translate(float x, float y);
 LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
-                                       float angle);
+				       float angle);
 float lcge_coordinate_distance(LCGE_coordinate v1, LCGE_coordinate v2);
 
 #ifdef __cplusplus

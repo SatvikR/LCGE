@@ -29,49 +29,55 @@
 #include "../glerror.h"
 #include "../core.h"
 
-LCGE_texture* lcge_texture_create(const char *filepath)
+LCGE_texture *lcge_texture_create(const char *filepath)
 {
-    LCGE_texture *texture = calloc(1, sizeof(LCGE_texture));
+	LCGE_texture *texture = calloc(1, sizeof(LCGE_texture));
 
-    stbi_set_flip_vertically_on_load(1);
+	stbi_set_flip_vertically_on_load(1);
 
-    unsigned char *data = stbi_load(filepath, &texture->width, &texture->height,
-                                    &texture->comp_per_pixel, 4);
+	unsigned char *data =
+		stbi_load(filepath, &texture->width, &texture->height,
+			  &texture->comp_per_pixel, 4);
 
-    GLCALL(glGenTextures(1, &texture->renderer_id));
-    GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
-    texture->texture_slot = g_state->next_available_texture;
-    lcge_update_texture_slot();
+	GLCALL(glGenTextures(1, &texture->renderer_id));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
+	texture->texture_slot = g_state->next_available_texture;
+	lcge_update_texture_slot();
 
-    // Enable resizing
-    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	// Enable resizing
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+			       GL_LINEAR));
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+			       GL_LINEAR));
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+			       GL_CLAMP_TO_EDGE));
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
+			       GL_CLAMP_TO_EDGE));
 
-    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture->width,
-                        texture->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
+	GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture->width,
+			    texture->height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+			    data));
 
-    GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 
-    if (data)
-        stbi_image_free(data);
+	if (data)
+		stbi_image_free(data);
 
-    return texture;
+	return texture;
 }
 void lcge_texture_delete(LCGE_texture *texture)
 {
-    GLCALL(glDeleteTextures(1, &texture->renderer_id));
-    free(texture);
+	GLCALL(glDeleteTextures(1, &texture->renderer_id));
+	free(texture);
 }
 
 void lcge_texture_bind(LCGE_texture *texture)
 {
-    GLCALL(glActiveTexture(GL_TEXTURE0 + texture->texture_slot));
-    GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
+	GLCALL(glActiveTexture(GL_TEXTURE0 + texture->texture_slot));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
 }
 
 void lcge_texture_unbind(LCGE_texture *texture)
 {
-    GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 }
