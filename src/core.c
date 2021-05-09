@@ -94,3 +94,14 @@ LCGE_EXPORT void lcge_exit()
 
     free(g_state);
 }
+
+void lcge_update_texture_slot()
+{
+    if (g_state->next_available_texture == (g_state->total_textures - 1))
+    {
+        g_state->next_available_texture = 0;
+        return;
+    }
+
+    g_state->next_available_texture++;
+}

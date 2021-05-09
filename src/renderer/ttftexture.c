@@ -27,6 +27,7 @@
 
 #include "ttftexture.h"
 #include "../glerror.h"
+#include "../core.h"
 
 LCGE_ttftexture* lcge_ttftexture_load(const char *filepath, float height)
 {
@@ -54,6 +55,9 @@ LCGE_ttftexture* lcge_ttftexture_load(const char *filepath, float height)
     GLCALL(glGenTextures(1, &texture->renderer_id));
     GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
 
+    texture->texture_slot = g_state->next_available_texture;
+    lcge_update_texture_slot();
+
     // Enable resizing
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
@@ -78,7 +82,7 @@ void lcge_ttftexture_delete(LCGE_ttftexture *texture)
 
 void lcge_ttftexture_bind(LCGE_ttftexture *texture)
 {
-    GLCALL(glActiveTexture(GL_TEXTURE0));
+    GLCALL(glActiveTexture(GL_TEXTURE0 + texture->texture_slot));
     GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
 }
 void lcge_ttftexture_unbind(LCGE_ttftexture *texture)

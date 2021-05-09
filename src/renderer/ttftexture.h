@@ -35,6 +35,7 @@ extern "C"
 typedef struct LCGE_ttftexture
 {
     GLuint renderer_id;
+    unsigned int texture_slot;
     stbtt_bakedchar *data;
 } LCGE_ttftexture;
 

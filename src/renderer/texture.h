@@ -36,6 +36,7 @@ typedef struct LCGE_texture
     int comp_per_pixel;
 
     unsigned int renderer_id;
+    unsigned int texture_slot;
 } LCGE_texture;
 
 LCGE_texture* lcge_texture_create(const char *filepath);

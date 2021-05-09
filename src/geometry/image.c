@@ -110,7 +110,6 @@ LCGE_EXPORT void lcge_image_set(LCGE_image *image, float x, float y, float width
 {
     LCGE_coordinate top_l
                     = lcge_coordinate_translate(x, y);
-    printf("top_ly: %f, %f, %f\n", x, y, (lcge_coordinate_translate(x, y)).y);
     LCGE_coordinate top_r
                     = lcge_coordinate_translate(x + width, y);
     LCGE_coordinate bottom_l

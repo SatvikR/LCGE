@@ -27,6 +27,7 @@
 
 #include "texture.h"
 #include "../glerror.h"
+#include "../core.h"
 
 LCGE_texture* lcge_texture_create(const char *filepath)
 {
@@ -39,6 +40,8 @@ LCGE_texture* lcge_texture_create(const char *filepath)
 
     GLCALL(glGenTextures(1, &texture->renderer_id));
     GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
+    texture->texture_slot = g_state->next_available_texture;
+    lcge_update_texture_slot();
 
     // Enable resizing
     GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
@@ -64,7 +67,7 @@ void lcge_texture_delete(LCGE_texture *texture)
 
 void lcge_texture_bind(LCGE_texture *texture)
 {
-    GLCALL(glActiveTexture(GL_TEXTURE0));
+    GLCALL(glActiveTexture(GL_TEXTURE0 + texture->texture_slot));
     GLCALL(glBindTexture(GL_TEXTURE_2D, texture->renderer_id));
 }
 

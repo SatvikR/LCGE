@@ -62,6 +62,9 @@ LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
     }
     GLCALL(glEnable(GL_BLEND));
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+    GLCALL(glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &g_state->total_textures));
+
+    g_state->next_available_texture = 0;
 
     printf("OpenGL %s\n", glGetString(GL_VERSION));
 

@@ -28,6 +28,8 @@ extern "C"
 {
 #endif
 
+#include <glad/glad.h>
+
 #include "export.h"
 #include "window.h"
 #include "renderer/shader.h"
@@ -40,12 +42,17 @@ typedef LCGE_EXPORT struct LCGE_state
     LCGE_shader *basic_geo;
     LCGE_shader *texture;
     LCGE_shader *text;
+
+    GLint total_textures;
+    unsigned int next_available_texture;
 } LCGE_state;
 
 extern LCGE_state *g_state;
 
 LCGE_EXPORT int lcge_init(const char *lcge_res_dir);
 LCGE_EXPORT void lcge_exit();
+
+void lcge_update_texture_slot();
 
 #ifdef __cplusplus
 }
