@@ -22,7 +22,7 @@
 
 #include <LCGE/lcge.h>
 
-#define WIN_WIDTH 500
+#define WIN_WIDTH  500
 #define WIN_HEIGHT 500
 
 int main(int argc, char const *argv[])

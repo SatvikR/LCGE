@@ -22,7 +22,7 @@
 
 #include <LCGE/lcge.h>
 
-#define WIDTH 300
+#define WIDTH  300
 #define HEIGHT 300
 
 int main(int argc, char const *argv[])

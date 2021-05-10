@@ -22,10 +22,10 @@
 
 #include <LCGE/lcge.h>
 
-#define WIN_WIDTH 800
+#define WIN_WIDTH  800
 #define WIN_HEIGHT 800
 
-#define SPRITE_WIDTH (326.0f * 0.75f)
+#define SPRITE_WIDTH  (326.0f * 0.75f)
 #define SPRITE_HEIGHT (296.0f * 0.75f)
 
 int main(int argc, char const *argv[])

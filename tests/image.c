@@ -22,7 +22,7 @@
 
 #include <LCGE/lcge.h>
 
-#define SPRITE_WIDTH 326.0f
+#define SPRITE_WIDTH  326.0f
 #define SPRITE_HEIGHT 296.0f
 
 int main(int argc, char const *argv[])

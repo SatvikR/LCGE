@@ -1,7 +1,7 @@
-# This file was copied from the Linux Kernel source tree
+# This file is a modified version of the .clang-format file from the Linux Kernel
 # SPDX-License-Identifier: GPL-2.0
 #
-# clang-format configuration file. Intended for clang-format >= 4.
+# clang-format configuration file. Intended for clang-format >= 9.
 #
 # For more information, see:
 #
@@ -12,6 +12,7 @@
 
 ---
 AccessModifierOffset: -4
+AlignConsecutiveMacros: true
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false

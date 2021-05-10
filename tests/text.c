@@ -22,7 +22,7 @@
 
 #include <LCGE/lcge.h>
 
-#define WIDTH 800
+#define WIDTH  800
 #define HEIGHT 800
 
 int main(int argc, char const *argv[])
