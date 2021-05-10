@@ -74,7 +74,8 @@ Every file must begin with this comment with a license notice
 
 Formatting:
 
-- **Use 4 spaces rather than tabs**
+- **Use tabs rather than spaces**
+- Format assuming you are using unix tabs (8 spaces in width)
 - Use 80 as your column limit/ruler
 - For naming in code:
 
