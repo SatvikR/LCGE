@@ -35,8 +35,8 @@ static double to_rad(float deg)
 LCGE_coordinate lcge_coordinate_translate(float x, float y)
 {
 	LCGE_coordinate coordinate = {
-		((x / g_state->window->width * 2.0f) - 1.0f),
-		(-1.0f * ((y / g_state->window->height * 2.0f) - 1.0f))
+		x / g_state->window->width * 2.0f - 1.0f,
+		-1.0f * (y / g_state->window->height * 2.0f - 1.0f)
 	};
 
 	return coordinate;
@@ -49,7 +49,7 @@ LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
 	float sin_a = (float)sin(to_rad(angle));
 
 	LCGE_coordinate coordinate = {
-		((x0 - xc) * cos_a - (y0 - yc) * sin_a) + xc,
+		(x0 - xc) * cos_a - (y0 - yc) * sin_a + xc,
 		(x0 - xc) * sin_a + (y0 - yc) * cos_a + yc
 	};
 
