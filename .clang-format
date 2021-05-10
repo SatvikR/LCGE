@@ -1,4 +1,4 @@
-# Copyright (c) 2018-2021 Linux Kernel Contributers
+# This file was copied from the Linux Kernel source tree
 # SPDX-License-Identifier: GPL-2.0
 #
 # clang-format configuration file. Intended for clang-format >= 4.
