@@ -100,7 +100,7 @@ Copyright (c) 2021 Satvik Reddy
 A brief summary of the license:
 
 - You can use LCGE in any project, though if its closed source, you must dynamically link with LCGE
-- If you make changes/additions to LCGE you must they must be release with either an LGPL compatible license (though I prefer you submit your changes back to this repository)
+- If you make changes/additions to LCGE, they must be released with an LGPL compatible license (though I prefer you submit your changes back to this repository)
 - More info in the `LICENSE` file in the root of the source tree
 
 ### Dependencies
