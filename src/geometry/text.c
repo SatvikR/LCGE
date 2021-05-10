@@ -55,7 +55,6 @@ LCGE_EXPORT LCGE_text *lcge_text_load(const char *text, float x, float y,
 	size_t len = strlen(text);
 
 	m_text->vbs = calloc(1, sizeof(LCGE_vertex_buffer *) * len);
-	// m_text->va = lcge_vertex_array_create();
 	m_text->vas = calloc(1, sizeof(LCGE_vertex_array *) * len);
 	m_text->font = font;
 	m_text->shader = g_state->text;
