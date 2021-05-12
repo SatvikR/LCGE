@@ -32,7 +32,7 @@ extern "C" {
 #include "debug.h"
 
 #ifndef NDEBUG
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define ASSERT(x)                                                              \
 	if (!(x))                                                              \
 		__debugbreak();
