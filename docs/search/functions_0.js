@@ -34,7 +34,7 @@ var searchData=
   ['lcge_5ftext_5fget_5fx_208',['lcge_text_get_x',['../lcge_8h.html#a5bf95f471c0ba7cac62b89fbee183db1',1,'lcge.h']]],
   ['lcge_5ftext_5fget_5fy_209',['lcge_text_get_y',['../lcge_8h.html#a75f206fe14b1c244baec2641019c9ac0',1,'lcge.h']]],
   ['lcge_5ftext_5fload_210',['lcge_text_load',['../lcge_8h.html#ae221338f2237e8fc12b5a7e3b7626fe7',1,'lcge.h']]],
-  ['lcge_5ftext_5fset_211',['lcge_text_set',['../lcge_8h.html#a577dfef6fbea66b92124fde2d4496db7',1,'lcge.h']]],
+  ['lcge_5ftext_5fset_211',['lcge_text_set',['../lcge_8h.html#a1b94ec606ec3cfb884f6f052333f477a',1,'lcge.h']]],
   ['lcge_5fwindow_5fclear_212',['lcge_window_clear',['../lcge_8h.html#accafcf6d78d9d4dbac7fc1af206afba7',1,'lcge.h']]],
   ['lcge_5fwindow_5fis_5fopen_213',['lcge_window_is_open',['../lcge_8h.html#a3a54d10e7ac7dac87848d5da728a2026',1,'lcge.h']]],
   ['lcge_5fwindow_5fupdate_214',['lcge_window_update',['../lcge_8h.html#ac5a3ed7e5a27e62823c1150e72c5f99a',1,'lcge.h']]]

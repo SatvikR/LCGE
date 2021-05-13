@@ -150,17 +150,33 @@ LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b)
 	}
 }
 
-LCGE_EXPORT void lcge_text_set(LCGE_text *text, float x, float y)
+LCGE_EXPORT void lcge_text_set(LCGE_text *text, const char *n_text, float x,
+			       float y)
 {
 	int i;
 	for (i = 0; i < text->len; i++) {
+		lcge_vertex_buffer_delete(text->vbs[i]);
+		lcge_vertex_array_delete(text->vas[i]);
+	}
+
+	free(text->vas);
+	free(text->vbs);
+
+	size_t len = strlen(n_text);
+
+	text->vbs = calloc(1, sizeof(LCGE_vertex_buffer *) * len);
+	text->vas = calloc(1, sizeof(LCGE_vertex_array *) * len);
+	text->len = len;
+	text->data = n_text;
+
+	for (i = 0; i < text->len; i++) {
 		stbtt_aligned_quad q = lcge_ttftexture_get_char(
-			text->font->texture, text->data[i], &x, &y);
+			text->font->texture, n_text[i], &x, &y);
 
 		if (i == 0) {
 			text->x0 = q.x0;
 			text->y0 = q.y0;
-		} else if (i == (text->len - 1)) {
+		} else if (i == (len - 1)) {
 			text->x1 = q.x1;
 			text->y1 = q.y1;
 		}
@@ -179,9 +195,44 @@ LCGE_EXPORT void lcge_text_set(LCGE_text *text, float x, float y)
 			bottom_r.x, bottom_r.y, q.s1, q.t1 // bottom right
 		};
 
-		lcge_vertex_array_bind(text->vas[i]);
-		lcge_vertex_buffer_update(text->vbs[i], positions,
-					  16 * sizeof(GLfloat));
+		text->vas[i] = lcge_vertex_array_create();
+
+		text->vbs[i] = lcge_vertex_buffer_create(positions,
+							 16 * sizeof(GLfloat));
+
+		lcge_vertex_array_layout(text->vas[i], text->vbs[i], 2,
+					 GL_FLOAT, 0, 0, sizeof(GLfloat) * 4);
+		lcge_vertex_array_layout(text->vas[i], text->vbs[i], 2,
+					 GL_FLOAT, 1, sizeof(GLfloat) * 2,
+					 sizeof(GLfloat) * 4);
+		// stbtt_aligned_quad q = lcge_ttftexture_get_char(
+		// 	text->font->texture, text->data[i], &x, &y);
+
+		// if (i == 0) {
+		// 	text->x0 = q.x0;
+		// 	text->y0 = q.y0;
+		// } else if (i == (text->len - 1)) {
+		// 	text->x1 = q.x1;
+		// 	text->y1 = q.y1;
+		// }
+
+		// LCGE_coordinate top_l = lcge_coordinate_translate(q.x0, q.y0);
+		// LCGE_coordinate top_r = lcge_coordinate_translate(q.x1, q.y0);
+		// LCGE_coordinate bottom_l =
+		// 	lcge_coordinate_translate(q.x0, q.y1);
+		// LCGE_coordinate bottom_r =
+		// 	lcge_coordinate_translate(q.x1, q.y1);
+
+		// GLfloat positions[16] = {
+		// 	bottom_l.x, bottom_l.y, q.s0, q.t1, // bottom left
+		// 	top_l.x,    top_l.y,	q.s0, q.t0, // top left
+		// 	top_r.x,    top_r.y,	q.s1, q.t0, // top right
+		// 	bottom_r.x, bottom_r.y, q.s1, q.t1 // bottom right
+		// };
+
+		// lcge_vertex_array_bind(text->vas[i]);
+		// lcge_vertex_buffer_update(text->vbs[i], positions,
+		// 			  16 * sizeof(GLfloat));
 	}
 }
 

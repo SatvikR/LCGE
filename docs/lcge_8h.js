@@ -169,7 +169,7 @@ var lcge_8h =
     [ "lcge_text_load", "lcge_8h.html#ae221338f2237e8fc12b5a7e3b7626fe7", null ],
     [ "lcge_text_delete", "lcge_8h.html#aaa18328b72f1011dedb66c1acdfaf527", null ],
     [ "lcge_text_draw", "lcge_8h.html#ae1e17577b238aba7bde3e7c50cf49e53", null ],
-    [ "lcge_text_set", "lcge_8h.html#a577dfef6fbea66b92124fde2d4496db7", null ],
+    [ "lcge_text_set", "lcge_8h.html#a1b94ec606ec3cfb884f6f052333f477a", null ],
     [ "lcge_text_get_x", "lcge_8h.html#a5bf95f471c0ba7cac62b89fbee183db1", null ],
     [ "lcge_text_get_y", "lcge_8h.html#a75f206fe14b1c244baec2641019c9ac0", null ],
     [ "lcge_text_get_width", "lcge_8h.html#a688e82d6836f4562491b717bcbbcc75c", null ],

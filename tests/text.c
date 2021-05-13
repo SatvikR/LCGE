@@ -51,7 +51,8 @@ int main(int argc, char const *argv[])
 	LCGE_text *text = lcge_text_load("Hello, world!", 0, 0, font);
 
 	// Center text on the screen
-	lcge_text_set(text, (WIDTH - lcge_text_get_width(text)) / 2,
+	lcge_text_set(text, "hello world!",
+		      (WIDTH - lcge_text_get_width(text)) / 2,
 		      (HEIGHT - lcge_text_get_height(text)) / 2);
 
 	while (lcge_window_is_open()) {

@@ -508,9 +508,10 @@ LCGE_IMPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
 /**
  * @brief Set new data for text.
  *
- * Lets you specify new x and y values
+ * Lets you specify new x and y values and new text
  */
-LCGE_IMPORT void lcge_text_set(LCGE_text *text, float x, float y);
+LCGE_IMPORT void lcge_text_set(LCGE_text *text, const char *n_text, float x,
+			       float y);
 
 /**
  * @brief Gets x value of text.

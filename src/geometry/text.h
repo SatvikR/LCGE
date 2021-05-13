@@ -61,7 +61,8 @@ LCGE_EXPORT void lcge_text_delete(LCGE_text *text);
 
 LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b);
 
-LCGE_EXPORT void lcge_text_set(LCGE_text *text, float x, float y);
+LCGE_EXPORT void lcge_text_set(LCGE_text *text, const char *n_text, float x,
+			       float y);
 
 LCGE_EXPORT float lcge_text_get_x(LCGE_text *text);
 LCGE_EXPORT float lcge_text_get_y(LCGE_text *text);
