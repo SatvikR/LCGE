@@ -18,6 +18,7 @@ A Lightweight C game engine built with OpenGL.
 - Maintain an FPS
 - Render 2D rectangles
 - Render 2D images
+- Rotate 2d rectangles and images
 - Get keyboard input
 - Get mouse input
 - Load truetype fonts
