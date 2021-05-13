@@ -67,7 +67,7 @@ LCGE_ttftexture *lcge_ttftexture_load(const char *filepath, float height)
 			       GL_CLAMP_TO_EDGE));
 	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
 			       GL_CLAMP_TO_EDGE));
-	GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, 512, 512, 0, GL_RED,
+	GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, 512, 512, 0, GL_RED,
 			    GL_UNSIGNED_BYTE, temp_bitmap));
 
 	free(ttf_buffer);
