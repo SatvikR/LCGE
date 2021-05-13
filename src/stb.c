@@ -20,6 +20,8 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
+// Implementation files for stb tools
+// Used for fonts, images, and hashmaps
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #define STB_TRUETYPE_IMPLEMENTATION

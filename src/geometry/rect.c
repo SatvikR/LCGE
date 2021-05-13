@@ -56,6 +56,7 @@ LCGE_EXPORT LCGE_rect *lcge_rect_load(float x, float y, float width,
 	LCGE_vertex_buffer *vb =
 		lcge_vertex_buffer_create(positions, 8 * sizeof(GLfloat));
 
+	// Vertex coordinates
 	lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, 0,
 				 sizeof(GLfloat) * 2);
 
@@ -88,6 +89,8 @@ LCGE_EXPORT LCGE_rect *lcge_rect_load(float x, float y, float width,
 LCGE_EXPORT void lcge_rect_draw(LCGE_rect *rect, float r, float g, float b)
 {
 	lcge_shader_bind(rect->shader);
+
+	// Divide by 255 because OpenGL colors are from 0.0f to 1.0f
 	lcge_shader_set_uniform_4f(rect->shader, "u_color", r / 255.0f,
 				   g / 255.0f, b / 255.0f, 1.0f);
 

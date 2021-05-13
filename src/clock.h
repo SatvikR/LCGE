@@ -29,6 +29,7 @@ extern "C" {
 
 #include "export.h"
 
+// Static fps clock
 typedef LCGE_EXPORT struct LCGE_clock {
 	double prev_time;
 	unsigned int fps;

@@ -29,6 +29,7 @@ extern "C" {
 
 #include <glad/glad.h>
 
+// Wrapper for a 2D coordinate
 typedef struct LCGE_coordinate {
 	GLfloat x;
 	GLfloat y;

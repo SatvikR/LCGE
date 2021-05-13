@@ -58,8 +58,10 @@ LCGE_EXPORT LCGE_image *lcge_image_load(const char *filepath, float x, float y,
 	LCGE_vertex_buffer *vb =
 		lcge_vertex_buffer_create(positions, 16 * sizeof(GLfloat));
 
+	// Vertex coordinates
 	lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 0, 0,
 				 sizeof(GLfloat) * 4);
+	// Texture coordinates
 	lcge_vertex_array_layout(va, vb, 2, GL_FLOAT, 1, sizeof(GLfloat) * 2,
 				 sizeof(GLfloat) * 4);
 
@@ -140,6 +142,7 @@ LCGE_EXPORT void lcge_image_draw(LCGE_image *image)
 
 LCGE_EXPORT void lcge_image_rotate(LCGE_image *image, float angle)
 {
+	// Get center by averaging the top left and bottom right coordinates
 	LCGE_coordinate center = {
 		(image->top_l.x + image->bottom_r.x) / 2.0f,
 		(image->top_l.y + image->bottom_r.y) / 2.0f,
@@ -172,6 +175,10 @@ LCGE_EXPORT void lcge_image_rotate(LCGE_image *image, float angle)
 	image->bottom_r = bottom_r;
 }
 
+/**
+ * lcge_image_get_x and lcge_image_get_y are the inverse functions of the
+ * equations from the lcge_coordinate_translate function
+ */
 LCGE_EXPORT float lcge_image_get_x(LCGE_image *image)
 {
 	return (image->top_l.x + 1) / 2.0f * g_state->window->width;

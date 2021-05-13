@@ -32,6 +32,7 @@
 #include "../core.h"
 #include "../glerror.h"
 
+// Load font bitmap data (scaled to a height)
 LCGE_EXPORT LCGE_font *lcge_font_load(const char *filepath, float height)
 {
 	LCGE_font *font = calloc(1, sizeof(LCGE_font));
@@ -54,6 +55,7 @@ LCGE_EXPORT LCGE_text *lcge_text_load(const char *text, float x, float y,
 
 	size_t len = strlen(text);
 
+	// We need individual vb's and va's for each character
 	m_text->vbs = calloc(1, sizeof(LCGE_vertex_buffer *) * len);
 	m_text->vas = calloc(1, sizeof(LCGE_vertex_array *) * len);
 	m_text->font = font;
@@ -93,6 +95,7 @@ LCGE_EXPORT LCGE_text *lcge_text_load(const char *text, float x, float y,
 		m_text->vbs[i] = lcge_vertex_buffer_create(
 			positions, 16 * sizeof(GLfloat));
 
+		// At this point we just treat each character as a texture2D
 		lcge_vertex_array_layout(m_text->vas[i], m_text->vbs[i], 2,
 					 GL_FLOAT, 0, 0, sizeof(GLfloat) * 4);
 		lcge_vertex_array_layout(m_text->vas[i], m_text->vbs[i], 2,
@@ -153,6 +156,7 @@ LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b)
 LCGE_EXPORT void lcge_text_set(LCGE_text *text, const char *n_text, float x,
 			       float y)
 {
+	// Clear old data
 	int i;
 	for (i = 0; i < text->len; i++) {
 		lcge_vertex_buffer_delete(text->vbs[i]);

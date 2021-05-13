@@ -33,6 +33,7 @@
 LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
 				    const char *title, int resizable)
 {
+	// Argument validation
 	if (resizable != LCGE_RESIZEABLE && resizable != LCGE_NON_RESIZEABLE)
 		return LCGE_CONTEXT_ERR;
 
@@ -41,6 +42,7 @@ LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
 	window->width = width;
 	window->height = height;
 
+	// Turn off vsync for unlimited FPS
 	glfwWindowHint(GLFW_DOUBLEBUFFER, GL_FALSE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -59,8 +61,12 @@ LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
 		glfwTerminate();
 		return LCGE_CONTEXT_ERR;
 	}
+
+	// Enable blending
 	GLCALL(glEnable(GL_BLEND));
 	GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
+	// Store the total texture slots
 	GLCALL(glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS,
 			     &g_state->total_textures));
 
@@ -68,6 +74,7 @@ LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
 
 	printf("OpenGL %s\n", glGetString(GL_VERSION));
 
+	// Load shaders
 	g_state->basic_geo = lcge_shader_create(g_state->res_dir, "basic_geo");
 	g_state->texture = lcge_shader_create(g_state->res_dir, "texture");
 	g_state->text = lcge_shader_create(g_state->res_dir, "text");

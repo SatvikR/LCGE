@@ -28,6 +28,7 @@
 
 LCGE_EXPORT int lcge_get_key(int key)
 {
+    // GLFW keys are mapped the same way as LCGE keys
 	int state = glfwGetKey(g_state->window->_window, key);
 	if (state == GLFW_PRESS || state == GLFW_REPEAT)
 		return LCGE_KEY_PRESSED;

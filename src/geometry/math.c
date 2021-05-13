@@ -32,6 +32,7 @@ static double to_rad(float deg)
 	return deg * (M_PI / 180.0f);
 }
 
+// Translate OpenGL coordinates to LCGE coordinates (origin at top left)
 LCGE_coordinate lcge_coordinate_translate(float x, float y)
 {
 	LCGE_coordinate coordinate = {
@@ -42,6 +43,7 @@ LCGE_coordinate lcge_coordinate_translate(float x, float y)
 	return coordinate;
 }
 
+// Basic matrix rotation (counterclockwise)
 LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
 				       float angle)
 {
@@ -56,6 +58,7 @@ LCGE_coordinate lcge_coordinate_rotate(float x0, float y0, float xc, float yc,
 	return coordinate;
 }
 
+// Distance formula
 float lcge_coordinate_distance(LCGE_coordinate v1, LCGE_coordinate v2)
 {
 	return (float)sqrt((float)pow(v2.x - v1.x, 2) +

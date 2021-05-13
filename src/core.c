@@ -43,6 +43,7 @@ LCGE_EXPORT int lcge_init(const char *lcge_res_dir)
 		return g_state->initialized;
 	}
 
+	// Construct a valid path to the shader directory
 	size_t res_dir_len = strlen(lcge_res_dir);
 	size_t shader_name_len = strlen("shaders/");
 
@@ -67,6 +68,7 @@ LCGE_EXPORT int lcge_init(const char *lcge_res_dir)
 
 static void lcge_clean_up()
 {
+	// Onlye delete shaders and the window if they were loaded
 	if (g_state->initialized == LCGE_INIT_OK) {
 		lcge_shader_delete(g_state->basic_geo);
 		lcge_shader_delete(g_state->texture);
@@ -92,6 +94,7 @@ LCGE_EXPORT void lcge_exit()
 
 void lcge_update_texture_slot()
 {
+	// Make sure the next texture slot is never larger than the total
 	if (g_state->next_available_texture == (g_state->total_textures - 1)) {
 		g_state->next_available_texture = 0;
 		return;

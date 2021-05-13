@@ -27,6 +27,7 @@
 extern "C" {
 #endif
 
+// DLL exporting for windows
 #ifdef _WIN32
 #define LCGE_EXPORT __declspec(dllexport)
 #else
