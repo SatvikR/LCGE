@@ -66,7 +66,7 @@ int main(int argc, char const *argv[])
 		// Update
 		if (lcge_get_mouse_button(LCGE_MOUSE_BUTTON_LEFT) ==
 		    LCGE_MOUSE_BUTTON_PRESSED) {
-			sprintf(count_text, "Count: %d", ++count);
+			sprintf(count_text, "Clicks: %d", ++count);
 		}
 
 		lcge_text_set(text, count_text, (WIDTH - width) / 2,
