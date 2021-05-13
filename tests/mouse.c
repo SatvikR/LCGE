@@ -21,6 +21,7 @@
 */
 
 #include <LCGE/lcge.h>
+#include <stdio.h>
 
 #define WIDTH  800
 #define HEIGHT 800
@@ -34,7 +35,7 @@ int main(int argc, char const *argv[])
 	}
 
 	// Create a window
-	int success = lcge_create_context(WIDTH, HEIGHT, "LCGE Window Example",
+	int success = lcge_create_context(WIDTH, HEIGHT, "LCGE Mouse Example",
 					  LCGE_NON_RESIZEABLE);
 
 	// Check if there was an error creating the window
@@ -46,29 +47,40 @@ int main(int argc, char const *argv[])
 	// Create clock with 60 max fps
 	LCGE_clock *clock = lcge_clock_create(60);
 
+	char count_text[50];
+	int count = 0;
+	sprintf(count_text, "Clicks: %d", count);
+
 	LCGE_font *font =
 		lcge_font_load("tests/fonts/VT323-Regular.ttf", 72.0f);
-	LCGE_text *text = lcge_text_load("Hello, world!", 0, 0, font);
+	LCGE_text *text = lcge_text_load(count_text, 0, 0, font);
 
 	float width = lcge_text_get_width(text);
 	float height = lcge_text_get_height(text);
 
 	// Center text on the screen
-	lcge_text_set(text, "Hello world!", (WIDTH - width) / 2,
+	lcge_text_set(text, count_text, (WIDTH - width) / 2,
 		      (HEIGHT - height) / 2 + height);
 
 	while (lcge_window_is_open()) {
-		lcge_window_clear();
+		// Update
+		if (lcge_get_mouse_button(LCGE_MOUSE_BUTTON_LEFT) ==
+		    LCGE_MOUSE_BUTTON_PRESSED) {
+			sprintf(count_text, "Count: %d", ++count);
+		}
+
+		lcge_text_set(text, count_text, (WIDTH - width) / 2,
+			      (HEIGHT - height) / 2 + height);
+
 		// Do any drawing here
-		lcge_text_draw(text, 80, 219, 180);
+		lcge_window_clear();
+		lcge_text_draw(text, 255, 255, 255);
 
 		// Get ready for next iteration
 		lcge_clock_tick(clock);
 		lcge_window_update();
 	}
 	lcge_clock_delete(clock);
-
-	// Delete text BEFORE fonts
 	lcge_text_delete(text);
 	lcge_font_delete(font);
 

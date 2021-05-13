@@ -96,6 +96,7 @@ else()
     set(TRANSFORM_EXAMPLE transform_example)
     set(NINJASTAR_EXAMPLE ninjastar_example)
     set(TEXT_EXAMPLE text_example)
+    set(MOUSE_EXAMPLE mouse_example)
 
     # Tests
     add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
@@ -129,6 +130,10 @@ else()
     add_executable(${NINJASTAR_EXAMPLE} "${TEST_DIR}/ninjastar.c")
     target_include_directories(${NINJASTAR_EXAMPLE} PRIVATE "./include")
     target_link_libraries(${NINJASTAR_EXAMPLE} PRIVATE ${PROJECT_NAME})
+
+    add_executable(${MOUSE_EXAMPLE} "${TEST_DIR}/mouse.c")
+    target_include_directories(${MOUSE_EXAMPLE} PRIVATE "./include")
+    target_link_libraries(${MOUSE_EXAMPLE} PRIVATE ${PROJECT_NAME})
 
 endif()
 

@@ -33,3 +33,12 @@ LCGE_EXPORT int lcge_get_key(int key)
 		return LCGE_KEY_PRESSED;
 	return LCGE_KEY_RELEASED;
 }
+
+LCGE_EXPORT int lcge_get_mouse_button(int button)
+{
+	int state = glfwGetMouseButton(g_state->window->_window, button);
+	if (state == GLFW_PRESS) {
+		return LCGE_MOUSE_BUTTON_PRESSED;
+	}
+	return LCGE_MOUSE_BUTTON_RELEASED;
+}

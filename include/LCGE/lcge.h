@@ -450,12 +450,39 @@ LCGE_IMPORT extern void lcge_clock_tick(LCGE_clock *clock);
 #define LCGE_KEY_PRESSED  1
 #define LCGE_KEY_RELEASED -1
 
+#define LCGE_MOUSE_BUTTON_1	 0
+#define LCGE_MOUSE_BUTTON_2	 1
+#define LCGE_MOUSE_BUTTON_3	 2
+#define LCGE_MOUSE_BUTTON_4	 3
+#define LCGE_MOUSE_BUTTON_5	 4
+#define LCGE_MOUSE_BUTTON_6	 5
+#define LCGE_MOUSE_BUTTON_7	 6
+#define LCGE_MOUSE_BUTTON_8	 7
+#define LCGE_MOUSE_BUTTON_LAST	 LCGE_MOUSE_BUTTON_8
+#define LCGE_MOUSE_BUTTON_LEFT	 LCGE_MOUSE_BUTTON_1
+#define LCGE_MOUSE_BUTTON_RIGHT	 LCGE_MOUSE_BUTTON_2
+#define LCGE_MOUSE_BUTTON_MIDDLE LCGE_MOUSE_BUTTON_3
+
+#define LCGE_MOUSE_BUTTON_PRESSED  1
+#define LCGE_MOUSE_BUTTON_RELEASED -1
+
 /**
  * @brief Gets the input status of a key.
  *
  * Takes in a key code, eg. LCGE_KEY_<key_name>
  */
 LCGE_IMPORT extern int lcge_get_key(int key);
+
+/**
+ * @brief Gets input status of a mouse button
+ *
+ * Takes in LCGE_MOUSE_BUTTON_<1 through 8>
+ *  OR
+ * LCGE_MOUSE_BUTTON_<LAST, LEFT, RIGHT, or MIDDLE>
+ *
+ * returns LCGE_MOUSE_BUTTON_<PRESSED or RELEASE>
+ */
+LCGE_IMPORT int lcge_get_mouse_button(int button);
 
 /**
  * @brief A true type font.
@@ -489,6 +516,7 @@ typedef struct LCGE_IMPORT LCGE_text LCGE_text;
  * @brief Loads a 2D text struct.
  *
  * Takes in text as a string, x/y coordinates, and the font
+ * the x/y coords point to the BOTTOM LEFT of the text
  */
 LCGE_IMPORT LCGE_text *lcge_text_load(const char *text, float x, float y,
 				      LCGE_font *font);
