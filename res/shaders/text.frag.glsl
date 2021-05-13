@@ -22,7 +22,7 @@
 
 #version 330 core
 
-layout (location = 0) out vec4 color;
+layout(location = 0) out vec4 color;
 
 in vec2 texture_coord;
 
@@ -31,5 +31,6 @@ uniform vec3 u_color;
 
 void main()
 {
-    color = vec4(u_color.r, u_color.g, u_color.b, texture(u_texture, texture_coord).r);
+	color = vec4(u_color.r, u_color.g, u_color.b,
+		     texture(u_texture, texture_coord).r);
 }

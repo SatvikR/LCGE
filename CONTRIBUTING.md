@@ -44,7 +44,7 @@ Follow these simple guidelines for code style/formatting.
 
 Every file must begin with this comment with a license notice
 
-> Before commiting, run this command `find src/ include/ tests/ -iname *.h -o -iname *.c | xargs clang-format -i`
+> Before commiting, run this command `find src/ include/ res/ tests/ -iname *.h -o -iname *.c -o -iname *.glsl | xargs clang-format -i`
 
 ```c
 /*
