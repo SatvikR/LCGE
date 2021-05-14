@@ -48,11 +48,10 @@ int main(int argc, char const *argv[])
 	LCGE_clock *clock = lcge_clock_create(60);
 
 	char count_text[50];
-	int count = 0;
-	sprintf(count_text, "Clicks: %d", count);
+	sprintf(count_text, "Pos: %g, %g", 100.0f, 100.0f);
 
 	LCGE_font *font =
-		lcge_font_load("tests/fonts/VT323-Regular.ttf", 72.0f);
+		lcge_font_load("tests/fonts/VT323-Regular.ttf", 32.0f);
 	LCGE_text *text = lcge_text_load(count_text, 0, 0, font);
 
 	float width = lcge_text_get_width(text);
@@ -64,10 +63,8 @@ int main(int argc, char const *argv[])
 
 	while (lcge_window_is_open()) {
 		// Update
-		if (lcge_get_mouse_button(LCGE_MOUSE_BUTTON_LEFT) ==
-		    LCGE_MOUSE_BUTTON_PRESSED) {
-			sprintf(count_text, "Count: %d", ++count);
-		}
+		LCGE_cursor_pos pos = lcge_get_cursor_position();
+		sprintf(count_text, "Pos: %g, %g", pos.x, pos.y);
 
 		lcge_text_set(text, count_text, (WIDTH - width) / 2,
 			      (HEIGHT - height) / 2 + height);

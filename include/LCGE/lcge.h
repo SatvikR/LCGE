@@ -172,7 +172,7 @@ LCGE_IMPORT extern void lcge_window_update();
  * @see lcge_rect_load
  * @see lcge_rect_draw
  */
-typedef struct LCGE_IMPORT LCGE_rect LCGE_rect;
+typedef struct LCGE_rect LCGE_rect;
 
 /**
  * @brief Loads rectangle data and returns a handle.
@@ -240,7 +240,7 @@ LCGE_IMPORT extern float lcge_rect_get_height(LCGE_rect *rect);
  * @see lcge_image_load
  * @see lcge_image_draw
  */
-typedef struct LCGE_IMPORT LCGE_image LCGE_image;
+typedef struct LCGE_image LCGE_image;
 
 /**
  * @brief Loads an image from a file.
@@ -303,7 +303,7 @@ LCGE_IMPORT extern float lcge_image_get_height(LCGE_image *image);
  * @see lcge_clock_create
  * @see lcge_clock_tick
  */
-typedef struct LCGE_IMPORT LCGE_clock LCGE_clock;
+typedef struct LCGE_clock LCGE_clock;
 
 /**
  * @brief Creates a clock.
@@ -484,12 +484,19 @@ LCGE_IMPORT extern int lcge_get_key(int key);
  */
 LCGE_IMPORT int lcge_get_mouse_button(int button);
 
+typedef struct LCGE_cursor_pos
+{
+    float x, y;
+} LCGE_cursor_pos;
+
+LCGE_IMPORT LCGE_cursor_pos lcge_get_cursor_position();
+
 /**
  * @brief A true type font.
  *
  * @see lcge_font_load
  */
-typedef struct LCGE_IMPORT LCGE_font LCGE_font;
+typedef struct LCGE_font LCGE_font;
 
 /**
  * @brief Loads a font.
@@ -510,7 +517,7 @@ LCGE_IMPORT extern void lcge_font_delete(LCGE_font *font);
  * @see lcge_text_load
  * @see lcge_text_draw
  */
-typedef struct LCGE_IMPORT LCGE_text LCGE_text;
+typedef struct LCGE_text LCGE_text;
 
 /**
  * @brief Loads a 2D text struct.

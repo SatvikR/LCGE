@@ -29,6 +29,11 @@ extern "C" {
 
 #include "export.h"
 
+typedef LCGE_EXPORT struct LCGE_cursor_pos
+{
+    float x, y;
+} LCGE_cursor_pos;
+
 /* Same values as GLFW keys */
 #define LCGE_KEY_SPACE	       32
 #define LCGE_KEY_APOSTROPHE    39 /* ' */
@@ -174,6 +179,8 @@ extern "C" {
 LCGE_EXPORT int lcge_get_key(int key);
 
 LCGE_EXPORT int lcge_get_mouse_button(int button);
+LCGE_EXPORT LCGE_cursor_pos lcge_get_cursor_position();
+
 #ifdef __cplusplus
 }
 #endif
