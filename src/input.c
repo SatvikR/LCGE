@@ -46,11 +46,11 @@ LCGE_EXPORT int lcge_get_mouse_button(int button)
 
 LCGE_EXPORT LCGE_cursor_pos lcge_get_cursor_position()
 {
-    LCGE_cursor_pos pos;
-    double xpos, ypos;
-    glfwGetCursorPos(g_state->window->_window, &xpos, &ypos);
+	LCGE_cursor_pos pos;
+	double xpos, ypos;
+	glfwGetCursorPos(g_state->window->_window, &xpos, &ypos);
 
-    pos.x = (float) xpos;
-    pos.y = (float) ypos;
-    return pos;
+	pos.x = (float)xpos;
+	pos.y = (float)ypos;
+	return pos;
 }

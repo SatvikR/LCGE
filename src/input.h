@@ -29,9 +29,8 @@ extern "C" {
 
 #include "export.h"
 
-typedef LCGE_EXPORT struct LCGE_cursor_pos
-{
-    float x, y;
+typedef LCGE_EXPORT struct LCGE_cursor_pos {
+	float x, y;
 } LCGE_cursor_pos;
 
 /* Same values as GLFW keys */
