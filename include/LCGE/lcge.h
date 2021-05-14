@@ -484,9 +484,8 @@ LCGE_IMPORT extern int lcge_get_key(int key);
  */
 LCGE_IMPORT int lcge_get_mouse_button(int button);
 
-typedef struct LCGE_cursor_pos
-{
-    float x, y;
+typedef struct LCGE_cursor_pos {
+	float x, y;
 } LCGE_cursor_pos;
 
 LCGE_IMPORT LCGE_cursor_pos lcge_get_cursor_position();
