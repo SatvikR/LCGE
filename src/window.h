@@ -44,7 +44,7 @@ extern "C" {
 #define LCGE_CONTEXT_ERR -1
 #define LCGE_CONTEXT_OK	 1
 
-typedef LCGE_EXPORT struct LCGE_window {
+typedef struct LCGE_window {
 	unsigned int width;
 	unsigned int height;
 

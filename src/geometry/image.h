@@ -31,7 +31,7 @@ extern "C" {
 #include "../renderer/renderer.h"
 #include "../export.h"
 
-typedef LCGE_EXPORT struct LCGE_image {
+typedef struct LCGE_image {
 	LCGE_vertex_array *va;
 	LCGE_vertex_buffer *vb;
 	LCGE_index_buffer *ib;

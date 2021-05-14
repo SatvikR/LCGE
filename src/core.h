@@ -34,7 +34,7 @@ extern "C" {
 #include "renderer/shader.h"
 
 // Global engine state
-typedef LCGE_EXPORT struct LCGE_state {
+typedef struct LCGE_state {
 	int initialized;
 	char *res_dir;
 	LCGE_window *window;
