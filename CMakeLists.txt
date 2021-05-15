@@ -24,6 +24,7 @@ set(SOURCES
     "${SRC_DIR}/geometry/image.c"
     "${SRC_DIR}/geometry/math.c"
     "${SRC_DIR}/geometry/text.c"
+    "${SRC_DIR}/geometry/line.c"
 )
 
 set(HEADERS
@@ -45,6 +46,7 @@ set(HEADERS
     "${SRC_DIR}/geometry/image.h"
     "${SRC_DIR}/geometry/math.h"
     "${SRC_DIR}/geometry/text.h"
+    "${SRC_DIR}/geometry/line.h"
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
@@ -97,6 +99,7 @@ else()
     set(NINJASTAR_EXAMPLE ninjastar_example)
     set(TEXT_EXAMPLE text_example)
     set(MOUSE_EXAMPLE mouse_example)
+    set(LINE_EXAMPLE line_example)
 
     # Tests
     add_executable(${WINDOW_EXAMPLE} "${TEST_DIR}/window.c")
@@ -135,6 +138,9 @@ else()
     target_include_directories(${MOUSE_EXAMPLE} PUBLIC "./include")
     target_link_libraries(${MOUSE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
+    add_executable(${LINE_EXAMPLE} "${TEST_DIR}/line.c")
+    target_include_directories(${LINE_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${LINE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 endif()
 
 set(STB_DIR "lib/stb")

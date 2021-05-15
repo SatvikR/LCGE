@@ -20,38 +20,44 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-#ifndef _RENDERER_SHADER_H
-#define _RENDERER_SHADER_H
+#include <LCGE/lcge.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+int main(int argc, char const *argv[])
+{
+	// Initialize LCGE
+	if (lcge_init("res/") == LCGE_INIT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-typedef struct LCGE_shader {
-	GLuint renderer_id;
-	struct {
-		char *key;
-		GLint value;
-	} * uniform_cache;
-} LCGE_shader;
+	// Create a window
+	int success = lcge_create_context(500, 500, "LCGE Line Example",
+					  LCGE_NON_RESIZEABLE);
 
-LCGE_shader *lcge_shader_create(const char *path, const char *name);
-void lcge_shader_delete(LCGE_shader *shader);
+	// Check if there was an error creating the window
+	if (success == LCGE_CONTEXT_ERR) {
+		lcge_exit();
+		return -1;
+	}
 
-void lcge_shader_bind(LCGE_shader *shader);
-void lcge_shader_unbind(LCGE_shader *shader);
+	// Create clock with 60 max fps
+	LCGE_clock *clock = lcge_clock_create(60);
 
-GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
-				 GLfloat a, GLfloat b, GLfloat c, GLfloat d);
+	LCGE_line *line = lcge_line_load(0.0f, 0.0f, 500.0f, 500.0f);
 
-GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
-				 GLint v0);
+	while (lcge_window_is_open()) {
+		// Do any drawing here
+		lcge_window_clear();
+		lcge_line_draw(line, 255.0f, 0.0f, 0.0f);
 
-GLint lcge_shader_set_uniform_3f(LCGE_shader *shader, const char *name,
-				GLfloat v0, GLfloat v1, GLfloat v2);
+		// Get ready for next iteration
+		lcge_clock_tick(clock);
+		lcge_window_update();
+	}
+	lcge_line_delete(line);
+	lcge_clock_delete(clock);
 
-#ifdef __cplusplus
+	lcge_exit();
+
+	return 0;
 }
-#endif
-
-#endif

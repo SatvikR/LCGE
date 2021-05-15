@@ -20,35 +20,29 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
-#ifndef _RENDERER_SHADER_H
-#define _RENDERER_SHADER_H
+#ifndef _GEOMETRY_LINE_H
+#define _GEOMETRY_LINE_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct LCGE_shader {
-	GLuint renderer_id;
-	struct {
-		char *key;
-		GLint value;
-	} * uniform_cache;
-} LCGE_shader;
+#include "../renderer/renderer.h"
+#include "../export.h"
 
-LCGE_shader *lcge_shader_create(const char *path, const char *name);
-void lcge_shader_delete(LCGE_shader *shader);
+typedef struct LCGE_line
+{
+	LCGE_vertex_array *va;
+	LCGE_vertex_buffer *vb;
+	LCGE_shader *shader;
+} LCGE_line;
 
-void lcge_shader_bind(LCGE_shader *shader);
-void lcge_shader_unbind(LCGE_shader *shader);
+LCGE_EXPORT LCGE_line *lcge_line_load(float x0, float y0, float x1, float y1);
+LCGE_EXPORT void lcge_line_delete(LCGE_line *line);
 
-GLint lcge_shader_set_uniform_4f(LCGE_shader *shader, const char *name,
-				 GLfloat a, GLfloat b, GLfloat c, GLfloat d);
-
-GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
-				 GLint v0);
-
-GLint lcge_shader_set_uniform_3f(LCGE_shader *shader, const char *name,
-				GLfloat v0, GLfloat v1, GLfloat v2);
+LCGE_EXPORT void lcge_line_draw(LCGE_line *line, float r, float g, float b);
+LCGE_EXPORT void lcge_line_set(LCGE_line *line, float x0, float y0, float x1,
+			       float y1);
 
 #ifdef __cplusplus
 }

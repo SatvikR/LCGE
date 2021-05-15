@@ -105,7 +105,7 @@ extern "C" {
  *
  *         // Get ready for next iteration
  *         lcge_clock_tick(clock);
- *         lcge_window_udpate();
+ *         lcge_window_update();
  *     }
  *
  *     // Clean up
@@ -585,6 +585,15 @@ LCGE_IMPORT float lcge_text_get_width(LCGE_text *text);
  * @brief Gets the height of the text.
  */
 LCGE_IMPORT float lcge_text_get_height(LCGE_text *text);
+
+typedef struct LCGE_line LCGE_line;
+
+LCGE_IMPORT LCGE_line *lcge_line_load(float x0, float y0, float x1, float y1);
+LCGE_IMPORT void lcge_line_delete(LCGE_line *line);
+
+LCGE_IMPORT void lcge_line_draw(LCGE_line *line, float r, float g, float b);
+LCGE_IMPORT void lcge_line_set(LCGE_line *line, float x0, float y0, float x1,
+			       float y1);
 
 #ifdef __cplusplus
 }

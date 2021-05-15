@@ -142,7 +142,7 @@ LCGE_EXPORT void lcge_text_draw(LCGE_text *text, float r, float g, float b)
 	lcge_shader_bind(text->shader);
 
 	lcge_shader_set_uniform_1i(text->shader, "u_texture", 0);
-	lcge_shader_set_inform_3f(text->shader, "u_color", r / 255.0f,
+	lcge_shader_set_uniform_3f(text->shader, "u_color", r / 255.0f,
 				  g / 255.0f, b / 255.0f);
 
 	int i;
