@@ -152,6 +152,7 @@ var lcge_8h =
     [ "LCGE_cursor_pos", "lcge_8h.html#a4171ed997b76560d245ad106c5ec6e0e", null ],
     [ "LCGE_font", "lcge_8h.html#a71786f0e5a510b29a750a4118a203efb", null ],
     [ "LCGE_text", "lcge_8h.html#aa80e2975bf9005ea85e788573843235f", null ],
+    [ "LCGE_line", "lcge_8h.html#a7b4fd45adbbf87b2e42854ddee7bbc53", null ],
     [ "lcge_init", "lcge_8h.html#a11353996d713d6e3b16f594a07c71e09", null ],
     [ "lcge_create_context", "lcge_8h.html#a701df0fcadaf31cf6e975100c7830ade", null ],
     [ "lcge_window_is_open", "lcge_8h.html#a3a54d10e7ac7dac87848d5da728a2026", null ],
@@ -170,6 +171,7 @@ var lcge_8h =
     [ "lcge_image_load", "lcge_8h.html#a7fe42d7d36f9663477acdff43bbddcfd", null ],
     [ "lcge_image_delete", "lcge_8h.html#a166c7f078d7bd0959c2a1aa35c8dbab9", null ],
     [ "lcge_image_rotate", "lcge_8h.html#a0dedeabd0a9864dd08d08eae230d8099", null ],
+    [ "lcge_image_reflect", "lcge_8h.html#ae79ae01c71c183154955d4ec34bfdb21", null ],
     [ "lcge_image_set", "lcge_8h.html#a7f30fa27a17d47180c6e765b0c033d3d", null ],
     [ "lcge_image_draw", "lcge_8h.html#a2dc8d05c5a3c419d467179f3847fe6cb", null ],
     [ "lcge_image_get_x", "lcge_8h.html#aad049d4f871dddf1afaf82e728d31149", null ],
@@ -191,5 +193,9 @@ var lcge_8h =
     [ "lcge_text_get_x", "lcge_8h.html#a5bf95f471c0ba7cac62b89fbee183db1", null ],
     [ "lcge_text_get_y", "lcge_8h.html#a75f206fe14b1c244baec2641019c9ac0", null ],
     [ "lcge_text_get_width", "lcge_8h.html#a688e82d6836f4562491b717bcbbcc75c", null ],
-    [ "lcge_text_get_height", "lcge_8h.html#afa68bc3481cd922dd7ce85cf651003c7", null ]
+    [ "lcge_text_get_height", "lcge_8h.html#afa68bc3481cd922dd7ce85cf651003c7", null ],
+    [ "lcge_line_load", "lcge_8h.html#a54e023e38d3fea2c90f5bb7f1dc5cc3d", null ],
+    [ "lcge_line_delete", "lcge_8h.html#a96cd0055fd427207cc17441b56812b2b", null ],
+    [ "lcge_line_draw", "lcge_8h.html#afc692243577125266bb13ba02881d548", null ],
+    [ "lcge_line_set", "lcge_8h.html#af318b69b85206f200d6f0cc4f660e554", null ]
 ];
