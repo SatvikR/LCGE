@@ -48,18 +48,18 @@ set(HEADERS
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
-target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
 
 set(GLFW_DIR "lib/glfw")
 add_subdirectory("${GLFW_DIR}")
 target_link_libraries(${PROJECT_NAME} "glfw" "${GLFW_LIBRARIES}")
-target_include_directories(${PROJECT_NAME} PRIVATE "${GLFW_DIR}/include")
-target_compile_definitions(${PROJECT_NAME} PRIVATE "GLFW_INCLUDE_NONE")
+target_include_directories(${PROJECT_NAME} PUBLIC "${GLFW_DIR}/include")
+target_compile_definitions(${PROJECT_NAME} PUBLIC "GLFW_INCLUDE_NONE")
 
 set(GLAD_DIR "lib/glad")
 add_library(glad "${GLAD_DIR}/src/glad.c")
-target_include_directories(glad PRIVATE "${GLAD_DIR}/include")
-target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
+target_include_directories(glad PUBLIC "${GLAD_DIR}/include")
+target_include_directories(${PROJECT_NAME} PUBLIC "${GLAD_DIR}/include")
 target_link_libraries(${PROJECT_NAME} glad "${CMAKE_DL_LIBS}")
 
 if (NOT CMAKE_BUILD_TYPE MATCHES Debug)
@@ -108,38 +108,37 @@ else()
     target_link_libraries(${SQUARES_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${MOVE_EXAMPLE} "${TEST_DIR}/movement.c")
-    target_include_directories(${MOVE_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${MOVE_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${MOVE_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${MOVE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${IMAGE_EXAMPLE} "${TEST_DIR}/image.c")
-    target_include_directories(${IMAGE_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${IMAGE_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${IMAGE_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${IMAGE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${INPUT_EXAMPLE} "${TEST_DIR}/input.c")
-    target_include_directories(${INPUT_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${INPUT_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${INPUT_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${INPUT_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${TRANSFORM_EXAMPLE} "${TEST_DIR}/transform.c")
-    target_include_directories(${TRANSFORM_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${TRANSFORM_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${TRANSFORM_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${TRANSFORM_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${TEXT_EXAMPLE} "${TEST_DIR}/text.c")
-    target_include_directories(${TEXT_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${TEXT_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${TEXT_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${TEXT_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${NINJASTAR_EXAMPLE} "${TEST_DIR}/ninjastar.c")
-    target_include_directories(${NINJASTAR_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${NINJASTAR_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${NINJASTAR_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${NINJASTAR_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
     add_executable(${MOUSE_EXAMPLE} "${TEST_DIR}/mouse.c")
-    target_include_directories(${MOUSE_EXAMPLE} PRIVATE "./include")
-    target_link_libraries(${MOUSE_EXAMPLE} PRIVATE ${PROJECT_NAME})
+    target_include_directories(${MOUSE_EXAMPLE} PUBLIC "./include")
+    target_link_libraries(${MOUSE_EXAMPLE} PUBLIC ${PROJECT_NAME})
 
 endif()
 
 set(STB_DIR "lib/stb")
-target_include_directories(${PROJECT_NAME} PRIVATE ${STB_DIR})
-
+target_include_directories(${PROJECT_NAME} PUBLIC ${STB_DIR})
 IF (WIN32)
 	target_link_libraries(${PROJECT_NAME} opengl32)
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
