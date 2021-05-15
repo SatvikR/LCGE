@@ -91,7 +91,7 @@ int main(int argc, char const *argv[])
 
         // Get ready for next iteration
         lcge_clock_tick(clock);
-        lcge_window_udpate();
+        lcge_window_update();
     }
 
     // Clean up
