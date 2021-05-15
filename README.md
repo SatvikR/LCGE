@@ -7,7 +7,7 @@
      \ \  \    \ \  \    \ \  \  __\ \  \_|/__
       \ \  \____\ \  \____\ \  \|\  \ \  \_|\ \
        \ \_______\ \_______\ \_______\ \_______\
-        \|_______|\|_______|\|_______|\|_______|
+        \|_______|\|_______|\|_______|\|_______| v1.0.0
 ```
 
 A Lightweight C game engine built with OpenGL.
@@ -28,7 +28,8 @@ A Lightweight C game engine built with OpenGL.
 - Maintain an FPS
 - Render 2D rectangles
 - Render 2D images
-- Rotate 2d rectangles and images
+- Render 2D lines
+- Rotate 2D rectangles and images
 - Get keyboard input
 - Get mouse input
 - Load truetype fonts
