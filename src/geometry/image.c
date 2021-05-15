@@ -81,6 +81,8 @@ LCGE_EXPORT LCGE_image *lcge_image_load(const char *filepath, float x, float y,
 	image->bottom_l = bottom_l;
 	image->bottom_r = bottom_r;
 
+	image->reflected = 1;
+
 	return image;
 }
 
@@ -199,4 +201,46 @@ LCGE_EXPORT float lcge_image_get_height(LCGE_image *image)
 {
 	return lcge_coordinate_distance(image->top_l, image->bottom_l) / 2.0f *
 	       g_state->window->height;
+}
+
+LCGE_EXPORT void lcge_image_reflect(LCGE_image *image)
+{
+	if (image->reflected) {
+		GLfloat positions[16] = {
+			image->bottom_l.x,
+			image->bottom_l.y,
+			1.0f,
+			0.0f, // bottom left
+			image->top_l.x,
+			image->top_l.y,
+			1.0f,
+			1.0f, // top left
+			image->top_r.x,
+			image->top_r.y,
+			0.0f,
+			1.0f, // top right
+			image->bottom_r.x,
+			image->bottom_r.y,
+			0.0f,
+			0.0f // bottom right
+		};
+
+		lcge_vertex_array_bind(image->va);
+		lcge_vertex_buffer_update(image->vb, positions,
+					  16 * sizeof(GLfloat));
+
+		image->reflected = 0;
+		return;
+	}
+	GLfloat positions[16] = {
+		image->bottom_l.x, image->bottom_l.y, 0.0f, 0.0f, // bottom left
+		image->top_l.x,	   image->top_l.y,    0.0f, 1.0f, // top left
+		image->top_r.x,	   image->top_r.y,    1.0f, 1.0f, // top right
+		image->bottom_r.x, image->bottom_r.y, 1.0f, 0.0f // bottom right
+	};
+
+	lcge_vertex_array_bind(image->va);
+	lcge_vertex_buffer_update(image->vb, positions, 16 * sizeof(GLfloat));
+
+	image->reflected = 1;
 }

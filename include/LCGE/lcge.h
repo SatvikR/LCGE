@@ -20,6 +20,16 @@
     Satvik Reddy <reddy.satvik@gmail.com>
 */
 
+/*
+     ___       ________  ________  _______
+    |\  \     |\   ____\|\   ____\|\  ___ \
+    \ \  \    \ \  \___|\ \  \___|\ \   __/|
+     \ \  \    \ \  \    \ \  \  __\ \  \_|/__
+      \ \  \____\ \  \____\ \  \|\  \ \  \_|\ \
+       \ \_______\ \_______\ \_______\ \_______\
+        \|_______|\|_______|\|_______|\|_______| v0.4.0
+*/
+
 #ifndef LCGE_H
 #define LCGE_H
 
@@ -263,6 +273,11 @@ LCGE_IMPORT extern void lcge_image_delete(LCGE_image *image);
  * Takes in the angle in degrees.
  */
 LCGE_IMPORT extern void lcge_image_rotate(LCGE_image *image, float angle);
+
+/**
+ * @brief Reflects an image horizontally 180 deg
+ */
+LCGE_IMPORT void lcge_image_reflect(LCGE_image *image);
 
 /**
  * @brief Sets new data for a loaded image.

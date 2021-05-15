@@ -42,6 +42,8 @@ typedef struct LCGE_image {
 	LCGE_coordinate top_r;
 	LCGE_coordinate bottom_l;
 	LCGE_coordinate bottom_r;
+
+	int reflected;
 } LCGE_image;
 
 LCGE_EXPORT LCGE_image *lcge_image_load(const char *filepath, float x, float y,
@@ -49,6 +51,7 @@ LCGE_EXPORT LCGE_image *lcge_image_load(const char *filepath, float x, float y,
 LCGE_EXPORT void lcge_image_delete(LCGE_image *image);
 
 LCGE_EXPORT void lcge_image_rotate(LCGE_image *image, float angle);
+LCGE_EXPORT void lcge_image_reflect(LCGE_image *image);
 LCGE_EXPORT void lcge_image_set(LCGE_image *image, float x, float y,
 				float width, float height);
 LCGE_EXPORT void lcge_image_draw(LCGE_image *image);

@@ -51,6 +51,8 @@ int main(int argc, char const *argv[])
 		lcge_image_load("tests/images/player_sprite.png", 100, 100,
 				SPRITE_WIDTH * 0.8f, SPRITE_HEIGHT * 0.8f);
 
+	lcge_image_reflect(image_one);
+
 	// Load image_two
 	LCGE_image *image_two =
 		lcge_image_load("tests/images/player_sprite.png", 500, 300,

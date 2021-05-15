@@ -40,6 +40,9 @@ void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer);
 void lcge_index_buffer_bind(LCGE_index_buffer *index_buffer);
 void lcge_index_buffer_unbind(LCGE_index_buffer *index_buffer);
 
+void lcge_index_buffer_update(LCGE_index_buffer *index_buffer, GLsizeiptr size,
+			      const GLvoid *data);
+
 #ifdef __cplusplus
 }
 #endif
