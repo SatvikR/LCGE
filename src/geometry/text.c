@@ -48,6 +48,16 @@ LCGE_EXPORT void lcge_font_delete(LCGE_font *font)
 	free(font);
 }
 
+static void lcge_font_bind(LCGE_font *font)
+{
+	lcge_ttftexture_bind(font->texture);
+}
+
+static void lcge_font_unbind(LCGE_font *font)
+{
+	lcge_ttftexture_unbind(font->texture);
+}
+
 LCGE_EXPORT LCGE_text *lcge_text_load(const char *text, float x, float y,
 				      LCGE_font *font)
 {
@@ -62,6 +72,8 @@ LCGE_EXPORT LCGE_text *lcge_text_load(const char *text, float x, float y,
 	m_text->shader = g_state->text;
 	m_text->len = len;
 	m_text->data = text;
+
+	lcge_font_bind(font);
 
 	int i;
 	for (i = 0; i < len; i++) {
@@ -172,6 +184,8 @@ LCGE_EXPORT void lcge_text_set(LCGE_text *text, const char *n_text, float x,
 	text->vas = calloc(1, sizeof(LCGE_vertex_array *) * len);
 	text->len = len;
 	text->data = n_text;
+
+	lcge_font_bind(text->font);
 
 	for (i = 0; i < text->len; i++) {
 		stbtt_aligned_quad q = lcge_ttftexture_get_char(
