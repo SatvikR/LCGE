@@ -30,8 +30,7 @@ extern "C" {
 #include "../renderer/renderer.h"
 #include "../export.h"
 
-typedef struct LCGE_line
-{
+typedef struct LCGE_line {
 	LCGE_vertex_array *va;
 	LCGE_vertex_buffer *vb;
 	LCGE_shader *shader;

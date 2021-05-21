@@ -181,7 +181,7 @@ GLint lcge_shader_set_uniform_1i(LCGE_shader *shader, const char *name,
 }
 
 GLint lcge_shader_set_uniform_3f(LCGE_shader *shader, const char *name,
-				GLfloat v0, GLfloat v1, GLfloat v2)
+				 GLfloat v0, GLfloat v1, GLfloat v2)
 {
 	GLint location = get_uniform_location(shader, name);
 

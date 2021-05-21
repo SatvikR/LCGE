@@ -68,7 +68,7 @@ LCGE_EXPORT int lcge_create_context(unsigned int width, unsigned int height,
 
 	// Enable smooth lines
 	GLCALL(glEnable(GL_LINE_SMOOTH));
-	GLCALL(glHint(GL_LINE_SMOOTH_HINT,  GL_NICEST));
+	GLCALL(glHint(GL_LINE_SMOOTH_HINT, GL_NICEST));
 
 	// Store the total texture slots
 	GLCALL(glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS,

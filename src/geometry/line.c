@@ -29,7 +29,6 @@
 #include "../core.h"
 #include "../glerror.h"
 
-
 LCGE_EXPORT LCGE_line *lcge_line_load(float x0, float y0, float x1, float y1)
 {
 	LCGE_line *line = calloc(1, sizeof(LCGE_line));
@@ -71,7 +70,7 @@ LCGE_EXPORT void lcge_line_draw(LCGE_line *line, float r, float g, float b)
 
 	lcge_shader_bind(line->shader);
 	lcge_shader_set_uniform_4f(line->shader, "u_color", r / 255.0f,
-				  g / 255.0f, b / 255.0f, 1.0f);
+				   g / 255.0f, b / 255.0f, 1.0f);
 
 	GLCALL(glDrawArrays(GL_LINES, 0, 2));
 }

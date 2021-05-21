@@ -134,7 +134,8 @@ LCGE_EXPORT void lcge_image_draw(LCGE_image *image)
 	lcge_texture_bind(image->texture);
 
 	lcge_shader_bind(image->shader);
-	lcge_shader_set_uniform_1i(image->shader, "u_texture", 0);
+	lcge_shader_set_uniform_1i(image->shader, "u_texture",
+				   image->texture->renderer_id);
 
 	lcge_vertex_array_bind(image->va);
 	lcge_index_buffer_bind(image->ib);
