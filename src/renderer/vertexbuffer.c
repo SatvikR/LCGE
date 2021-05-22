@@ -40,7 +40,7 @@ void lcge_vertex_buffer_update(LCGE_vertex_buffer *vertex_buffer, void *data,
 			       GLuint size)
 {
 	lcge_vertex_buffer_bind(vertex_buffer);
-	GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, size, data));
 }
 
 void lcge_vertex_buffer_delete(LCGE_vertex_buffer *vertex_buffer)

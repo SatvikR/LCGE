@@ -43,8 +43,7 @@ void lcge_index_buffer_update(LCGE_index_buffer *index_buffer, GLsizeiptr size,
 			      const GLvoid *data)
 {
 	lcge_index_buffer_bind(index_buffer);
-	GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data,
-			    GL_DYNAMIC_DRAW));
+	GLCALL(glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, size, data));
 }
 
 void lcge_index_buffer_delete(LCGE_index_buffer *index_buffer)
