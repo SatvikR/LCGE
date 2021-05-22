@@ -56,25 +56,25 @@ static GLuint compile_shader(const char *path, GLenum type)
 	fread(text, 1, len, f);
 	fclose(f);
 
-	GLuint id = glCreateShader(type);
-	glShaderSource(id, 1, (const GLchar **)&text, (const GLint *)&len);
-	glCompileShader(id);
+	GLCALL(GLuint id = glCreateShader(type));
+	GLCALL(glShaderSource(id, 1, (const GLchar **)&text, (const GLint *)&len));
+	GLCALL(glCompileShader(id));
 
 	GLint status;
-	glGetShaderiv(id, GL_COMPILE_STATUS, &status);
+	GLCALL(glGetShaderiv(id, GL_COMPILE_STATUS, &status));
 
 	if (status == GL_FALSE) {
 		GLint len;
-		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &len);
+		GLCALL(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &len));
 		GLchar *error_message = malloc(sizeof(char) * len);
 
-		glGetShaderInfoLog(id, len, &len, error_message);
+		GLCALL(glGetShaderInfoLog(id, len, &len, error_message));
 
 		fprintf(stderr,
 			"Compilation of shader %s failed. Error message: %s\n",
 			path, error_message);
 
-		glDeleteShader(id);
+		GLCALL(glDeleteShader(id));
 
 		free(error_message);
 	}
